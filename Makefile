@@ -1,12 +1,16 @@
 # ========
 
-MK_ROOT		= $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-MK_NAME		= gload
+MK_ROOT	= $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+MK_NAME	= gload
 
 # ========
 
-TARGET		= $(MK_ROOT)$(MK_NAME).h
-GENERATOR	= $(MK_ROOT)gen/$(MK_NAME).py
+TARGET	= $(MK_ROOT)$(MK_NAME).h
+GPATH	= $(MK_ROOT)gen/$(MK_NAME).py
+GFLAGS	= --output=$(TARGET) \
+		  --profile=core \
+		  --extensions=yes \
+		  --assertion=yes 
 
 # ========
 
@@ -30,7 +34,7 @@ remove :
 .PHONY : gen
 
 gen :
-	python3 $(GENERATOR) -o $(TARGET)
+	python3 $(GPATH) $(GFLAGS)
 
 .PHONY : samples
 
