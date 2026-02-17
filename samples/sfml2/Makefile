@@ -13,9 +13,9 @@ LFLAGS		= -lsfml-system -lsfml-window
 .PHONY : all
 
 all :
-	$(CC) $(CFLAGS) -o $(MK_ROOT)sample-legacy.out $(MK_ROOT)sample-legacy.cc $(LFLAGS)
-	$(CC) $(CFLAGS) -o $(MK_ROOT)sample-modern33.out $(MK_ROOT)sample-modern33.cc $(LFLAGS)
-	$(CC) $(CFLAGS) -o $(MK_ROOT)sample-modern46.out $(MK_ROOT)sample-modern46.cc $(LFLAGS)
+	-$(CC) $(CFLAGS) -o $(MK_ROOT)sample-legacy.out $(MK_ROOT)sample-legacy.cc $(LFLAGS)
+	-$(CC) $(CFLAGS) -o $(MK_ROOT)sample-modern33.out $(MK_ROOT)sample-modern33.cc $(LFLAGS)
+	-$(CC) $(CFLAGS) -o $(MK_ROOT)sample-modern46.out $(MK_ROOT)sample-modern46.cc $(LFLAGS)
 
 .PHONY : clean
 

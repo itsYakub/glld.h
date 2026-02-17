@@ -13,7 +13,7 @@ LFLAGS		=
 .PHONY : all
 
 all :
-	$(CC) $(CFLAGS) -o $(MK_ROOT)sample.out $(MK_ROOT)sample.c $(LFLAGS)
+	-$(CC) $(CFLAGS) -o $(MK_ROOT)sample.out $(MK_ROOT)sample.c $(LFLAGS)
 
 .PHONY : clean
 
