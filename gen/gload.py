@@ -736,7 +736,7 @@ def gload_func_declr(lst, cmds: list[glCmd], mode: int, prev: str = None) -> str
                 elif mode == 2:
                     func = '# define '
                     func += f'{cmd.name} '
-                    func += f'gload_{cmd.name}\n'
+                    func += f'(assert(gload_{cmd.name} != 0), gload_{cmd.name})\n'
                     result += func
 
         # add a newline if we're not printing macros...

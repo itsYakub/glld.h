@@ -357,10 +357,12 @@ GLAPI void  *gloadGetProcAddress(const char *);
 #   include <stdio.h>
 #   include <stdint.h>
 #   include <stddef.h>
+#   include <assert.h>
 #  else
 #   include <cstdio>
 #   include <cstdint>
 #   include <cstddef>
+#   include <cassert>
 #   include <string>
 #  endif /* __cplusplus */
 #
