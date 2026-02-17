@@ -94,13 +94,13 @@ def gl_getopt():
             g_opt['profile'] = arg
         
         elif opt in ('-e', '--extensions'):
-            if arg not in ('on', 'off'):
-                print(f'{__file__}: invalid extension state: {arg} (expected: on/off)')
+            if arg not in ('yes', 'no'):
+                print(f'{__file__}: invalid extension state: {arg} (expected: yes/no)')
                 sys.exit(1)
 
-            if arg == 'on':
+            if arg == 'yes':
                 g_opt['extensions'] = True
-            elif arg == 'off':
+            elif arg == 'no':
                 g_opt['extensions'] = False
         
         elif opt in ('-a', '--assertion'):
