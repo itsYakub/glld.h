@@ -230,6 +230,19 @@
 # endif /* __gl3platform_h_ */
 # define __gl3platform_h_ 1
 #
+#  if !defined (__cplusplus)
+#   include <stdio.h>
+#   include <stdint.h>
+#   include <stddef.h>
+#   include <assert.h>
+#  else
+#   include <cstdio>
+#   include <cstdint>
+#   include <cstddef>
+#   include <cassert>
+#   include <string>
+#  endif /* __cplusplus */
+#
 # if defined (__cplusplus)
 
 extern "C" {
@@ -352,19 +365,6 @@ GLAPI void  *gloadGetProcAddress(const char *);
 # endif /* __cplusplus */
 #
 # if defined (GLOAD_IMPLEMENTATION)
-#
-#  if !defined (__cplusplus)
-#   include <stdio.h>
-#   include <stdint.h>
-#   include <stddef.h>
-#   include <assert.h>
-#  else
-#   include <cstdio>
-#   include <cstdint>
-#   include <cstddef>
-#   include <cassert>
-#   include <string>
-#  endif /* __cplusplus */
 #
 #  if defined (GLOAD_LINUX) || defined (GLOAD_APPLE)
 #   include <dlfcn.h>
