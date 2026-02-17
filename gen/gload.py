@@ -33,14 +33,17 @@ g_glsc_version_list: list = [
     '2.0'
 ]
 
-g_opts: str = 'hvo:p:e:'
+g_opts: str = 'hvo:p:e:a:'
 g_optl: list = [
     'help',         # -h, --help
     'version',      # -v, --version
     'output=',      # -o, --output
     'profile=',     # -p, --profile
     'extensions=',  # -e, --extensions
+    'assertion=',   # -a, --assertion
 ]
+
+# default options for generation script
 g_opt: dict = {
     'output': f'{g_path}/gload.h',
     'profile': 'core',
@@ -48,6 +51,7 @@ g_opt: dict = {
     'version-es': g_gles_version_list[-1],
     'version-sc': g_glsc_version_list[-1],
     'extensions': True,
+    'assertion': True,
     'template': f'{g_path}/gload-template.h',
 }
 
@@ -98,6 +102,16 @@ def gl_getopt():
                 g_opt['extensions'] = True
             elif arg == 'off':
                 g_opt['extensions'] = False
+        
+        elif opt in ('-a', '--assertion'):
+            if arg not in ('yes', 'no'):
+                print(f'{__file__}: invalid extension state: {arg} (expected: yes/no)')
+                sys.exit(1)
+
+            if arg == 'yes':
+                g_opt['assertion'] = True
+            elif arg == 'no':
+                g_opt['assertion'] = False
 
         elif opt in ('-h', '--help'):
             print('help')
@@ -725,19 +739,21 @@ def gload_func_declr(lst, cmds: list[glCmd], mode: int, prev: str = None) -> str
                         if exist != -1:
                             result += 'extern '
 
-                    result += func
 
                 elif mode == 1:
                     func = 'extern '
                     func += f'PFN{cmd.name.upper()}PROC '
                     func += f'gload_{cmd.name};\n'
-                    result += func
 
                 elif mode == 2:
                     func = '# define '
                     func += f'{cmd.name} '
-                    func += f'(assert(gload_{cmd.name} != 0), gload_{cmd.name})\n'
-                    result += func
+                    if g_opt['assertion']:
+                        func += f'(assert(gload_{cmd.name} != 0), gload_{cmd.name})\n'
+                    else:
+                        func += f'gload_{cmd.name}\n'
+
+                result += func
 
         # add a newline if we're not printing macros...
         if mode != 2:
