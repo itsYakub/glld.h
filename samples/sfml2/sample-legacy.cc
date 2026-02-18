@@ -1,5 +1,5 @@
-#define GLOAD_IMPLEMENTATION
-#include "./../../gload.h"
+#define GLLD_IMPLEMENTATION
+#include "./../../glld.h"
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Window.hpp>
@@ -7,9 +7,9 @@
 
 
 int main(void) {
-    sf::Window  window(sf::VideoMode( { 800, 600 } ), "gload.h - SFML sample", sf::Style::Titlebar | sf::Style::Close);
+    sf::Window  window(sf::VideoMode( { 800, 600 } ), "glld.h - SFML sample", sf::Style::Titlebar | sf::Style::Close);
     if (!window.setActive()) { return (1); }
-    if (!gloadLoadGL()) { return (1); }
+    if (!glldLoadGL()) { return (1); }
 
     while (window.isOpen()) {
         window.display();
@@ -38,7 +38,7 @@ int main(void) {
         glEnd();
     }
     
-    if (!gloadUnloadGL()) { return (1); }
+    if (!glldUnloadGL()) { return (1); }
     
     return (0);
 }

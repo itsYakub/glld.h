@@ -1,5 +1,5 @@
-#define GLOAD_IMPLEMENTATION
-#include "./../../gload.h"
+#define GLLD_IMPLEMENTATION
+#include "./../../glld.h"
 
 #include <vector>
 
@@ -55,10 +55,10 @@ int main(void) {
     settings.depthBits = 24;
     settings.stencilBits = 8;
     
-    sf::Window window(sf::VideoMode( { 800, 600 } ), "gload.h - SFML sample", sf::Style::Titlebar | sf::Style::Close, settings);
+    sf::Window window(sf::VideoMode( { 800, 600 } ), "glld.h - SFML sample", sf::Style::Titlebar | sf::Style::Close, settings);
 
     if (!window.setActive()) { return (1); }
-    if (!gloadLoadGL()) { return (1); }
+    if (!glldLoadGL()) { return (1); }
     
     
     GLuint sh_v = glCreateShader(GL_VERTEX_SHADER);
@@ -133,7 +133,7 @@ int main(void) {
     glDeleteVertexArrays(1, &vao), vao = 0;
     glDeleteProgram(shader), shader = 0;
     
-    if (!gloadUnloadGL()) { return (1); }
+    if (!glldUnloadGL()) { return (1); }
     
     return (0);
 }

@@ -1,5 +1,5 @@
-#define GLOAD_IMPLEMENTATION
-#include "./../../gload.h"
+#define GLLD_IMPLEMENTATION
+#include "./../../glld.h"
 
 #include <optional>
 
@@ -11,9 +11,9 @@
 
 
 int main(void) {
-    sf::Window window(sf::VideoMode( { 800, 600 } ), "gload.h - SFML sample", sf::Style::Default, sf::State::Windowed);
+    sf::Window window(sf::VideoMode( { 800, 600 } ), "glld.h - SFML sample", sf::Style::Default, sf::State::Windowed);
     if (!window.setActive()) { return (1); }
-    if (!gloadLoadGL()) { return (1); }
+    if (!glldLoadGL()) { return (1); }
 
     while (window.isOpen()) {
         glClearColor(0.1, 0.1, 0.1, 1.0);
@@ -34,7 +34,7 @@ int main(void) {
         }
     }
     
-    if (!gloadUnloadGL()) { return (1); }
+    if (!glldUnloadGL()) { return (1); }
     
     return (0);
 }

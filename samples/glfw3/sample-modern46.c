@@ -1,5 +1,5 @@
-#define GLOAD_IMPLEMENTATION
-#include "./../../gload.h"
+#define GLLD_IMPLEMENTATION
+#include "./../../glld.h"
 
 #include <GLFW/glfw3.h>
 
@@ -48,12 +48,12 @@ int main(void) {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow *window = glfwCreateWindow(800, 600, "gload.h - GLFW3 sample", 0, 0);
+    GLFWwindow *window = glfwCreateWindow(800, 600, "glld.h - GLFW3 sample", 0, 0);
     if (!window) { return (1); }
 
     glfwMakeContextCurrent(window);
 
-    if (!gloadLoadGLLoader((t_gloadLoader) glfwGetProcAddress)) { return (1); }
+    if (!glldLoadGLLoader((t_glldLoader) glfwGetProcAddress)) { return (1); }
     
 
     GLuint sh_v = glCreateShader(GL_VERTEX_SHADER);

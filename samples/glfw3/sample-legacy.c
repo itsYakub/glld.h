@@ -1,5 +1,5 @@
-#define GLOAD_IMPLEMENTATION
-#include "./../../gload.h"
+#define GLLD_IMPLEMENTATION
+#include "./../../glld.h"
 
 #include <GLFW/glfw3.h>
 
@@ -8,12 +8,12 @@
 int main(void) {
     if (!glfwInit()) { return (1); }
 
-    GLFWwindow *window = glfwCreateWindow(800, 600, "gload.h - GLFW3 sample", 0, 0);
+    GLFWwindow *window = glfwCreateWindow(800, 600, "glld.h - GLFW3 sample", 0, 0);
     if (!window) { return (1); }
 
     glfwMakeContextCurrent(window);
 
-    if (!gloadLoadGLLoader((t_gloadLoader) glfwGetProcAddress)) { return (1); }
+    if (!glldLoadGLLoader((t_glldLoader) glfwGetProcAddress)) { return (1); }
 
 
     while (!glfwWindowShouldClose(window)) {

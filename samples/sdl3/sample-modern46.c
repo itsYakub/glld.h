@@ -1,5 +1,5 @@
-#define GLOAD_IMPLEMENTATION
-#include "./../../gload.h"
+#define GLLD_IMPLEMENTATION
+#include "./../../glld.h"
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_video.h>
@@ -49,14 +49,14 @@ int main(void) {
     if (!SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6)) { return (1); }
     if (!SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE)) { return (1); }
 
-    SDL_Window *window = SDL_CreateWindow("gload.h - SDL3 sample", 800, 600, SDL_WINDOW_OPENGL);
+    SDL_Window *window = SDL_CreateWindow("glld.h - SDL3 sample", 800, 600, SDL_WINDOW_OPENGL);
     if (!window) { return (1); }
 
     SDL_GLContext context = SDL_GL_CreateContext(window);
     if (!context) { return (1); }
 
     if (!SDL_GL_MakeCurrent(window, context)) { return (1); }
-    if (!gloadLoadGLLoader((t_gloadLoader) SDL_GL_GetProcAddress)) { return (1); }
+    if (!glldLoadGLLoader((t_glldLoader) SDL_GL_GetProcAddress)) { return (1); }
     
 
     GLuint sh_v = glCreateShader(GL_VERTEX_SHADER);
