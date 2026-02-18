@@ -1,11 +1,11 @@
-#define GLOAD_VERBOSE
-#define GLOAD_NO_EXTENSIONS
-#define GLOAD_IMPLEMENTATION
-#include "./../../gload.h"
+#define GLLD_VERBOSE
+#define GLLD_NO_EXTENSIONS
+#define GLLD_IMPLEMENTATION
+#include "./../../glld.h"
 
 
 int main(void) {
-    if (!gloadLoadGL()) { return (1); }
+    if (!glldLoadGL()) { return (1); }
 
     /* ... */
 
@@ -14,7 +14,7 @@ int main(void) {
     
     /* ... */
 
-    gloadUnloadGL();
+    glldUnloadGL();
 
     return (0);
 }

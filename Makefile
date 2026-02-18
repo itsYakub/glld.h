@@ -1,7 +1,7 @@
 # ========
 
 MK_ROOT	= $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-MK_NAME	= gload
+MK_NAME	= glld
 
 # ========
 
@@ -9,7 +9,7 @@ TARGET	= $(MK_ROOT)$(MK_NAME).h
 GPATH	= $(MK_ROOT)gen/$(MK_NAME).py
 GFLAGS	= --output=$(TARGET) \
 		  --profile=core \
-		  --extensions=yes \
+		  --extensions=no \
 		  --assertion=yes 
 
 # ========

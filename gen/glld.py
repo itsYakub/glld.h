@@ -7,8 +7,8 @@ import getopt
 import xml.etree.ElementTree as ET
 
 g_path: str = os.path.dirname(__file__)
-g_name: str = 'gload.h'
-g_version: str = '1.3'
+g_name: str = 'glld.h'
+g_version: str = '2.0'
 g_author: str = 'Jakub Oleksiak (yakubofficialmail@gmail.com)'
 g_licence: str = 'GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007'
 
@@ -45,14 +45,14 @@ g_optl: list = [
 
 # default options for generation script
 g_opt: dict = {
-    'output': f'{g_path}/gload.h',
+    'output': f'{g_path}/glld.h',
     'profile': 'core',
     'version': g_gl_version_list[-1],
     'version-es': g_gles_version_list[-1],
     'version-sc': g_glsc_version_list[-1],
-    'extensions': True,
+    'extensions': False,
     'assertion': True,
-    'template': f'{g_path}/gload-template.h',
+    'template': f'{g_path}/glld-template.h',
 }
 
 
@@ -449,108 +449,108 @@ def opengl_loader(parse: glParse):
     with open(g_opt['template'], 'r') as f:
         fstr = f.read()
 
-    # <<gload-version>>
-    fstr = fstr.replace('<<gload-version>>', g_version)
+    # <<glld-version>>
+    fstr = fstr.replace('<<glld-version>>', g_version)
 
-    # <<gload-author>>
-    fstr = fstr.replace('<<gload-author>>', g_author)
+    # <<glld-author>>
+    fstr = fstr.replace('<<glld-author>>', g_author)
 
-    # <<gload-licence>>
-    fstr = fstr.replace('<<gload-licence>>', g_licence)
+    # <<glld-licence>>
+    fstr = fstr.replace('<<glld-licence>>', g_licence)
 
-    # <<gload-profile>>
-    fstr = fstr.replace('<<gload-glprofile>>', g_opt['profile'])
+    # <<glld-profile>>
+    fstr = fstr.replace('<<glld-glprofile>>', g_opt['profile'])
 
-    # <<gload-glversion>>
-    fstr = fstr.replace('<<gload-glversion>>', g_opt['version'])
+    # <<glld-glversion>>
+    fstr = fstr.replace('<<glld-glversion>>', g_opt['version'])
 
-    # <<gload-glesversion>>
-    fstr = fstr.replace('<<gload-glesversion>>', g_opt['version-es'])
+    # <<glld-glesversion>>
+    fstr = fstr.replace('<<glld-glesversion>>', g_opt['version-es'])
 
-    # <<gload-glscversion>>
-    fstr = fstr.replace('<<gload-glscversion>>', g_opt['version-sc'])
+    # <<glld-glscversion>>
+    fstr = fstr.replace('<<glld-glscversion>>', g_opt['version-sc'])
 
-    # <<gload-macro-version>>
-    fstr = fstr.replace('<<gload-macro-version>>', g_version)
+    # <<glld-macro-version>>
+    fstr = fstr.replace('<<glld-macro-version>>', g_version)
 
-    # <<gload-macro-glprofile>>
-    template = gload_macro_glprofile()
+    # <<glld-macro-glprofile>>
+    template = glld_macro_glprofile()
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-macro-glprofile>> */', template)
+    fstr = fstr.replace('/* <<glld-macro-glprofile>> */', template)
 
-    # <<gload-macro-glversion>>
-    template = gload_macro_glversion()
+    # <<glld-macro-glversion>>
+    template = glld_macro_glversion()
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-macro-glversion>> */', template)
+    fstr = fstr.replace('/* <<glld-macro-glversion>> */', template)
 
-    # <<gload-macro-ext-state>>
-    template = gload_macro_ext_state()
+    # <<glld-macro-ext-state>>
+    template = glld_macro_ext_state()
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-macro-ext-state>> */', template)
+    fstr = fstr.replace('/* <<glld-macro-ext-state>> */', template)
 
-    # <<gload-macro-version-list>>
-    template = gload_macro_version_list(parse.feat)
+    # <<glld-macro-version-list>>
+    template = glld_macro_version_list(parse.feat)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-macro-version-list>> */', template)
+    fstr = fstr.replace('/* <<glld-macro-version-list>> */', template)
 
-    # <<gload-macro-ext-list>>
-    template = gload_macro_ext_list(parse.ext)
+    # <<glld-macro-ext-list>>
+    template = glld_macro_ext_list(parse.ext)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-macro-ext-list>> */', template)
+    fstr = fstr.replace('/* <<glld-macro-ext-list>> */', template)
 
-    # <<gload-type-declr>>
-    template = gload_type_declr(parse.types)
+    # <<glld-type-declr>>
+    template = glld_type_declr(parse.types)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-type-declr>> */', template)
+    fstr = fstr.replace('/* <<glld-type-declr>> */', template)
 
-    # <<gload-enum-declr>>
-    template = gload_enum_declr(parse.feat, parse.enums)
+    # <<glld-enum-declr>>
+    template = glld_enum_declr(parse.feat, parse.enums)
     template += '\n'
-    template += gload_enum_declr(parse.ext, parse.enums)
+    template += glld_enum_declr(parse.ext, parse.enums)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-enum-declr>> */', template)
+    fstr = fstr.replace('/* <<glld-enum-declr>> */', template)
 
-    # <<gload-func-ptr>>
-    template = gload_func_ptr(parse.feat, parse.cmds)
+    # <<glld-func-ptr>>
+    template = glld_func_ptr(parse.feat, parse.cmds)
     template += '\n'
-    template += gload_func_ptr(parse.ext, parse.cmds)
+    template += glld_func_ptr(parse.ext, parse.cmds)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-func-ptr>> */', template)
+    fstr = fstr.replace('/* <<glld-func-ptr>> */', template)
 
     # <<glaod-func-nameaddr>>
-    template = gload_func_nameaddr(parse.feat, parse.cmds)
+    template = glld_func_nameaddr(parse.feat, parse.cmds)
     template += '\n'
-    template += gload_func_nameaddr(parse.ext, parse.cmds)
+    template += glld_func_nameaddr(parse.ext, parse.cmds)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-func-nameaddr>> */', template)
+    fstr = fstr.replace('/* <<glld-func-nameaddr>> */', template)
 
-    # <<gload-func-load>>
-    template = gload_loadfunc(parse.feat, parse.cmds)
+    # <<glld-func-load>>
+    template = glld_loadfunc(parse.feat, parse.cmds)
     template += '\n'
-    template += gload_loadfunc(parse.ext, parse.cmds)
+    template += glld_loadfunc(parse.ext, parse.cmds)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-func-load>> */', template)
+    fstr = fstr.replace('/* <<glld-func-load>> */', template)
 
-    # <<gload-func-declr-0>>
-    template = gload_func_declr(parse.feat, parse.cmds, 0)
+    # <<glld-func-declr-0>>
+    template = glld_func_declr(parse.feat, parse.cmds, 0)
     template += '\n'
-    template += gload_func_declr(parse.ext, parse.cmds, 0, template)
+    template += glld_func_declr(parse.ext, parse.cmds, 0, template)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-func-declr-0>> */', template)
+    fstr = fstr.replace('/* <<glld-func-declr-0>> */', template)
 
-    # <<gload-func-declr-1>>
-    template = gload_func_declr(parse.feat, parse.cmds, 1)
+    # <<glld-func-declr-1>>
+    template = glld_func_declr(parse.feat, parse.cmds, 1)
     template += '\n'
-    template += gload_func_declr(parse.ext, parse.cmds, 1, template)
+    template += glld_func_declr(parse.ext, parse.cmds, 1, template)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-func-declr-1>> */', template)
+    fstr = fstr.replace('/* <<glld-func-declr-1>> */', template)
 
-    # <<gload-func-declr-2>>
-    template = gload_func_declr(parse.feat, parse.cmds, 2)
+    # <<glld-func-declr-2>>
+    template = glld_func_declr(parse.feat, parse.cmds, 2)
     template += '\n'
-    template += gload_func_declr(parse.ext, parse.cmds, 2, template)
+    template += glld_func_declr(parse.ext, parse.cmds, 2, template)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<gload-func-declr-2>> */', template)
+    fstr = fstr.replace('/* <<glld-func-declr-2>> */', template)
 
     with open(g_opt['output'], 'w') as f:
         f.write(fstr)
@@ -560,7 +560,7 @@ def opengl_loader(parse: glParse):
 # SECTION: template
 # =================
 
-def gload_macro_glprofile() -> str:
+def glld_macro_glprofile() -> str:
     result: str
 
     # GLOAD_GL_PROFILE macro...
@@ -570,7 +570,7 @@ def gload_macro_glprofile() -> str:
 
     return (result.strip())
 
-def gload_macro_glversion() -> str:
+def glld_macro_glversion() -> str:
     result: str
 
     # GLOAD_GL_VERSION macro...
@@ -590,7 +590,7 @@ def gload_macro_glversion() -> str:
 
     return (result.strip())
 
-def gload_macro_ext_state() -> str:
+def glld_macro_ext_state() -> str:
     result: str
 
     # GLOAD_EXTENSIONS / GL_NO_EXTESIONS macros...
@@ -609,11 +609,11 @@ def gload_macro_ext_state() -> str:
     # NOTE:
     #  Remember that this is only the default setting that can be manipulated.
     #  You can either edit it in this very script, set it during generation or define it as a compile-time macro.
-    #  By default I'm enabling extensions. Note that if you disable them then they won't be processed by gload.h.
+    #  By default I'm enabling extensions. Note that if you disable them then they won't be processed by glld.h.
     #  That being said using extensions when GLOAD_NO_EXTENSIONS can cause segfaults!
     return (result.strip())
 
-def gload_macro_version_list(feats: list[glFeat]) -> str:
+def glld_macro_version_list(feats: list[glFeat]) -> str:
     result: str
 
     result = str()
@@ -621,7 +621,7 @@ def gload_macro_version_list(feats: list[glFeat]) -> str:
         result += f'#define {feat.name}\n'
     return (result.strip())
 
-def gload_macro_ext_list(exts: list[glExt]) -> str:
+def glld_macro_ext_list(exts: list[glExt]) -> str:
     result: str
 
     result = '#if defined (GLOAD_EXTENSIONS)\n'
@@ -630,7 +630,7 @@ def gload_macro_ext_list(exts: list[glExt]) -> str:
     result += '#endif /* GLOAD_EXTENSIONS */\n'
     return (result.strip())
 
-def gload_type_declr(types: list[glType]) -> str:
+def glld_type_declr(types: list[glType]) -> str:
     result: str
 
     result = str()
@@ -646,13 +646,13 @@ def gload_type_declr(types: list[glType]) -> str:
     return (result.strip())
 
 
-def gload_func_ptr(lst, cmds: list[glCmd]) -> str:
+def glld_func_ptr(lst, cmds: list[glCmd]) -> str:
     result: str
 
     result = str()
     for child in lst:
         # check if 'cmds' list of current child's requiremens is greater than 0...
-        # ...if not, we don't bother adding it to gload.h...
+        # ...if not, we don't bother adding it to glld.h...
         if len(child.req) == 1:
             if len(child.req[0].cmds) == 0:
                 continue
@@ -679,13 +679,13 @@ def gload_func_ptr(lst, cmds: list[glCmd]) -> str:
     return (result.strip())
 
 
-def gload_enum_declr(lst, enums: list[glEnum]) -> str:
+def glld_enum_declr(lst, enums: list[glEnum]) -> str:
     result: str
 
     result = str()
     for child in lst:
         # check if 'enums' list of current child's requiremens is greater than 0...
-        # ...if not, we don't bother adding it to gload.h...
+        # ...if not, we don't bother adding it to glld.h...
         if len(child.req) == 1:
             if len(child.req[0].enums) == 0:
                 continue
@@ -702,13 +702,13 @@ def gload_enum_declr(lst, enums: list[glEnum]) -> str:
     return (result.strip())
 
 
-def gload_func_declr(lst, cmds: list[glCmd], mode: int, prev: str = None) -> str:
+def glld_func_declr(lst, cmds: list[glCmd], mode: int, prev: str = None) -> str:
     result: str
 
     result = str()
     for child in lst:
         # check if 'cmds' list of current child's requiremens is greater than 0...
-        # ...if not, we don't bother adding it to gload.h...
+        # ...if not, we don't bother adding it to glld.h...
         if len(child.req) == 1:
             if len(child.req[0].cmds) == 0:
                 continue
@@ -727,7 +727,7 @@ def gload_func_declr(lst, cmds: list[glCmd], mode: int, prev: str = None) -> str
 
                 if mode == 0:
                     func = f'PFN{cmd.name.upper()}PROC '
-                    func += f'gload_{cmd.name};\n'
+                    func += f'glld_{cmd.name};\n'
 
                     search = f'\n{func}'
                     exist = result.rfind(search)
@@ -743,15 +743,15 @@ def gload_func_declr(lst, cmds: list[glCmd], mode: int, prev: str = None) -> str
                 elif mode == 1:
                     func = 'extern '
                     func += f'PFN{cmd.name.upper()}PROC '
-                    func += f'gload_{cmd.name};\n'
+                    func += f'glld_{cmd.name};\n'
 
                 elif mode == 2:
                     func = '# define '
                     func += f'{cmd.name} '
                     if g_opt['assertion']:
-                        func += f'(assert(gload_{cmd.name} != 0), gload_{cmd.name})\n'
+                        func += f'(assert(glld_{cmd.name} != 0), glld_{cmd.name})\n'
                     else:
-                        func += f'gload_{cmd.name}\n'
+                        func += f'glld_{cmd.name}\n'
 
                 result += func
 
@@ -762,13 +762,13 @@ def gload_func_declr(lst, cmds: list[glCmd], mode: int, prev: str = None) -> str
     return (result.strip())
 
 
-def gload_func_nameaddr(lst, cmds: list[glCmd]) -> str:
+def glld_func_nameaddr(lst, cmds: list[glCmd]) -> str:
     result: str
 
     result = str()
     for child in lst:
         # check if 'cmds' list of current child's requiremens is greater than 0...
-        # ...if not, we don't bother adding it to gload.h...
+        # ...if not, we don't bother adding it to glld.h...
         if len(child.req) == 1:
             if len(child.req[0].cmds) == 0:
                 continue
@@ -781,19 +781,19 @@ def gload_func_nameaddr(lst, cmds: list[glCmd]) -> str:
                 name: str
 
                 cmd = next(cmd for cmd in cmds if cmd.name == c_str)
-                name = f'   {{ \"{cmd.name}\", (void **) &gload_{cmd.name} }},\n'
+                name = f'   {{ \"{cmd.name}\", (void **) &glld_{cmd.name} }},\n'
                 result += name
         result += f'\n#endif /* {child.name} */\n'
     return (result.strip())
 
 
-def gload_loadfunc(lst, cmds: list[glCmd]) -> str:
+def glld_loadfunc(lst, cmds: list[glCmd]) -> str:
     result: str
 
     result = str()
     for child in lst:
         # check if 'cmds' list of current child's requiremens is greater than 0...
-        # ...if not, we don't bother adding it to gload.h...
+        # ...if not, we don't bother adding it to glld.h...
         if len(child.req) == 1:
             if len(child.req[0].cmds) == 0:
                 continue
@@ -806,8 +806,8 @@ def gload_loadfunc(lst, cmds: list[glCmd]) -> str:
                 name: str
 
                 cmd = next(cmd for cmd in cmds if cmd.name == c_str)
-                name = f'   if defined (!gload_{cmd.name} && '
-                name += f'!(gload_{cmd.name} = '
+                name = f'   if defined (!glld_{cmd.name} && '
+                name += f'!(glld_{cmd.name} = '
                 name += f'(PFN{cmd.name.upper()}PROC) load(\"{cmd.name}\"))) '
                 name += '{ return (0); }\n'
                 result += name
