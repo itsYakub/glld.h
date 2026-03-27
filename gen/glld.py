@@ -33,13 +33,12 @@ g_glsc_version_list: list = [
     '2.0'
 ]
 
-g_opts: str = 'hvo:p:e:a:'
+g_opts: str = 'hvo:p:a:'
 g_optl: list = [
     'help',         # -h, --help
     'version',      # -v, --version
     'output=',      # -o, --output
     'profile=',     # -p, --profile
-    'extensions=',  # -e, --extensions
     'assertion=',   # -a, --assertion
 ]
 
@@ -50,7 +49,6 @@ g_opt: dict = {
     'version': g_gl_version_list[-1],
     'version-es': g_gles_version_list[-1],
     'version-sc': g_glsc_version_list[-1],
-    'extensions': False,
     'assertion': True,
     'template': f'{g_path}/glld-template.h',
 }
@@ -92,16 +90,6 @@ def gl_getopt():
                 print(f'{__file__}: invalid profile: {arg} (expected: core/compatibility)')
                 sys.exit(1)
             g_opt['profile'] = arg
-        
-        elif opt in ('-e', '--extensions'):
-            if arg not in ('yes', 'no'):
-                print(f'{__file__}: invalid extension state: {arg} (expected: yes/no)')
-                sys.exit(1)
-
-            if arg == 'yes':
-                g_opt['extensions'] = True
-            elif arg == 'no':
-                g_opt['extensions'] = False
         
         elif opt in ('-a', '--assertion'):
             if arg not in ('yes', 'no'):
@@ -483,20 +471,10 @@ def opengl_loader(parse: glParse):
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-macro-glversion>> */', template)
 
-    # <<glld-macro-ext-state>>
-    template = glld_macro_ext_state()
-    template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-macro-ext-state>> */', template)
-
     # <<glld-macro-version-list>>
     template = glld_macro_version_list(parse.feat)
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-macro-version-list>> */', template)
-
-    # <<glld-macro-ext-list>>
-    template = glld_macro_ext_list(parse.ext)
-    template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-macro-ext-list>> */', template)
 
     # <<glld-type-declr>>
     template = glld_type_declr(parse.types)
@@ -505,50 +483,71 @@ def opengl_loader(parse: glParse):
 
     # <<glld-enum-declr>>
     template = glld_enum_declr(parse.feat, parse.enums)
-    template += '\n'
-    template += glld_enum_declr(parse.ext, parse.enums)
+    template += '\n#\n#if defined (GLLD_EXTENSIONS)\n'
+    template_ext = glld_enum_declr(parse.ext, parse.enums)
+    template_ext = template_ext.replace('#', '# ')
+    template += template_ext
+    template += '\n#endif /* GLLD_EXTENSIONS */'
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-enum-declr>> */', template)
 
     # <<glld-func-ptr>>
     template = glld_func_ptr(parse.feat, parse.cmds)
-    template += '\n'
-    template += glld_func_ptr(parse.ext, parse.cmds)
+    template += '\n#\n#if defined (GLLD_EXTENSIONS)\n'
+    template_ext = glld_func_ptr(parse.ext, parse.cmds)
+    template_ext = template_ext.replace('#', '# ')
+    template += template_ext
+    template += '\n#endif /* GLLD_EXTENSIONS */'
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-func-ptr>> */', template)
 
     # <<glaod-func-nameaddr>>
     template = glld_func_nameaddr(parse.feat, parse.cmds)
-    template += '\n'
-    template += glld_func_nameaddr(parse.ext, parse.cmds)
+    template += '\n#\n#if defined (GLLD_EXTENSIONS)\n'
+    template_ext = glld_func_nameaddr(parse.ext, parse.cmds)
+    template_ext = template_ext.replace('#', '# ')
+    template += template_ext
+    template += '\n#endif /* GLLD_EXTENSIONS */'
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-func-nameaddr>> */', template)
 
     # <<glld-func-load>>
     template = glld_loadfunc(parse.feat, parse.cmds)
-    template += '\n'
-    template += glld_loadfunc(parse.ext, parse.cmds)
+    template += '\n#\n#if defined (GLLD_EXTENSIONS)\n'
+    template_ext = glld_loadfunc(parse.ext, parse.cmds)
+    template_ext = template_ext.replace('#', '# ')
+    template += template_ext
+    template += '\n#endif /* GLLD_EXTENSIONS */'
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-func-load>> */', template)
 
     # <<glld-func-declr-0>>
     template = glld_func_declr(parse.feat, parse.cmds, 0)
-    template += '\n'
-    template += glld_func_declr(parse.ext, parse.cmds, 0, template)
+    template += '\n#\n#if defined (GLLD_EXTENSIONS)\n'
+    template_ext = glld_func_declr(parse.ext, parse.cmds, 0, template)
+    template_ext = template_ext.replace('#', '# ')
+    template += template_ext
+    template += '\n#endif /* GLLD_EXTENSIONS */'
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-func-declr-0>> */', template)
 
     # <<glld-func-declr-1>>
     template = glld_func_declr(parse.feat, parse.cmds, 1)
-    template += '\n'
-    template += glld_func_declr(parse.ext, parse.cmds, 1, template)
+    template += '\n#\n#if defined (GLLD_EXTENSIONS)\n'
+    template_ext = glld_func_declr(parse.ext, parse.cmds, 1, template)
+    template_ext = template_ext.replace('#', '# ')
+    template += template_ext
+    template += '\n#endif /* GLLD_EXTENSIONS */'
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-func-declr-1>> */', template)
 
     # <<glld-func-declr-2>>
     template = glld_func_declr(parse.feat, parse.cmds, 2)
-    template += '\n'
-    template += glld_func_declr(parse.ext, parse.cmds, 2, template)
+    template += '\n#\n#if defined (GLLD_EXTENSIONS)\n'
+    template_ext = glld_func_declr(parse.ext, parse.cmds, 2, template)
+    template_ext = template_ext.replace('#', '# ')
+    template += template_ext
+    template += '\n#endif /* GLLD_EXTENSIONS */'
     template = template.replace('#', '# ')
     fstr = fstr.replace('/* <<glld-func-declr-2>> */', template)
 
@@ -563,54 +562,31 @@ def opengl_loader(parse: glParse):
 def glld_macro_glprofile() -> str:
     result: str
 
-    # GLOAD_GL_PROFILE macro...
-    result  =  '#if !defined (GLOAD_GL_PROFILE)\n'
-    result += f'# define GLOAD_GL_PROFILE \"{g_opt['profile']}\"\n'
-    result +=  '#endif /* GLOAD_GL_PROFILE */'
+    # GLLD_GL_PROFILE macro...
+    result  =  '#if !defined (GLLD_GL_PROFILE)\n'
+    result += f'# define GLLD_GL_PROFILE \"{g_opt['profile']}\"\n'
+    result +=  '#endif /* GLLD_GL_PROFILE */'
 
     return (result.strip())
 
 def glld_macro_glversion() -> str:
     result: str
 
-    # GLOAD_GL_VERSION macro...
-    result  =  '#if !defined (GLOAD_GL_VERSION)\n'
-    result += f'# define GLOAD_GL_VERSION \"{g_opt['version']}\"\n'
-    result +=  '#endif /* GLOAD_GL_VERSION */\n'
+    # GLLD_GL_VERSION macro...
+    result  =  '#if !defined (GLLD_GL_VERSION)\n'
+    result += f'# define GLLD_GL_VERSION \"{g_opt['version']}\"\n'
+    result +=  '#endif /* GLLD_GL_VERSION */\n'
 
-    # GLOAD_GLES_VERSION macro...
-    result +=  '#if !defined (GLOAD_GLES_VERSION)\n'
-    result += f'# define GLOAD_GLES_VERSION \"{g_opt['version-es']}\"\n'
-    result +=  '#endif /* GLOAD_GLES_VERSION */\n'
+    # GLLD_GLES_VERSION macro...
+    result +=  '#if !defined (GLLD_GLES_VERSION)\n'
+    result += f'# define GLLD_GLES_VERSION \"{g_opt['version-es']}\"\n'
+    result +=  '#endif /* GLLD_GLES_VERSION */\n'
 
-    # GLOAD_GLSC_VERSION macro...
-    result +=  '#if !defined (GLOAD_GLSC_VERSION)\n'
-    result += f'# define GLOAD_GLSC_VERSION \"{g_opt['version-sc']}\"\n'
-    result +=  '#endif /* GLOAD_GLSC_VERSION */'
+    # GLLD_GLSC_VERSION macro...
+    result +=  '#if !defined (GLLD_GLSC_VERSION)\n'
+    result += f'# define GLLD_GLSC_VERSION \"{g_opt['version-sc']}\"\n'
+    result +=  '#endif /* GLLD_GLSC_VERSION */'
 
-    return (result.strip())
-
-def glld_macro_ext_state() -> str:
-    result: str
-
-    # GLOAD_EXTENSIONS / GL_NO_EXTESIONS macros...
-    result  = '#if !defined (GLOAD_EXTENSIONS)\n'
-    result += '# if !defined (GLOAD_NO_EXTENSIONS)\n'
-
-    # This is where the option 'g_opt['extensions']' is going to be used...
-    if g_opt['extensions']:
-        result += '#  define GLOAD_EXTENSIONS 1\n'
-    else:
-        result += '#  define GLOAD_NO_EXTENSIONS 1\n'
-
-    result += '# endif /* GLOAD_NO_EXTENSIONS */\n'
-    result += '#endif /* GLOAD_EXTENSIONS */\n'
-
-    # NOTE:
-    #  Remember that this is only the default setting that can be manipulated.
-    #  You can either edit it in this very script, set it during generation or define it as a compile-time macro.
-    #  By default I'm enabling extensions. Note that if you disable them then they won't be processed by glld.h.
-    #  That being said using extensions when GLOAD_NO_EXTENSIONS can cause segfaults!
     return (result.strip())
 
 def glld_macro_version_list(feats: list[glFeat]) -> str:
@@ -619,15 +595,6 @@ def glld_macro_version_list(feats: list[glFeat]) -> str:
     result = str()
     for feat in feats:
         result += f'#define {feat.name}\n'
-    return (result.strip())
-
-def glld_macro_ext_list(exts: list[glExt]) -> str:
-    result: str
-
-    result = '#if defined (GLOAD_EXTENSIONS)\n'
-    for ext in exts:
-        result += f'# define {ext.name}\n'
-    result += '#endif /* GLOAD_EXTENSIONS */\n'
     return (result.strip())
 
 def glld_type_declr(types: list[glType]) -> str:

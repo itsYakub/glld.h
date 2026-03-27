@@ -89,17 +89,11 @@
  *              Enables error-logging to standard-output/standard-error.
  *              Enabled by default if GLLD_VERBOSE is defined.
  *
- *      #define GLLD_EXTENSIONS
+ *      #define GLLD_EXTENSION
  *          - TYPE:
  *              OPTIONAL
  *          - DESCRIPTION:
- *              Enable OpenGL extensions (default script should define this option).
- *
- *      #define GLLD_NO_EXTENSIONS
- *          - TYPE:
- *              OPTIONAL
- *          - DESCRIPTION:
- *              Disable OpenGL extensions.
+ *              Enable OpenGL extensions.
  *
  *
  *  Constants (MUST NOT be defined by user):
@@ -289,8 +283,6 @@ extern "C" {
 /* <<glld-macro-glprofile>> */
 #
 /* <<glld-macro-glversion>> */
-#
-/* <<glld-macro-ext-state>> */
 
 /* SECTION:
  *  glld API
@@ -349,13 +341,14 @@ GLAPI void  *glldGetProcAddress(const char *);
 
 /* <<glld-macro-version-list>> */
 #
-/* <<glld-macro-ext-list>> */
-#
 /* <<glld-type-declr>> */
 
 /* <<glld-enum-declr>> */
+#
 /* <<glld-func-ptr>> */
+#
 /* <<glld-func-declr-1>> */
+#
 /* <<glld-func-declr-2>> */
 #
 # if defined (__cplusplus)
