@@ -158,8 +158,6 @@ class Buffer {
     private:
         GLuint m_id;
 
-        GLsizei m_size;
-
     public:
         
         /* constructors... */
@@ -189,19 +187,17 @@ class Buffer {
         
 /* constructors... */
 
-Buffer::Buffer(void) : m_id(0), m_size(0) { glCreateBuffers(1, &this->m_id); }
+Buffer::Buffer(void) : m_id(0) { glCreateBuffers(1, &this->m_id); }
 
-Buffer::Buffer(const Buffer &other) : m_id(other.m_id), m_size(other.m_size) { }
+Buffer::Buffer(const Buffer &other) : m_id(other.m_id) { }
 
 Buffer::~Buffer(void) {
     glDeleteBuffers(1, &this->m_id);
     this->m_id = 0;
-    this->m_size = 0;
 }
 
 const Buffer &Buffer::operator = (const Buffer &other) {
     this->m_id = other.m_id;
-    this->m_size = other.m_size;
     return (*this);
 }
 
@@ -212,7 +208,17 @@ GLuint Buffer::getID(void) const {
 }
 
 GLsizei Buffer::getSize(void) const {
-    return (this->m_size);
+    GLsizei size = 0;
+    glGetNamedBufferParameteriv(this->m_id, GL_BUFFER_SIZE, &size);
+    
+    /* get errors... */
+    GLenum err = glGetError();
+    if (err != GL_NO_ERROR) {
+        return (0);
+    }
+    
+    /* success... */
+    return (size);
 }
 
 /* public methods... */
@@ -220,7 +226,6 @@ GLsizei Buffer::getSize(void) const {
 int Buffer::setData(void *data, const size_t size) {
     /* set data... */
     glNamedBufferData(this->m_id, size, data, GL_STATIC_DRAW);
-    this->m_size = size;
     
     /* get errors... */
     GLenum err = glGetError();
@@ -249,7 +254,6 @@ int Buffer::setSubData(void *data, const size_t size, const size_t offset) {
 int Buffer::setStorage(void *data, const size_t size) {
     /* set storage... */
     glNamedBufferStorage(this->m_id, size, data, GL_DYNAMIC_STORAGE_BIT | GL_MAP_READ_BIT | GL_MAP_WRITE_BIT);
-    this->m_size = size;
     
     /* get errors... */
     GLenum err = glGetError();
@@ -438,7 +442,7 @@ int main(void) {
         shader.bind();
         vao.bind();
 
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, ibo.getSize() / sizeof(GLuint), GL_UNSIGNED_INT, 0);
 
         vao.unbind();
         shader.unbind();
