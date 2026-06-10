@@ -476,81 +476,81 @@ def opengl_loader(parse: glParse):
     # <<glld-macro-glprofile>>
     template = glld_macro_glprofile()
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-macro-glprofile>> */', template)
+    fstr = fstr.replace('<<glld-macro-glprofile>>', template)
 
     # <<glld-macro-glversion>>
     template = glld_macro_glversion()
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-macro-glversion>> */', template)
+    fstr = fstr.replace('<<glld-macro-glversion>>', template)
 
     # <<glld-macro-ext-state>>
     template = glld_macro_ext_state()
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-macro-ext-state>> */', template)
+    fstr = fstr.replace('<<glld-macro-ext-state>>', template)
 
     # <<glld-macro-version-list>>
     template = glld_macro_version_list(parse.feat)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-macro-version-list>> */', template)
+    fstr = fstr.replace('<<glld-macro-version-list>>', template)
 
     # <<glld-macro-ext-list>>
     template = glld_macro_ext_list(parse.ext)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-macro-ext-list>> */', template)
+    fstr = fstr.replace('<<glld-macro-ext-list>>', template)
 
     # <<glld-type-declr>>
     template = glld_type_declr(parse.types)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-type-declr>> */', template)
+    fstr = fstr.replace('<<glld-type-declr>>', template)
 
     # <<glld-enum-declr>>
     template = glld_enum_declr(parse.feat, parse.enums)
     template += '\n'
     template += glld_enum_declr(parse.ext, parse.enums)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-enum-declr>> */', template)
+    fstr = fstr.replace('<<glld-enum-declr>>', template)
 
     # <<glld-func-ptr>>
     template = glld_func_ptr(parse.feat, parse.cmds)
     template += '\n'
     template += glld_func_ptr(parse.ext, parse.cmds)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-func-ptr>> */', template)
+    fstr = fstr.replace('<<glld-func-ptr>>', template)
 
     # <<glaod-func-nameaddr>>
     template = glld_func_nameaddr(parse.feat, parse.cmds)
     template += '\n'
     template += glld_func_nameaddr(parse.ext, parse.cmds)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-func-nameaddr>> */', template)
+    fstr = fstr.replace('<<glld-func-nameaddr>>', template)
 
     # <<glld-func-load>>
     template = glld_loadfunc(parse.feat, parse.cmds)
     template += '\n'
     template += glld_loadfunc(parse.ext, parse.cmds)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-func-load>> */', template)
+    fstr = fstr.replace('<<glld-func-load>>', template)
 
     # <<glld-func-declr-0>>
     template = glld_func_declr(parse.feat, parse.cmds, 0)
     template += '\n'
     template += glld_func_declr(parse.ext, parse.cmds, 0, template)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-func-declr-0>> */', template)
+    fstr = fstr.replace('<<glld-func-declr-0>>', template)
 
     # <<glld-func-declr-1>>
     template = glld_func_declr(parse.feat, parse.cmds, 1)
     template += '\n'
     template += glld_func_declr(parse.ext, parse.cmds, 1, template)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-func-declr-1>> */', template)
+    fstr = fstr.replace('<<glld-func-declr-1>>', template)
 
     # <<glld-func-declr-2>>
     template = glld_func_declr(parse.feat, parse.cmds, 2)
     template += '\n'
     template += glld_func_declr(parse.ext, parse.cmds, 2, template)
     template = template.replace('#', '# ')
-    fstr = fstr.replace('/* <<glld-func-declr-2>> */', template)
+    fstr = fstr.replace('<<glld-func-declr-2>>', template)
 
     with open(g_opt['output'], 'w') as f:
         f.write(fstr)

@@ -266,31 +266,36 @@ extern "C" {
 #  define GLAPI extern
 # endif /* GLAPI */
 #
+# /* Define platform macros */
 # if defined (__linux__)
-#  define GLLD_LINUX 1
 #  define GLLD_PLATFORM "linux"
-# endif /* __linux__ */
-# if defined (__APPLE__)
-#  define GLLD_APPLE 1
+#  define GLLD_PLATFORM_LINUX 1
+#
+# elif defined (__APPLE__) || defined (__MACH__)
 #  define GLLD_PLATFORM "apple"
-# endif /* __APPLE__ */
-# if defined (_WIN32)
-#  define GLLD_WIN32 1
+#  define GLLD_PLATFORM_APPLE 1
+#
+# elif defined (__CYGWIN__) || defined (_WIN32)
 #  define GLLD_PLATFORM "win32"
-# endif /* _WIN32 */
-# if !defined (GLLD_LINUX) && !defined (GLLD_APPLE) && !defined (GLLD_WIN32)
-#  error "Unrecognized platform. Neither GNU/Linux, nor Apple, nor Win32 platforms were detected."
-# endif /* GLLD_LINUX, GLLD_APPLE, GLLD_WIN32 */
+#  define GLLD_PLATFORM_WIN32 1
+#
+# elif defined (__FreeBSD__) || defined (__NetBSD__) || defined (__bsdi__) || defined (__DragonFly__) || defined (__MidnightBSD__)
+#  define GLLD_PLATFORM "bsd"
+#  define GLLD_PLATFORM_BSD 1
+#
+# else
+#  error /* No valid platform found */
+# endif
 #
 # if !defined GLLD_VERSION
 #  define GLLD_VERSION "2.0"
-# endif /* GLLD_VERSION */
+# endif
 #
-# if !defined (GLOAD_GL_PROFILE)
+/* # if !defined (GLOAD_GL_PROFILE)
 #  define GLOAD_GL_PROFILE "core"
-# endif /* GLOAD_GL_PROFILE */
+# endif /* GLOAD_GL_PROFILE */ */
 #
-# if !defined (GLOAD_GL_VERSION)
+/* # if !defined (GLOAD_GL_VERSION)
 #  define GLOAD_GL_VERSION "4.6"
 # endif /* GLOAD_GL_VERSION */
 # if !defined (GLOAD_GLES_VERSION)
@@ -298,7 +303,7 @@ extern "C" {
 # endif /* GLOAD_GLES_VERSION */
 # if !defined (GLOAD_GLSC_VERSION)
 #  define GLOAD_GLSC_VERSION "2.0"
-# endif /* GLOAD_GLSC_VERSION */
+# endif /* GLOAD_GLSC_VERSION */ */
 #
 # if !defined (GLOAD_EXTENSIONS)
 #  if !defined (GLOAD_NO_EXTENSIONS)
@@ -306,60 +311,19 @@ extern "C" {
 #  endif /* GLOAD_NO_EXTENSIONS */
 # endif /* GLOAD_EXTENSIONS */
 
-/* SECTION:
- *  glld API
- * * * * * * * * * * */
+/* SECTION: glld */
 
-typedef void    *(*t_glldLoader)(const char *);
+typedef void *(*t_glldLoader) (const char *);
 
-/* `glldLoadGL`:
- *
- * Perform a simple OpenGL (v.1.0 - v.4.6) and OpenGLES (v.1.0 - v.3.2) loading process.
- * 
- * `glldLoadGL` auto-detects which backend should be used:
- * `GLX`, `EGL`, `WGL` or `built-in` (using either `dlopen` or `LoadLibraryA`, depending on the platform).
- *
- * - return: `true` on success, `false` on failure.
- * */
-GLAPI int   glldLoadGL(void);
+GLAPI int glldLoadGL(void);
 
-/* `glldLoadGL`:
- *
- * Unload OpenGL functions and dispose dynamic/shared object handle.
- * This function will execute anything if `glldGetProcAddress` was used at least once;
- * for other backends (i.e. `GLX`, `EGL`, `WGL` and more) this function will simply return.
- *
- * - return: `true` on success, `false` on failure.
- * */
-GLAPI int   glldUnloadGL(void);
+GLAPI int glldUnloadGL(void);
 
-/* `glldLoadGLLoader`:
- *
- * Perform a simple OpenGL (v.1.0 - v.4.6) and OpenGLES (v.1.0 - v.3.2) loading process.
- * 
- * glldLoadGLLoader expects a pointer to a `*GetProcAddress` function.
- * Most, if not all opengl-oriented libraries support the propper version of `*GetProcAddress`
- * and glld.h provides a built-in solution: `glldGetProcAddress`.
- *
- * - param: `t_glldLoader load` - pointer to a loader function
- * - return: `true` on success, `false` on failure.
- * */
-GLAPI int   glldLoadGLLoader(t_glldLoader);
+GLAPI int glldLoadGLLoader(t_glldLoader);
 
-/* `glldGetProcAddress`:
- *
- * Retrieve the address of the OpenGL symbol from dynamic/shared object.
- * Uses `dlopen` and `dlsym` for GNU/Linux and MacOS platform.
- * Uses `LoadLibraryA` and `GetProcAddress` for Win32 platform.
- *
- * - param: `const char *name` - name of the symbol
- * - returns: address of the symbol on success, null on failure
- * */
-GLAPI void  *glldGetProcAddress(const char *);
+GLAPI void *glldGetProcAddress(const char *);
 
-/* SECTION:
- *  OpenGL API
- * * * * * * */
+/* SECTION: OpenGL */
 
 # define GL_VERSION_1_0
 # define GL_VERSION_1_1
@@ -30536,78 +30500,33 @@ extern PFNGLREPLACEMENTCODEUITEXCOORD2FCOLOR4FNORMAL3FVERTEX3FVSUNPROC glld_glRe
 #
 # if defined (GLLD_IMPLEMENTATION)
 #
-#  if defined (GLLD_LINUX) || defined (GLLD_APPLE)
+#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE) || defined (GLLD_PLATFORM_BSD)
 #   include <dlfcn.h>
-#  endif /* GLLD_LINUX, GLLD_APPLE*/
-#  if defined (GLLD_WIN32)
+#  endif
+#
+#  if defined (GLLD_PLATFORM_WIN32)
 #   include <libloaderapi.h>
-#  endif /* GLLD_WIN32 */
-#
-#  if !defined (GLLD_DLSYM) && !(defined (GLLD_GLX) || defined (GLLD_EGL) || defined (GLLD_WGL))
-#   define GLLD_DLSYM 1
-#  endif /* GLLD_DLSYM, GLLD_GLX, GLLD_EGL, GLLD_WGL */
-#
-#  if defined (GLLD_DLSYM)
-#   if defined (GLLD_GLX)
-#    error "Multiple backends selected: GLLD_DLSYM and GLLD_GLX."
-#   endif /* GLLD_GLX */
-#   if defined (GLLD_EGL)
-#    error "Multiple backends selected: GLLD_DLSYM and GLLD_EGL."
-#   endif /* GLLD_EGL */
-#   if defined (GLLD_WGL)
-#    error "Multiple backends selected: GLLD_DLSYM and GLLD_WGL."
-#   endif /* GLLD_WGL */
-#  endif /* GLLD_DLSYM */
+#  endif
 #
 #  if defined (GLLD_GLX)
-#   if defined (GLLD_DLSYM)
-#    error "Multiple backends selected: GLLD_GLX and GLLD_DLSYM."
-#   endif /* GLLD_DLSYM */
-#   if defined (GLLD_EGL)
-#    error "Multiple backends selected: GLLD_GLX and GLLD_EGL."
-#   endif /* GLLD_EGL */
-#   if defined (GLLD_WGL)
-#    error "Multiple backends selected: GLLD_GLX and GLLD_WGL."
-#   endif /* GLLD_WGL */
-#
 #   include <GL/glx.h>
 #   include <GL/glxext.h>
-#  endif /* GLLD_GLX */
+#  endif
 #
 #  if defined (GLLD_EGL)
-#   if defined (GLLD_DLSYM)
-#    error "Multiple backends selected: GLLD_EGL and GLLD_DLSYM."
-#   endif /* GLLD_DLSYM */
-#   if defined (GLLD_GLX)
-#    error "Multiple backends selected: GLLD_EGL and GLLD_GLX."
-#   endif /* GLLD_GLX */
-#   if defined (GLLD_WGL)
-#    error "Multiple backends selected: GLLD_EGL and GLLD_WGL."
-#   endif /* GLLD_WGL */
-#
 #   include <EGL/egl.h>
 #   include <EGL/eglext.h>
-#  endif /* GLLD_EGL */
+#  endif
 #
 #  if defined (GLLD_WGL)
-#   if defined (GLLD_DLSYM)
-#    error "Multiple backends selected: GLLD_WGL and GLLD_DLSYM."
-#   endif /* GLLD_DLSYM */
-#   if defined (GLLD_GLX)
-#    error "Multiple backends selected: GLLD_WGL and GLLD_GLX."
-#   endif /* GLLD_EGL */
-#   if defined (GLLD_WGL)
-#    error "Multiple backends selected: GLLD_WGL and GLLD_WGL."
-#   endif /* GLLD_WGL */
-#
 #   include <wingdi.h>
-#  endif /* GLLD_WGL */
+#  endif
 #
 #  if defined (GLLD_VERBOSE)
 #   define GLLD_VERBOSE_INFO 1
 #   define GLLD_VERBOSE_WARN 1
 #   define GLLD_VERBOSE_ERROR 1
-#  endif /* GLLD_VERBOSE */
+#  endif
 #
 #  if defined (__cplusplus)
 
@@ -30615,12 +30534,7 @@ extern "C" {
 
 #  endif /* __cplusplus */
     
-/* SECTION:
- *  Global objects
- * * * * * * * * * * */
-
-/* `struct s_nameaddr` - key-value-pair structure of proc. names and addresses.
- * */
+/* SECTION: globals */
 
 struct s_nameaddr {
 
@@ -30633,9 +30547,7 @@ struct s_nameaddr {
     void        **addr;
 };
 
-/* `static struct s_nameaddr g_nameaddr` - array of s_nameaddr structures, null-terminated.
- * */
-
+/* key-value pair array of OpenGL functions */
 static struct s_nameaddr    g_nameaddr[] = {
     
 # if defined (GL_VERSION_1_0)
@@ -36863,28 +36775,19 @@ static struct s_nameaddr    g_nameaddr[] = {
 
 # endif /* GL_SUN_vertex */
 
-    /* null-terminator */
+    /* ... */
+
     { "", 0 }
 };
 
-/* `static void *g_handle` - handle to shared/dynamic library.
- * */
+/* handle to libGL.so / libGL.dll */ 
 static void *g_handle = 0;
 
 /* SECTION:
  *  glld API
  * * * * * * * * * * */
 
-/* `glldLoadGL`:
- *
- * Perform a simple OpenGL (v.1.0 - v.4.6) and OpenGLES (v.1.0 - v.3.2) loading process.
- * 
- * `glldLoadGL` auto-detects which backend should be used:
- * `GLX`, `EGL`, `WGL` or `built-in` (using either `dlopen` or `LoadLibraryA`, depending on the platform).
- *
- * - return: `true` on success, `false` on failure.
- * */
-GLAPI int   glldLoadGL(void) {
+GLAPI int glldLoadGL(void) {
 
 #  if defined (GLLD_GLX)
     return (glldLoadGLLoader((t_glldLoader) glXGetProcAddress));
@@ -36895,47 +36798,29 @@ GLAPI int   glldLoadGL(void) {
 #  if defined (GLLD_WGL)
     return (glldLoadGLLoader((t_glldLoader) wglGetProcAddress));
 #  endif /* GLLD_WGL */
-#  if defined (GLLD_DLSYM)
+
     return (glldLoadGLLoader((t_glldLoader) glldGetProcAddress));
-#  endif /* GLLD_DLSYM */
 
 }
 
-/* `glldLoadGL`:
- *
- * Unload OpenGL functions and dispose dynamic/shared object handle.
- * This function will execute anything if `glldGetProcAddress` was used at least once;
- * for other backends (i.e. `GLX`, `EGL`, `WGL` and more) this function will simply return.
- *
- * - returns: `true` on success, `false` on failure.
- * */
-GLAPI int   glldUnloadGL(void) {
+
+GLAPI int glldUnloadGL(void) {
     if (g_handle) {
 
-#  if defined (GLLD_LINUX) || defined (GLLD_APPLE)
+#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE)
         dlclose(g_handle), g_handle = 0;
-#  endif /* GLLD_LINUX, GLLD_APPLE */
-#  if defined (GLLD_WIN32)
+#  endif /* GLLD_PLATFORM_LINUX, GLLD_PLATFORM_APPLE */
+#  if defined (GLLD_PLATFORM_WIN32)
         FreeLibrary(g_handle), g_handle = 0;
-#  endif /* GLLD_WIN32 */
+#  endif /* GLLD_PLATFORM_WIN32 */
 
     }
 
     return (1);
 }
 
-/* `glldLoadGLLoader`:
- *
- * Perform a simple OpenGL (v.1.0 - v.4.6) and OpenGLES (v.1.0 - v.3.2) loading process.
- * 
- * glldLoadGLLoader expects a pointer to a `*GetProcAddress` function.
- * Most, if not all opengl-oriented libraries support the propper version of `*GetProcAddress`
- * and glld.h provides a built-in solution: `glldGetProcAddress`.
- *
- * - param: `t_glldLoader load` - pointer to a loader function
- * - return: `true` on success, `false` on failure.
- * */
-GLAPI int   glldLoadGLLoader(t_glldLoader load) {
+
+GLAPI int glldLoadGLLoader(t_glldLoader load) {
     if (!load) { return (0); }
     for (size_t i = 0; g_nameaddr[i].addr; i++) {
         /* If the function is already loaded, skip it... */
@@ -36953,48 +36838,39 @@ GLAPI int   glldLoadGLLoader(t_glldLoader load) {
     return (1);
 }
 
-/* `glldGetProcAddress`:
- *
- * Retrieve the address of the OpenGL symbol from dynamic/shared object.
- * Uses `dlopen` and `dlsym` for GNU/Linux and MacOS platform.
- * Uses `LoadLibraryA` and `GetProcAddress` for Win32 platform.
- *
- * - param: `const char *name` - name of the symbol
- * - return: address of the symbol on success, null on failure
- * */
-GLAPI void  *glldGetProcAddress(const char *name) {
-    void        *proc;
-    const char  *names[] = {
 
-#  if defined (GLLD_LINUX)
+GLAPI void *glldGetProcAddress(const char *name) {
+    const char *names[] = {
+
+#  if defined (GLLD_PLATFORM_LINUX)
         "libGL.so",
         "libGL.so.1",
         "libGL.so.1.7.0",
         0
-#  endif /* GLLD_LINUX */
-#  if defined (GLLD_APPLE)
+#  endif /* GLLD_PLATFORM_LINUX */
+#  if defined (GLLD_PLATFORM_APPLE)
         "../Frameworks/OpenGL.framework/OpenGL",
         "/Library/Frameworks/OpenGL.framework/OpenGL",
         "/System/Library/Frameworks/OpenGL.framework/OpenGL",
         "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
         0
-#  endif /* GLLD_APPLE */
-#  if defined (GLLD_WIN32)
+#  endif /* GLLD_PLATFORM_APPLE */
+#  if defined (GLLD_PLATFORM_WIN32)
         "opengl32.dll",
         0
-#  endif /* GLLD_WIN32 */
+#  endif /* GLLD_PLATFORM_WIN32 */
 
     };
     
     if (!g_handle) {
         for (size_t i = 0; !g_handle && names[i]; i++) {
 
-#  if defined (GLLD_LINUX) || defined (GLLD_APPLE)
+#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE)
             g_handle = dlopen(names[i], RTLD_NOW | RTLD_GLOBAL);
-#  endif /* GLLD_LINUX, GLLD_APPLE */
-#  if defined (GLLD_WIN32)
+#  endif /* GLLD_PLATFORM_LINUX, GLLD_PLATFORM_APPLE */
+#  if defined (GLLD_PLATFORM_WIN32)
             g_handle = LoadLibraryA(names[i]);
-#  endif /* GLLD_WIN32 */
+#  endif /* GLLD_PLATFORM_WIN32 */
 
         }
 
@@ -37009,27 +36885,25 @@ GLAPI void  *glldGetProcAddress(const char *name) {
         }
     }
 
-#  if defined (GLLD_LINUX) || defined (GLLD_APPLE)
-    proc = dlsym(g_handle, name);
-#  endif /* GLLD_LINUX, GLLD_APPLE */
-#  if defined (GLLD_WIN32)
-    proc = GetProcAddress(g_handle, name);
-#  endif /* GLLD_WIN32 */
+#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE)
+    void proc = dlsym(g_handle, name);
+#  endif /* GLLD_PLATFORM_LINUX, GLLD_PLATFORM_APPLE */
+#  if defined (GLLD_PLATFORM_WIN32)
+    void proc = GetProcAddress(g_handle, name);
+#  endif /* GLLD_PLATFORM_WIN32 */
 
     if (!proc) {
 
 #  if defined (GLLD_VERBOSE_ERROR)
-            fprintf(stderr, "glld.h: could not load a procedure: %s\n", name);
+        fprintf(stderr, "glld.h: could not load a procedure: %s\n", name);
 #  endif /* GLLD_VERBOSE_ERROR */
     
-            return (0);
+        return (0);
     }
     return (proc);
 }
 
-/* SECTION:
- *  OpenGL API
- * * * * * * */
+/* SECTION: OpenGL */
 
 # if defined (GL_VERSION_1_0)
 
