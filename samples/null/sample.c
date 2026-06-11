@@ -14,7 +14,5 @@ int main(void) {
     
     /* ... */
 
-    glldUnloadGL();
-
     return (0);
 }
