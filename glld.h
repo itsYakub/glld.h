@@ -97,10 +97,12 @@
 
 #if defined (__cplusplus)
 # pragma once
-#endif /* __cplusplus */
+#endif
 #
 #if !defined (_glld_h_)
 # define _glld_h_ 1
+#
+# define GLLD_VERSION "2.1"
 #
 # if defined (__gl_h_)
 #  error "#include <GL/gl.h> detected. To ensure a proper usage of this loader, remove the include."
@@ -157,25 +159,6 @@
 # endif /* __gl3platform_h_ */
 # define __gl3platform_h_ 1
 #
-#  if !defined (__cplusplus)
-#   include <stdio.h>
-#   include <stdint.h>
-#   include <stddef.h>
-#   include <assert.h>
-#  else
-#   include <cstdio>
-#   include <cstdint>
-#   include <cstddef>
-#   include <cassert>
-#   include <string>
-#  endif
-#
-# if defined (__cplusplus)
-
-extern "C" {
-
-# endif
-#
 # if defined (_WIN32) && !defined (APIENTRY) && !defined (__CYGWIN__) && !defined (__SCITECH_SNAP__)
 #  if !defined (WIN32_LEAN_AND_MEAN)
 #   define WIN32_LEAN_AND_MEAN 1
@@ -217,8 +200,23 @@ extern "C" {
 #  error /* No valid platform found */
 # endif
 #
-# if !defined GLLD_VERSION
-#  define GLLD_VERSION "2.1"
+#  if !defined (__cplusplus)
+#   include <stdio.h>
+#   include <stdint.h>
+#   include <stddef.h>
+#   include <assert.h>
+#  else
+#   include <cstdio>
+#   include <cstdint>
+#   include <cstddef>
+#   include <cassert>
+#   include <string>
+#  endif
+#
+# if defined (__cplusplus)
+
+extern "C" {
+
 # endif
 
 /* SECTION: glld */
