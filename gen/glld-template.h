@@ -8,143 +8,70 @@
  *
  *
  *  OpenGL settings:
- *      - profile: <<glld-glprofile>>
- *      - version: <<glld-glversion>> (OpenGL)
- *      - version: <<glld-glesversion>> (OpenGL ES)
- *      - version: <<glld-glscversion>> (OpenGL SC)
+ *      - profile: <<glld-gl-profile>>
+ *      - version: <<glld-gl-version>> (OpenGL)
+ *      - version: <<glld-gl-es-version>> (OpenGL ES)
+ *      - version: <<glld-gl-sc-version>> (OpenGL SC)
  *
  *
  *  Configuration (can be defined by user):
  *
  *      #define GLLD_IMPLEMENTATION
- *          - TYPE:
- *              MANDATORY
- *          - DESCRIPTION:
- *              Embed the implementation section of the library into the source file.
- *              NOTE:
- *                  This should be defined only once in the entire codebase.
- *                  Otherwise, defining this option will cause a multiple-definitions error.
- *
- *      #define GLLD_GLX
- *          - TYPE:
- *              OPTIONAL 
- *          - DESCRIPTION:
- *              Enforce the usage of GLX for context loading.
- *              NOTE:
- *                  glld.h doesn't load GLX dynamically. For this flag to work you must
- *                  link your program with GLX library (libGLX.so: -lGLX).
- *
- *      #define GLLD_EGL
- *          - TYPE:
- *              OPTIONAL 
- *          - DESCRIPTION:
- *              Enforce the usage of EGL for context loading.
- *              NOTE:
- *                  glld.h doesn't load EGL dynamically. For this flag to work you must
- *                  link your program with EGL library (libEGL.so: -lEGL).
- *
- *      #define GLLD_WGL
- *          - TYPE:
- *              OPTIONAL 
- *          - DESCRIPTION:
- *              Enforce the usage of Windows's WGL for context loading.
- *              NOTE:
- *                  glld.h doesn't load WGL dynamically. For this flag to work you must
- *                  link your program with WGL library (Windows GDI: -lgdi32) (OpenGL32.dll: -lopengl32).
- *
- *      #define GLLD_DLSYM
- *          - TYPE:
- *              OPTIONAL (DEFINED BY DEFAULT) 
- *          - DESCRIPTION:
- *              Default, platform-independent option for loading OpenGL. Defined by default.
- *              NOTE:
- *                  This solution may require the linkage with dynamic linking library.
- *                  For unix-based system it would be: libdl, -ldl.
- *                  For win32 system: Kernel32.dll.
+ *          - TYPE: MANDATORY
+ *          - DESCRIPTION: Embed the implementation section of the library into the source file.
+ *                         NOTE:
+ *                             This should be defined only once in the entire codebase.
+ *                             Otherwise, defining this option will cause a multiple-definitions error.
  *
  *      #define GLLD_VERBOSE
- *          - TYPE:
- *              OPTIONAL
- *          - DESCRIPTION:
- *              Enables info/warning/error logging to standard-output/standard-error.
+ *          - TYPE: OPTIONAL
+ *          - DESCRIPTION: Enables info/warning/error logging to standard-output/standard-error.
  *  
  *      #define GLLD_VERBOSE_INFO
- *          - TYPE:
- *              OPTIONAL
- *          - DESCRIPTION:
- *              Enables info-logging to standard-output/standard-error.
- *              Enabled by default if GLLD_VERBOSE is defined.
+ *          - TYPE: OPTIONAL
+ *          - DESCRIPTION: Enables info-logging to standard-output.
+ *                         Enabled by default if GLLD_VERBOSE is defined.
  *
  *      #define GLLD_VERBOSE_WARN
- *          - TYPE:
- *              OPTIONAL
- *          - DESCRIPTION:
- *              Enables warning-logging to standard-output/standard-error.
- *              Enabled by default if GLLD_VERBOSE is defined.
+ *          - TYPE: OPTIONAL
+ *          - DESCRIPTION: Enables warning-logging to standard-output.
+ *                         Enabled by default if GLLD_VERBOSE is defined.
  *
  *      #define GLLD_VERBOSE_ERROR
- *          - TYPE:
- *              OPTIONAL
- *          - DESCRIPTION:
- *              Enables error-logging to standard-output/standard-error.
- *              Enabled by default if GLLD_VERBOSE is defined.
- *
- *      #define GLLD_EXTENSIONS
- *          - TYPE:
- *              OPTIONAL
- *          - DESCRIPTION:
- *              Enable OpenGL extensions (default script should define this option).
- *
- *      #define GLLD_NO_EXTENSIONS
- *          - TYPE:
- *              OPTIONAL
- *          - DESCRIPTION:
- *              Disable OpenGL extensions.
+ *          - TYPE: OPTIONAL
+ *          - DESCRIPTION: Enables error-logging to standard-error.
+ *                         Enabled by default if GLLD_VERBOSE is defined.
  *
  *
  *  Constants (MUST NOT be defined by user):
  *
  *      GLLD_PLATFORM
- *          - TYPE:
- *              String
- *          - DESCRIPTION:
- *              Name of the platform glld.h is used on as a string, compile detected.
+ *          - TYPE: String
+ *          - DESCRIPTION: Name of the platform glld.h is used on as a string, compile detected.
  *
  *      GLLD_VERSION
- *          - TYPE:
- *              String
- *          - DESCRIPTION:
- *              Current version of glld.h header file as a string.
+ *          - TYPE: String
+ *          - DESCRIPTION: Current version of glld.h header file as a string.
  *
  *      GLLD_GL_PROFILE
- *          - TYPE:
- *              String
- *          - DESCRIPTION:
- *              Default profile of OpenGL and OpenGLES handled by glld.h.
+ *          - TYPE: String
+ *          - DESCRIPTION: Default profile of OpenGL and OpenGLES handled by glld.h.
  *
  *      GLLD_GL_VERSION
- *          - TYPE:
- *              String
- *          - DESCRIPTION:
- *              Default version of OpenGL handled by glld.h.
+ *          - TYPE: String
+ *          - DESCRIPTION: Default version of OpenGL handled by glld.h.
  *
  *      GLLD_GLES_VERSION
- *          - TYPE:
- *              String
- *          - DESCRIPTION:
- *              Default version of OpenGLES handled by glld.h.
+ *          - TYPE: String
+ *          - DESCRIPTION: Default version of OpenGLES handled by glld.h.
  *
  *      GLLD_GLSC_VERSION
- *          - TYPE:
- *              String
- *          - DESCRIPTION:
- *              Default version of OpenGLSC handled by glld.h.
+ *          - TYPE: String
+ *          - DESCRIPTION: Default version of OpenGLSC handled by glld.h.
  *
  *      GL_VERSION_...
- *          - TYPE:
- *              Integer
- *          - DESCRIPTION:
- *              Compile-time version detection of OpenGL.
+ *          - TYPE: Integer
+ *          - DESCRIPTION: Compile-time version detection of OpenGL.
  *
  *
  *  Summary and Notes:
@@ -241,20 +168,20 @@
 #   include <cstddef>
 #   include <cassert>
 #   include <string>
-#  endif /* __cplusplus */
+#  endif
 #
 # if defined (__cplusplus)
 
 extern "C" {
 
-# endif /* __cplusplus */
+# endif
 #
 # if defined (_WIN32) && !defined (APIENTRY) && !defined (__CYGWIN__) && !defined (__SCITECH_SNAP__)
 #  if !defined (WIN32_LEAN_AND_MEAN)
 #   define WIN32_LEAN_AND_MEAN 1
-#  endif /* WIN32_LEAN_AND_MEAN */
+#  endif
 #  include <windows.h>
-# endif /* _WIN32, APIENTRY, __CYGWIN__, __SCITECH_SNAP__ */
+# endif
 #
 # if !defined (APIENTRY)
 #  define APIENTRY
@@ -291,9 +218,9 @@ extern "C" {
 #  define GLLD_VERSION "<<glld-version>>"
 # endif
 #
-/* <<glld-macro-glprofile>> */
+<<glld-macro-glprofile>>
 #
-/* <<glld-macro-glversion>> */
+<<glld-macro-glversion>>
 #
 <<glld-macro-ext-state>>
 
@@ -311,16 +238,16 @@ GLAPI void *glldGetProcAddress(const char *);
 
 /* SECTION: OpenGL */
 
-<<glld-macro-version-list>>
+<<glld-gl-version-list>>
 #
-<<glld-macro-ext-list>>
+<<glld-gl-ext-list>>
 #
-<<glld-type-declr>>
+<<glld-gl-types>>
 
-<<glld-enum-declr>>
-<<glld-func-ptr>>
-<<glld-func-declr-1>>
-<<glld-func-declr-2>>
+<<glld-gl-enums>>
+<<glld-gl-func-ptr>>
+<<glld-gl-func-declr-1>>
+<<glld-gl-func-declr-2>>
 #
 # if defined (__cplusplus)
 
@@ -338,20 +265,6 @@ GLAPI void *glldGetProcAddress(const char *);
 #   include <libloaderapi.h>
 #  endif
 #
-#  if defined (GLLD_GLX)
-#   include <GL/glx.h>
-#   include <GL/glxext.h>
-#  endif
-#
-#  if defined (GLLD_EGL)
-#   include <EGL/egl.h>
-#   include <EGL/eglext.h>
-#  endif
-#
-#  if defined (GLLD_WGL)
-#   include <wingdi.h>
-#  endif
-#
 #  if defined (GLLD_VERBOSE)
 #   define GLLD_VERBOSE_INFO 1
 #   define GLLD_VERBOSE_WARN 1
@@ -364,66 +277,120 @@ extern "C" {
 
 #  endif /* __cplusplus */
     
-/* SECTION: globals */
-
+/* key-value pair array of OpenGL functions */
 struct s_nameaddr {
 
 #  if !defined (__cplusplus)
-    const char          *name;
+    const char *name;
 #  else
-    const std::string   &name;
+    const std::string &name;
 #  endif /* __cplusplus */
 
-    void        **addr;
+    void **addr;
 };
 
-/* key-value pair array of OpenGL functions */
-static struct s_nameaddr    g_nameaddr[] = {
+static struct s_nameaddr g_nameaddr[] = {
     
-<<glld-func-nameaddr>>
+<<glld-gl-func-nameaddr>>
 
     /* ... */
 
     { "", 0 }
 };
 
-/* handle to libGL.so / libGL.dll */ 
-static void *g_handle = 0;
+/* SECTION: glld */
 
-/* SECTION:
- *  glld API
- * * * * * * * * * * */
+typedef void (*PFNGLXGETPROCADDRESSPROC) (const GLubyte *);
+PFNGLXGETPROCADDRESSPROC glXGetProcAddress = 0;
+
+typedef void (*PFNEGLGETPROCADDRESSPROC) (const GLubyte *);
+PFNEGLGETPROCADDRESSPROC eglGetProcAddress = 0;
+
+typedef void (*PFNWGLGETPROCADDRESSPROC) (const GLubyte *);
+PFNWGLGETPROCADDRESSPROC wglGetProcAddress = 0;
 
 GLAPI int glldLoadGL(void) {
 
-#  if defined (GLLD_GLX)
-    return (glldLoadGLLoader((t_glldLoader) glXGetProcAddress));
-#  endif /* GLLD_GLX */
-#  if defined (GLLD_EGL)
-    return (glldLoadGLLoader((t_glldLoader) eglGetProcAddress));
-#  endif /* GLLD_EGL */
-#  if defined (GLLD_WGL)
-    return (glldLoadGLLoader((t_glldLoader) wglGetProcAddress));
-#  endif /* GLLD_WGL */
-
-    return (glldLoadGLLoader((t_glldLoader) glldGetProcAddress));
-
-}
-
-
-GLAPI int glldUnloadGL(void) {
-    if (g_handle) {
-
 #  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE)
-        dlclose(g_handle), g_handle = 0;
-#  endif /* GLLD_PLATFORM_LINUX, GLLD_PLATFORM_APPLE */
-#  if defined (GLLD_PLATFORM_WIN32)
-        FreeLibrary(g_handle), g_handle = 0;
-#  endif /* GLLD_PLATFORM_WIN32 */
+    /* libGLX */
+    const char *libglx[] = {
+        "libGLX.so", "libGLX.so.0", "libGLX.so.0.0.0", 0
+    };
 
+    void *handle = 0;
+    /* attempt to load libGLX.so */
+    for (size_t i = 0; libglx[i]; i++) {
+        handle = dlopen(libglx[i], RTLD_NOW | RTLD_LAZY);
+        if (handle) {
+            break;
+        }
     }
 
-    return (1);
+    /* if libGLX.so loaded */
+    if (handle) {
+        glXGetProcAddress = (PFNGLXGETPROCADDRESSPROC) dlsym(handle, "glXGetProcAddress");
+        if (glXGetProcAddress) {
+            return (glldLoadGLLoader((t_glldLoader) glXGetProcAddress));
+        }
+
+        dlclose(handle);
+    }
+
+    /* libEGL */
+    const char *libegl[] = {
+        "libEGL.so", "libEGL.so.1", "libEGL.so.1.1.0", 0
+    };
+
+    void *handle = 0;
+    /* attempt to load libEGL.so */
+    for (size_t i = 0; libegl[i]; i++) {
+        handle = dlopen(libegl[i], RTLD_NOW | RTLD_LAZY);
+        if (handle) {
+            break;
+        }
+    }
+
+    /* if libEGL.so loaded */
+    if (handle) {
+        eglGetProcAddress = (PFNEGLGETPROCADDRESSPROC) dlsym(handle, "eglGetProcAddress");
+        if (eglGetProcAddress) {
+            return (glldLoadGLLoader((t_glldLoader) eglGetProcAddress));
+        }
+
+        dlclose(handle);
+    }
+
+#  elif defined (GLLD_PLATFORM_WIN32)
+    /* opengl32 */
+    const char *opengl32[] = {
+        "opengl32.dll", 0
+    };
+    
+    HMODULE handle = 0;
+    /* attempt to load opengl32.dll */
+    for (size_t i = 0; opengl32[i]; i++) {
+        handle = LoadLibraryA(opengl32[i]);
+        if (handle) {
+            break;
+        }
+    }
+
+    /* if opengl32.dll loaded */
+    if (handle) {
+        wglGetProcAddress = (PFNWGLGETPROCADDRESSPROC) GetProcAddress(handle, "eglGetProcAddress");
+        if (wglGetProcAddress) {
+            return (glldLoadGLLoader((t_glldLoader) wglGetProcAddress));
+        }
+
+        FreeLibrary(handle);
+    }
+
+#  endif
+
+    /* no library was loaded...
+     * ...perform manual loading from existing libGL.so / opengl32.dll.
+     * */
+    return (glldLoadGLLoader((t_glldLoader) glldGetProcAddress));
 }
 
 
@@ -447,72 +414,74 @@ GLAPI int glldLoadGLLoader(t_glldLoader load) {
 
 
 GLAPI void *glldGetProcAddress(const char *name) {
-    const char *names[] = {
+    const char *libgl[] = {
 
-#  if defined (GLLD_PLATFORM_LINUX)
+#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD)
         "libGL.so",
         "libGL.so.1",
         "libGL.so.1.7.0",
         0
-#  endif /* GLLD_PLATFORM_LINUX */
-#  if defined (GLLD_PLATFORM_APPLE)
+#  elif defined (GLLD_PLATFORM_APPLE)
         "../Frameworks/OpenGL.framework/OpenGL",
         "/Library/Frameworks/OpenGL.framework/OpenGL",
         "/System/Library/Frameworks/OpenGL.framework/OpenGL",
         "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
         0
-#  endif /* GLLD_PLATFORM_APPLE */
-#  if defined (GLLD_PLATFORM_WIN32)
+#  elif defined (GLLD_PLATFORM_WIN32)
         "opengl32.dll",
         0
-#  endif /* GLLD_PLATFORM_WIN32 */
+#  endif
 
     };
-    
-    if (!g_handle) {
-        for (size_t i = 0; !g_handle && names[i]; i++) {
+   
+    /* try to load libGL.so / opengl32.dll */
+    static void *handle = 0;
+    for (size_t i = 0; libgl[i]; i++) {
 
-#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE)
-            g_handle = dlopen(names[i], RTLD_NOW | RTLD_GLOBAL);
-#  endif /* GLLD_PLATFORM_LINUX, GLLD_PLATFORM_APPLE */
-#  if defined (GLLD_PLATFORM_WIN32)
-            g_handle = LoadLibraryA(names[i]);
-#  endif /* GLLD_PLATFORM_WIN32 */
+#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
+        handle = dlopen(libgl[i], RTLD_NOW | RTLD_GLOBAL);
+#  elif defined (GLLD_PLATFORM_WIN32)
+        handle = LoadLibraryA(libgl[i]);
+#  endif
 
-        }
-
-        if (!g_handle) {
-
-#  if defined (GLLD_VERBOSE_ERROR)
-            fprintf(stderr, "glld.h: could not load an OpenGL handle.\n");
-#  endif /* GLLD_VERBOSE_ERROR */
-
-            return (0);
-
+        if (handle) {
+            break;
         }
     }
 
-#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE)
-    void proc = dlsym(g_handle, name);
-#  endif /* GLLD_PLATFORM_LINUX, GLLD_PLATFORM_APPLE */
-#  if defined (GLLD_PLATFORM_WIN32)
-    void proc = GetProcAddress(g_handle, name);
-#  endif /* GLLD_PLATFORM_WIN32 */
+    /* libGL.so / opengl32.dll not found */
+    if (!handle) {
 
+#  if defined (GLLD_VERBOSE_ERROR)
+        fprintf(stderr, "glld.h: could not load an OpenGL handle.\n");
+#  endif
+
+        return (0);
+    }
+
+#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
+    void *proc = dlsym(handle, name);
+#  elif defined (GLLD_PLATFORM_WIN32)
+    void *proc = GetProcAddress(handle, name);
+#  endif
+
+    /* no symbol was found with the specified 'name' */
     if (!proc) {
 
 #  if defined (GLLD_VERBOSE_ERROR)
         fprintf(stderr, "glld.h: could not load a procedure: %s\n", name);
-#  endif /* GLLD_VERBOSE_ERROR */
+#  endif
     
         return (0);
     }
+
+    /* success */
     return (proc);
 }
 
 /* SECTION: OpenGL */
 
-<<glld-func-declr-0>>
+<<glld-gl-func-declr-0>>
 #
 #  if defined (__cplusplus)
 
