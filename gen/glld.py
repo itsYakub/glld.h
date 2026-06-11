@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 
 g_path    = os.path.dirname(__file__)
 g_name    = 'glld.h'
-g_version = '2.0'
+g_version = '2.1'
 g_author  = 'Jakub Oleksiak (yakubofficialmail@gmail.com)'
 g_licence = 'GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007'
 
@@ -198,8 +198,6 @@ class glReq:
 
 
 def gl_parsexml_r(element: ET.Element) -> glReq:
-    req: glReq
-
     req = glReq()
     req.types = list()
     req.enums = list()
@@ -222,7 +220,7 @@ class glFeat:
     api: str
     name: str
     number: str
-    req: list[glReq]
+    reqs: list[glReq]
 
 
 def gl_parsexml_f(element: ET.Element) -> glFeat:
@@ -232,17 +230,15 @@ def gl_parsexml_f(element: ET.Element) -> glFeat:
     feat.api = element.get('api')
     feat.name = element.get('name')
     feat.number = element.get('number')
-    feat.req = list()
+    feat.reqs = list()
 
     reqs = element.findall('require')
     if len(reqs) == 0:
         return (None)
 
     for child in reqs:
-        req: glReq
-
-        req = gl_parsexml_r(child)
-        feat.req.append(req)
+        reqs = gl_parsexml_r(child)
+        feat.reqs.append(reqs)
     return (feat)
 
 
@@ -253,7 +249,7 @@ def gl_parsexml_f(element: ET.Element) -> glFeat:
 class glExt:
     name: str
     supported: str
-    req: list[glReq]
+    reqs: list[glReq]
 
 
 def gl_parsexml_ex(element: ET.Element) -> glExt:
@@ -262,17 +258,15 @@ def gl_parsexml_ex(element: ET.Element) -> glExt:
     ext = glExt()
     ext.name = element.get('name')
     ext.supported= element.get('supported')
-    ext.req = list()
+    ext.reqs = list()
 
     reqs = element.findall('require')
     if len(reqs) == 0:
         return (None)
 
     for child in reqs:
-        req: glReq
-
-        req = gl_parsexml_r(child)
-        ext.req.append(req)
+        reqs = gl_parsexml_r(child)
+        ext.reqs.append(reqs)
     return (ext)
 
 
@@ -284,13 +278,11 @@ class glParse:
     types: list[glType]
     enums: list[glEnum]
     cmds: list[glCmd]
-    feat: list[glFeat]
-    ext: list[glExt]
+    feats: list[glFeat]
+    exts: list[glExt]
 
 
 def gl_loadxml(filepath: str) -> ET.ElementTree:
-    tree: ET.ElementTree
-
     try:
         tree = ET.parse(filepath)
     except FileNotFoundError as err:
@@ -300,60 +292,48 @@ def gl_loadxml(filepath: str) -> ET.ElementTree:
 
 
 def gl_parsexml(tree: ET.ElementTree) -> glParse:
-    root: ET.ElementTree
-    parse: glParse
-
     root = tree.getroot()
     if root.tag != 'registry':
         print(f'{__file__}: root error')
         sys.exit(1)
+    
     parse = glParse()
     parse.types = list()
     parse.enums = list()
     parse.cmds  = list()
-    parse.feat  = list()
-    parse.ext   = list()
+    parse.feats = list()
+    parse.exts  = list()
 
     for child in root:
 
         if child.tag == 'types':
             for types in child.findall('type'):
-                type: glType
-
                 type = gl_parsexml_t(types)
                 if type not in parse.types:
                     parse.types.append(type)
 
         elif child.tag == 'enums':
             for enums in child.findall('enum'):
-                enum: glEnum
-
                 enum = gl_parsexml_e(enums)
                 if enum not in parse.enums:
                     parse.enums.append(enum)
 
         elif child.tag == 'commands':
             for cmds in child.findall('command'):
-                cmd: glCmd
-
                 cmd = gl_parsexml_c(cmds)
                 if cmd not in parse.cmds:
                     parse.cmds.append(cmd)
 
         elif child.tag == 'feature':
-            feat: glFeat
-
             feat = gl_parsexml_f(child)
             if feat is not None:
-                parse.feat.append(feat)
+                parse.feats.append(feat)
 
         elif child.tag == 'extensions':
             for exts in child.findall('extension'):
-                ext: glExt
-
                 ext = gl_parsexml_ex(exts)
                 if ext is not None:
-                    parse.ext.append(ext)
+                    parse.exts.append(ext)
 
     return (parse)
 
@@ -363,8 +343,7 @@ def gl_parsexml(tree: ET.ElementTree) -> glParse:
 # ===============
 
 def opengl_loader(parse: glParse):
-    fstr: str
-
+    fstr = ''
     with open(f'{g_path}/glld-template.h') as f:
         fstr = f.read()
 
@@ -429,7 +408,7 @@ def opengl_loader(parse: glParse):
 # =================
 
 def glld_gl_version_macros(parse: glParse):
-    feats = parse.feat
+    feats = parse.feats
     if feats is None:
         return (None)
 
@@ -441,7 +420,7 @@ def glld_gl_version_macros(parse: glParse):
 
 
 def glld_gl_extension_macros(parse: glParse):
-    exts = parse.ext
+    exts = parse.exts
     if exts is None:
         return (None)
 
@@ -474,11 +453,11 @@ def glld_gl_types(parse: glParse):
 
 
 def glld_gl_enums(parse: glParse):
-    feats = parse.feat
+    feats = parse.feats
     if feats is None:
         return (None)
 
-    exts = parse.ext
+    exts = parse.exts
     if exts is None:
         return (None)
 
@@ -488,7 +467,7 @@ def glld_gl_enums(parse: glParse):
 
     result = ''
     for feat in feats:
-        reqs = feat.req
+        reqs = feat.reqs
         # skip if this feature doesn't have any enums
         if len(reqs) == 1:
             if len(reqs[0].enums) == 0:
@@ -502,7 +481,7 @@ def glld_gl_enums(parse: glParse):
         result += '# endif\n'
 
     for ext in exts:
-        reqs = ext.req
+        reqs = ext.reqs
         # skip if this extension doesn't have any enums
         if len(reqs) == 1:
             if len(reqs[0].enums) == 0:
@@ -519,11 +498,11 @@ def glld_gl_enums(parse: glParse):
 
 
 def glld_gl_func_ptr(parse: glParse):
-    feats = parse.feat
+    feats = parse.feats
     if feats is None:
         return (None)
 
-    exts = parse.ext
+    exts = parse.exts
     if exts is None:
         return (None)
 
@@ -533,7 +512,7 @@ def glld_gl_func_ptr(parse: glParse):
 
     result = ''
     for feat in feats:
-        reqs = feat.req
+        reqs = feat.reqs
         # skip if this feature doesn't have any cmds
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
@@ -561,7 +540,7 @@ def glld_gl_func_ptr(parse: glParse):
                 result += func
 
     for ext in exts:
-        reqs = ext.req
+        reqs = ext.reqs
         # skip if this extension doesn't have any enums
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
@@ -595,11 +574,11 @@ def glld_gl_func_ptr(parse: glParse):
 
 
 def glld_gl_func_declr(parse: glParse, mode):
-    feats = parse.feat
+    feats = parse.feats
     if feats is None:
         return (None)
 
-    exts = parse.ext
+    exts = parse.exts
     if exts is None:
         return (None)
 
@@ -609,7 +588,7 @@ def glld_gl_func_declr(parse: glParse, mode):
 
     result = ''
     for feat in feats:
-        reqs = feat.req
+        reqs = feat.reqs
         # skip if this feature doesn't have any cmds
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
@@ -639,7 +618,7 @@ def glld_gl_func_declr(parse: glParse, mode):
                 result += func
 
     for ext in exts:
-        reqs = ext.req
+        reqs = ext.reqs
         # skip if this extension doesn't have any enums
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
@@ -672,11 +651,11 @@ def glld_gl_func_declr(parse: glParse, mode):
 
 
 def glld_gl_func_macros(parse: glParse):
-    feats = parse.feat
+    feats = parse.feats
     if feats is None:
         return (None)
 
-    exts = parse.ext
+    exts = parse.exts
     if exts is None:
         return (None)
 
@@ -686,7 +665,7 @@ def glld_gl_func_macros(parse: glParse):
 
     result = ''
     for feat in feats:
-        reqs = feat.req
+        reqs = feat.reqs
         # skip if this feature doesn't have any cmds
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
@@ -706,7 +685,7 @@ def glld_gl_func_macros(parse: glParse):
         result += '# endif\n'
 
     for ext in exts:
-        reqs = ext.req
+        reqs = ext.reqs
         # skip if this extension doesn't have any enums
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
@@ -729,11 +708,11 @@ def glld_gl_func_macros(parse: glParse):
 
 
 def glld_gl_func_nameaddr(parse: glParse):
-    feats = parse.feat
+    feats = parse.feats
     if feats is None:
         return (None)
 
-    exts = parse.ext
+    exts = parse.exts
     if exts is None:
         return (None)
 
@@ -743,7 +722,7 @@ def glld_gl_func_nameaddr(parse: glParse):
 
     result = ''
     for feat in feats:
-        reqs = feat.req
+        reqs = feat.reqs
         # skip if this feature doesn't have any cmds
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
@@ -764,7 +743,7 @@ def glld_gl_func_nameaddr(parse: glParse):
         result += '# endif\n'
 
     for ext in exts:
-        reqs = ext.req
+        reqs = ext.reqs
         # skip if this extension doesn't have any enums
         if len(reqs) == 1:
             if len(reqs[0].cmds) == 0:
