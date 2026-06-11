@@ -217,12 +217,6 @@ extern "C" {
 # if !defined GLLD_VERSION
 #  define GLLD_VERSION "<<glld-version>>"
 # endif
-#
-<<glld-macro-glprofile>>
-#
-<<glld-macro-glversion>>
-#
-<<glld-macro-ext-state>>
 
 /* SECTION: glld */
 
@@ -238,16 +232,19 @@ GLAPI void *glldGetProcAddress(const char *);
 
 /* SECTION: OpenGL */
 
-<<glld-gl-version-list>>
+<<glld-gl-version-macros>>
 #
-<<glld-gl-ext-list>>
-#
+<<glld-gl-extension-macros>>
+
 <<glld-gl-types>>
 
 <<glld-gl-enums>>
+
 <<glld-gl-func-ptr>>
+
 <<glld-gl-func-declr-1>>
-<<glld-gl-func-declr-2>>
+
+<<glld-gl-func-macros>>
 #
 # if defined (__cplusplus)
 
@@ -300,13 +297,13 @@ static struct s_nameaddr g_nameaddr[] = {
 
 /* SECTION: glld */
 
-typedef void (*PFNGLXGETPROCADDRESSPROC) (const GLubyte *);
+typedef void *(*PFNGLXGETPROCADDRESSPROC) (const char *);
 PFNGLXGETPROCADDRESSPROC glXGetProcAddress = 0;
 
-typedef void (*PFNEGLGETPROCADDRESSPROC) (const GLubyte *);
+typedef void *(*PFNEGLGETPROCADDRESSPROC) (const char *);
 PFNEGLGETPROCADDRESSPROC eglGetProcAddress = 0;
 
-typedef void (*PFNWGLGETPROCADDRESSPROC) (const GLubyte *);
+typedef void *(*PFNWGLGETPROCADDRESSPROC) (const char *);
 PFNWGLGETPROCADDRESSPROC wglGetProcAddress = 0;
 
 GLAPI int glldLoadGL(void) {
@@ -341,7 +338,7 @@ GLAPI int glldLoadGL(void) {
         "libEGL.so", "libEGL.so.1", "libEGL.so.1.1.0", 0
     };
 
-    void *handle = 0;
+    handle = 0;
     /* attempt to load libEGL.so */
     for (size_t i = 0; libegl[i]; i++) {
         handle = dlopen(libegl[i], RTLD_NOW | RTLD_LAZY);
