@@ -7,10 +7,6 @@ MK_NAME	= glld
 
 TARGET	= $(MK_ROOT)$(MK_NAME).h
 GPATH	= $(MK_ROOT)gen/$(MK_NAME).py
-GFLAGS	= --output=$(TARGET) \
-		  --profile=core \
-		  --extensions=no \
-		  --assertion=yes 
 
 # ========
 
@@ -34,7 +30,7 @@ remove :
 .PHONY : gen
 
 gen :
-	python3 $(GPATH) $(GFLAGS)
+	python3 $(GPATH)
 
 .PHONY : samples
 
