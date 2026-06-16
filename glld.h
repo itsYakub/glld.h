@@ -25091,7 +25091,6 @@ struct s_nameaddr {
 
 static struct s_nameaddr g_nameaddr[] = {
     
-# if defined (GL_VERSION_1_0)
    { "glCullFace", (void **) &glld_glCullFace },
    { "glFrontFace", (void **) &glld_glFrontFace },
    { "glHint", (void **) &glld_glHint },
@@ -25398,8 +25397,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glScalef", (void **) &glld_glScalef },
    { "glTranslated", (void **) &glld_glTranslated },
    { "glTranslatef", (void **) &glld_glTranslatef },
-# endif
-# if defined (GL_VERSION_1_1)
    { "glDrawArrays", (void **) &glld_glDrawArrays },
    { "glDrawElements", (void **) &glld_glDrawElements },
    { "glGetPointerv", (void **) &glld_glGetPointerv },
@@ -25430,14 +25427,10 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glIndexubv", (void **) &glld_glIndexubv },
    { "glPopClientAttrib", (void **) &glld_glPopClientAttrib },
    { "glPushClientAttrib", (void **) &glld_glPushClientAttrib },
-# endif
-# if defined (GL_VERSION_1_2)
    { "glDrawRangeElements", (void **) &glld_glDrawRangeElements },
    { "glTexImage3D", (void **) &glld_glTexImage3D },
    { "glTexSubImage3D", (void **) &glld_glTexSubImage3D },
    { "glCopyTexSubImage3D", (void **) &glld_glCopyTexSubImage3D },
-# endif
-# if defined (GL_VERSION_1_3)
    { "glActiveTexture", (void **) &glld_glActiveTexture },
    { "glSampleCoverage", (void **) &glld_glSampleCoverage },
    { "glCompressedTexImage3D", (void **) &glld_glCompressedTexImage3D },
@@ -25484,8 +25477,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glLoadTransposeMatrixd", (void **) &glld_glLoadTransposeMatrixd },
    { "glMultTransposeMatrixf", (void **) &glld_glMultTransposeMatrixf },
    { "glMultTransposeMatrixd", (void **) &glld_glMultTransposeMatrixd },
-# endif
-# if defined (GL_VERSION_1_4)
    { "glBlendFuncSeparate", (void **) &glld_glBlendFuncSeparate },
    { "glMultiDrawArrays", (void **) &glld_glMultiDrawArrays },
    { "glMultiDrawElements", (void **) &glld_glMultiDrawElements },
@@ -25533,8 +25524,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glWindowPos3sv", (void **) &glld_glWindowPos3sv },
    { "glBlendColor", (void **) &glld_glBlendColor },
    { "glBlendEquation", (void **) &glld_glBlendEquation },
-# endif
-# if defined (GL_VERSION_1_5)
    { "glGenQueries", (void **) &glld_glGenQueries },
    { "glDeleteQueries", (void **) &glld_glDeleteQueries },
    { "glIsQuery", (void **) &glld_glIsQuery },
@@ -25554,8 +25543,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glUnmapBuffer", (void **) &glld_glUnmapBuffer },
    { "glGetBufferParameteriv", (void **) &glld_glGetBufferParameteriv },
    { "glGetBufferPointerv", (void **) &glld_glGetBufferPointerv },
-# endif
-# if defined (GL_VERSION_2_0)
    { "glBlendEquationSeparate", (void **) &glld_glBlendEquationSeparate },
    { "glDrawBuffers", (void **) &glld_glDrawBuffers },
    { "glStencilOpSeparate", (void **) &glld_glStencilOpSeparate },
@@ -25649,16 +25636,12 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertexAttrib4uiv", (void **) &glld_glVertexAttrib4uiv },
    { "glVertexAttrib4usv", (void **) &glld_glVertexAttrib4usv },
    { "glVertexAttribPointer", (void **) &glld_glVertexAttribPointer },
-# endif
-# if defined (GL_VERSION_2_1)
    { "glUniformMatrix2x3fv", (void **) &glld_glUniformMatrix2x3fv },
    { "glUniformMatrix3x2fv", (void **) &glld_glUniformMatrix3x2fv },
    { "glUniformMatrix2x4fv", (void **) &glld_glUniformMatrix2x4fv },
    { "glUniformMatrix4x2fv", (void **) &glld_glUniformMatrix4x2fv },
    { "glUniformMatrix3x4fv", (void **) &glld_glUniformMatrix3x4fv },
    { "glUniformMatrix4x3fv", (void **) &glld_glUniformMatrix4x3fv },
-# endif
-# if defined (GL_VERSION_3_0)
    { "glColorMaski", (void **) &glld_glColorMaski },
    { "glGetBooleani_v", (void **) &glld_glGetBooleani_v },
    { "glGetIntegeri_v", (void **) &glld_glGetIntegeri_v },
@@ -25743,8 +25726,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glDeleteVertexArrays", (void **) &glld_glDeleteVertexArrays },
    { "glGenVertexArrays", (void **) &glld_glGenVertexArrays },
    { "glIsVertexArray", (void **) &glld_glIsVertexArray },
-# endif
-# if defined (GL_VERSION_3_1)
    { "glDrawArraysInstanced", (void **) &glld_glDrawArraysInstanced },
    { "glDrawElementsInstanced", (void **) &glld_glDrawElementsInstanced },
    { "glTexBuffer", (void **) &glld_glTexBuffer },
@@ -25757,8 +25738,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetActiveUniformBlockiv", (void **) &glld_glGetActiveUniformBlockiv },
    { "glGetActiveUniformBlockName", (void **) &glld_glGetActiveUniformBlockName },
    { "glUniformBlockBinding", (void **) &glld_glUniformBlockBinding },
-# endif
-# if defined (GL_VERSION_3_2)
    { "glDrawElementsBaseVertex", (void **) &glld_glDrawElementsBaseVertex },
    { "glDrawRangeElementsBaseVertex", (void **) &glld_glDrawRangeElementsBaseVertex },
    { "glDrawElementsInstancedBaseVertex", (void **) &glld_glDrawElementsInstancedBaseVertex },
@@ -25778,8 +25757,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glTexImage3DMultisample", (void **) &glld_glTexImage3DMultisample },
    { "glGetMultisamplefv", (void **) &glld_glGetMultisamplefv },
    { "glSampleMaski", (void **) &glld_glSampleMaski },
-# endif
-# if defined (GL_VERSION_3_3)
    { "glBindFragDataLocationIndexed", (void **) &glld_glBindFragDataLocationIndexed },
    { "glGetFragDataIndex", (void **) &glld_glGetFragDataIndex },
    { "glGenSamplers", (void **) &glld_glGenSamplers },
@@ -25838,8 +25815,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glColorP4uiv", (void **) &glld_glColorP4uiv },
    { "glSecondaryColorP3ui", (void **) &glld_glSecondaryColorP3ui },
    { "glSecondaryColorP3uiv", (void **) &glld_glSecondaryColorP3uiv },
-# endif
-# if defined (GL_VERSION_4_0)
    { "glMinSampleShading", (void **) &glld_glMinSampleShading },
    { "glBlendEquationi", (void **) &glld_glBlendEquationi },
    { "glBlendEquationSeparatei", (void **) &glld_glBlendEquationSeparatei },
@@ -25886,8 +25861,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glBeginQueryIndexed", (void **) &glld_glBeginQueryIndexed },
    { "glEndQueryIndexed", (void **) &glld_glEndQueryIndexed },
    { "glGetQueryIndexediv", (void **) &glld_glGetQueryIndexediv },
-# endif
-# if defined (GL_VERSION_4_1)
    { "glReleaseShaderCompiler", (void **) &glld_glReleaseShaderCompiler },
    { "glShaderBinary", (void **) &glld_glShaderBinary },
    { "glGetShaderPrecisionFormat", (void **) &glld_glGetShaderPrecisionFormat },
@@ -25976,8 +25949,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glDepthRangeIndexed", (void **) &glld_glDepthRangeIndexed },
    { "glGetFloati_v", (void **) &glld_glGetFloati_v },
    { "glGetDoublei_v", (void **) &glld_glGetDoublei_v },
-# endif
-# if defined (GL_VERSION_4_2)
    { "glDrawArraysInstancedBaseInstance", (void **) &glld_glDrawArraysInstancedBaseInstance },
    { "glDrawElementsInstancedBaseInstance", (void **) &glld_glDrawElementsInstancedBaseInstance },
    { "glDrawElementsInstancedBaseVertexBaseInstance", (void **) &glld_glDrawElementsInstancedBaseVertexBaseInstance },
@@ -25990,8 +25961,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glTexStorage3D", (void **) &glld_glTexStorage3D },
    { "glDrawTransformFeedbackInstanced", (void **) &glld_glDrawTransformFeedbackInstanced },
    { "glDrawTransformFeedbackStreamInstanced", (void **) &glld_glDrawTransformFeedbackStreamInstanced },
-# endif
-# if defined (GL_VERSION_4_3)
    { "glClearBufferData", (void **) &glld_glClearBufferData },
    { "glClearBufferSubData", (void **) &glld_glClearBufferSubData },
    { "glDispatchCompute", (void **) &glld_glDispatchCompute },
@@ -26035,8 +26004,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetObjectLabel", (void **) &glld_glGetObjectLabel },
    { "glObjectPtrLabel", (void **) &glld_glObjectPtrLabel },
    { "glGetObjectPtrLabel", (void **) &glld_glGetObjectPtrLabel },
-# endif
-# if defined (GL_VERSION_4_4)
    { "glBufferStorage", (void **) &glld_glBufferStorage },
    { "glClearTexImage", (void **) &glld_glClearTexImage },
    { "glClearTexSubImage", (void **) &glld_glClearTexSubImage },
@@ -26046,8 +26013,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glBindSamplers", (void **) &glld_glBindSamplers },
    { "glBindImageTextures", (void **) &glld_glBindImageTextures },
    { "glBindVertexBuffers", (void **) &glld_glBindVertexBuffers },
-# endif
-# if defined (GL_VERSION_4_5)
    { "glClipControl", (void **) &glld_glClipControl },
    { "glCreateTransformFeedbacks", (void **) &glld_glCreateTransformFeedbacks },
    { "glTransformFeedbackBufferBase", (void **) &glld_glTransformFeedbackBufferBase },
@@ -26170,14 +26135,10 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetnHistogram", (void **) &glld_glGetnHistogram },
    { "glGetnMinmax", (void **) &glld_glGetnMinmax },
    { "glTextureBarrier", (void **) &glld_glTextureBarrier },
-# endif
-# if defined (GL_VERSION_4_6)
    { "glSpecializeShader", (void **) &glld_glSpecializeShader },
    { "glMultiDrawArraysIndirectCount", (void **) &glld_glMultiDrawArraysIndirectCount },
    { "glMultiDrawElementsIndirectCount", (void **) &glld_glMultiDrawElementsIndirectCount },
    { "glPolygonOffsetClamp", (void **) &glld_glPolygonOffsetClamp },
-# endif
-# if defined (GL_VERSION_ES_CM_1_0)
    { "glClipPlanef", (void **) &glld_glClipPlanef },
    { "glFrustumf", (void **) &glld_glFrustumf },
    { "glGetClipPlanef", (void **) &glld_glGetClipPlanef },
@@ -26221,45 +26182,23 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glTexParameterx", (void **) &glld_glTexParameterx },
    { "glTexParameterxv", (void **) &glld_glTexParameterxv },
    { "glTranslatex", (void **) &glld_glTranslatex },
-# endif
-# if defined (GL_ES_VERSION_2_0)
-# endif
-# if defined (GL_ES_VERSION_3_0)
-# endif
-# if defined (GL_ES_VERSION_3_1)
-# endif
-# if defined (GL_ES_VERSION_3_2)
    { "glBlendBarrier", (void **) &glld_glBlendBarrier },
    { "glPrimitiveBoundingBox", (void **) &glld_glPrimitiveBoundingBox },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTbufferMask3DFX", (void **) &glld_glTbufferMask3DFX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDebugMessageEnableAMD", (void **) &glld_glDebugMessageEnableAMD },
    { "glDebugMessageInsertAMD", (void **) &glld_glDebugMessageInsertAMD },
    { "glDebugMessageCallbackAMD", (void **) &glld_glDebugMessageCallbackAMD },
    { "glGetDebugMessageLogAMD", (void **) &glld_glGetDebugMessageLogAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendFuncIndexedAMD", (void **) &glld_glBlendFuncIndexedAMD },
    { "glBlendFuncSeparateIndexedAMD", (void **) &glld_glBlendFuncSeparateIndexedAMD },
    { "glBlendEquationIndexedAMD", (void **) &glld_glBlendEquationIndexedAMD },
    { "glBlendEquationSeparateIndexedAMD", (void **) &glld_glBlendEquationSeparateIndexedAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderbufferStorageMultisampleAdvancedAMD", (void **) &glld_glRenderbufferStorageMultisampleAdvancedAMD },
    { "glNamedRenderbufferStorageMultisampleAdvancedAMD", (void **) &glld_glNamedRenderbufferStorageMultisampleAdvancedAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferSamplePositionsfvAMD", (void **) &glld_glFramebufferSamplePositionsfvAMD },
    { "glNamedFramebufferSamplePositionsfvAMD", (void **) &glld_glNamedFramebufferSamplePositionsfvAMD },
    { "glGetFramebufferParameterfvAMD", (void **) &glld_glGetFramebufferParameterfvAMD },
    { "glGetNamedFramebufferParameterfvAMD", (void **) &glld_glGetNamedFramebufferParameterfvAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glUniform1i64NV", (void **) &glld_glUniform1i64NV },
    { "glUniform2i64NV", (void **) &glld_glUniform2i64NV },
    { "glUniform3i64NV", (void **) &glld_glUniform3i64NV },
@@ -26294,23 +26233,13 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glProgramUniform2ui64vNV", (void **) &glld_glProgramUniform2ui64vNV },
    { "glProgramUniform3ui64vNV", (void **) &glld_glProgramUniform3ui64vNV },
    { "glProgramUniform4ui64vNV", (void **) &glld_glProgramUniform4ui64vNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttribParameteriAMD", (void **) &glld_glVertexAttribParameteriAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiDrawArraysIndirectAMD", (void **) &glld_glMultiDrawArraysIndirectAMD },
    { "glMultiDrawElementsIndirectAMD", (void **) &glld_glMultiDrawElementsIndirectAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenNamesAMD", (void **) &glld_glGenNamesAMD },
    { "glDeleteNamesAMD", (void **) &glld_glDeleteNamesAMD },
    { "glIsNameAMD", (void **) &glld_glIsNameAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glQueryObjectParameteruiAMD", (void **) &glld_glQueryObjectParameteruiAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetPerfMonitorGroupsAMD", (void **) &glld_glGetPerfMonitorGroupsAMD },
    { "glGetPerfMonitorCountersAMD", (void **) &glld_glGetPerfMonitorCountersAMD },
    { "glGetPerfMonitorGroupStringAMD", (void **) &glld_glGetPerfMonitorGroupStringAMD },
@@ -26322,46 +26251,24 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glBeginPerfMonitorAMD", (void **) &glld_glBeginPerfMonitorAMD },
    { "glEndPerfMonitorAMD", (void **) &glld_glEndPerfMonitorAMD },
    { "glGetPerfMonitorCounterDataAMD", (void **) &glld_glGetPerfMonitorCounterDataAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSetMultisamplefvAMD", (void **) &glld_glSetMultisamplefvAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexStorageSparseAMD", (void **) &glld_glTexStorageSparseAMD },
    { "glTextureStorageSparseAMD", (void **) &glld_glTextureStorageSparseAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glStencilOpValueAMD", (void **) &glld_glStencilOpValueAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTessellationFactorAMD", (void **) &glld_glTessellationFactorAMD },
    { "glTessellationModeAMD", (void **) &glld_glTessellationModeAMD },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlitFramebufferANGLE", (void **) &glld_glBlitFramebufferANGLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderbufferStorageMultisampleANGLE", (void **) &glld_glRenderbufferStorageMultisampleANGLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawArraysInstancedANGLE", (void **) &glld_glDrawArraysInstancedANGLE },
    { "glDrawElementsInstancedANGLE", (void **) &glld_glDrawElementsInstancedANGLE },
    { "glVertexAttribDivisorANGLE", (void **) &glld_glVertexAttribDivisorANGLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetTranslatedShaderSourceANGLE", (void **) &glld_glGetTranslatedShaderSourceANGLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCopyTextureLevelsAPPLE", (void **) &glld_glCopyTextureLevelsAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glElementPointerAPPLE", (void **) &glld_glElementPointerAPPLE },
    { "glDrawElementArrayAPPLE", (void **) &glld_glDrawElementArrayAPPLE },
    { "glDrawRangeElementArrayAPPLE", (void **) &glld_glDrawRangeElementArrayAPPLE },
    { "glMultiDrawElementArrayAPPLE", (void **) &glld_glMultiDrawElementArrayAPPLE },
    { "glMultiDrawRangeElementArrayAPPLE", (void **) &glld_glMultiDrawRangeElementArrayAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenFencesAPPLE", (void **) &glld_glGenFencesAPPLE },
    { "glDeleteFencesAPPLE", (void **) &glld_glDeleteFencesAPPLE },
    { "glSetFenceAPPLE", (void **) &glld_glSetFenceAPPLE },
@@ -26370,23 +26277,13 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glFinishFenceAPPLE", (void **) &glld_glFinishFenceAPPLE },
    { "glTestObjectAPPLE", (void **) &glld_glTestObjectAPPLE },
    { "glFinishObjectAPPLE", (void **) &glld_glFinishObjectAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBufferParameteriAPPLE", (void **) &glld_glBufferParameteriAPPLE },
    { "glFlushMappedBufferRangeAPPLE", (void **) &glld_glFlushMappedBufferRangeAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderbufferStorageMultisampleAPPLE", (void **) &glld_glRenderbufferStorageMultisampleAPPLE },
    { "glResolveMultisampleFramebufferAPPLE", (void **) &glld_glResolveMultisampleFramebufferAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glObjectPurgeableAPPLE", (void **) &glld_glObjectPurgeableAPPLE },
    { "glObjectUnpurgeableAPPLE", (void **) &glld_glObjectUnpurgeableAPPLE },
    { "glGetObjectParameterivAPPLE", (void **) &glld_glGetObjectParameterivAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFenceSyncAPPLE", (void **) &glld_glFenceSyncAPPLE },
    { "glIsSyncAPPLE", (void **) &glld_glIsSyncAPPLE },
    { "glDeleteSyncAPPLE", (void **) &glld_glDeleteSyncAPPLE },
@@ -26394,25 +26291,15 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glWaitSyncAPPLE", (void **) &glld_glWaitSyncAPPLE },
    { "glGetInteger64vAPPLE", (void **) &glld_glGetInteger64vAPPLE },
    { "glGetSyncivAPPLE", (void **) &glld_glGetSyncivAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTextureRangeAPPLE", (void **) &glld_glTextureRangeAPPLE },
    { "glGetTexParameterPointervAPPLE", (void **) &glld_glGetTexParameterPointervAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindVertexArrayAPPLE", (void **) &glld_glBindVertexArrayAPPLE },
    { "glDeleteVertexArraysAPPLE", (void **) &glld_glDeleteVertexArraysAPPLE },
    { "glGenVertexArraysAPPLE", (void **) &glld_glGenVertexArraysAPPLE },
    { "glIsVertexArrayAPPLE", (void **) &glld_glIsVertexArrayAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexArrayRangeAPPLE", (void **) &glld_glVertexArrayRangeAPPLE },
    { "glFlushVertexArrayRangeAPPLE", (void **) &glld_glFlushVertexArrayRangeAPPLE },
    { "glVertexArrayParameteriAPPLE", (void **) &glld_glVertexArrayParameteriAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glEnableVertexAttribAPPLE", (void **) &glld_glEnableVertexAttribAPPLE },
    { "glDisableVertexAttribAPPLE", (void **) &glld_glDisableVertexAttribAPPLE },
    { "glIsVertexAttribEnabledAPPLE", (void **) &glld_glIsVertexAttribEnabledAPPLE },
@@ -26420,17 +26307,7 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glMapVertexAttrib1fAPPLE", (void **) &glld_glMapVertexAttrib1fAPPLE },
    { "glMapVertexAttrib2dAPPLE", (void **) &glld_glMapVertexAttrib2dAPPLE },
    { "glMapVertexAttrib2fAPPLE", (void **) &glld_glMapVertexAttrib2fAPPLE },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPrimitiveBoundingBoxARB", (void **) &glld_glPrimitiveBoundingBoxARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetTextureHandleARB", (void **) &glld_glGetTextureHandleARB },
    { "glGetTextureSamplerHandleARB", (void **) &glld_glGetTextureSamplerHandleARB },
    { "glMakeTextureHandleResidentARB", (void **) &glld_glMakeTextureHandleResidentARB },
@@ -26447,58 +26324,20 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertexAttribL1ui64ARB", (void **) &glld_glVertexAttribL1ui64ARB },
    { "glVertexAttribL1ui64vARB", (void **) &glld_glVertexAttribL1ui64vARB },
    { "glGetVertexAttribLui64vARB", (void **) &glld_glGetVertexAttribLui64vARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCreateSyncFromCLeventARB", (void **) &glld_glCreateSyncFromCLeventARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glClampColorARB", (void **) &glld_glClampColorARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDispatchComputeGroupSizeARB", (void **) &glld_glDispatchComputeGroupSizeARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDebugMessageControlARB", (void **) &glld_glDebugMessageControlARB },
    { "glDebugMessageInsertARB", (void **) &glld_glDebugMessageInsertARB },
    { "glDebugMessageCallbackARB", (void **) &glld_glDebugMessageCallbackARB },
    { "glGetDebugMessageLogARB", (void **) &glld_glGetDebugMessageLogARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawBuffersARB", (void **) &glld_glDrawBuffersARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendEquationiARB", (void **) &glld_glBlendEquationiARB },
    { "glBlendEquationSeparateiARB", (void **) &glld_glBlendEquationSeparateiARB },
    { "glBlendFunciARB", (void **) &glld_glBlendFunciARB },
    { "glBlendFuncSeparateiARB", (void **) &glld_glBlendFuncSeparateiARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawArraysInstancedARB", (void **) &glld_glDrawArraysInstancedARB },
    { "glDrawElementsInstancedARB", (void **) &glld_glDrawElementsInstancedARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramStringARB", (void **) &glld_glProgramStringARB },
    { "glBindProgramARB", (void **) &glld_glBindProgramARB },
    { "glDeleteProgramsARB", (void **) &glld_glDeleteProgramsARB },
@@ -26518,27 +26357,11 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetProgramivARB", (void **) &glld_glGetProgramivARB },
    { "glGetProgramStringARB", (void **) &glld_glGetProgramStringARB },
    { "glIsProgramARB", (void **) &glld_glIsProgramARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramParameteriARB", (void **) &glld_glProgramParameteriARB },
    { "glFramebufferTextureARB", (void **) &glld_glFramebufferTextureARB },
    { "glFramebufferTextureLayerARB", (void **) &glld_glFramebufferTextureLayerARB },
    { "glFramebufferTextureFaceARB", (void **) &glld_glFramebufferTextureFaceARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSpecializeShaderARB", (void **) &glld_glSpecializeShaderARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glUniform1i64ARB", (void **) &glld_glUniform1i64ARB },
    { "glUniform2i64ARB", (void **) &glld_glUniform2i64ARB },
    { "glUniform3i64ARB", (void **) &glld_glUniform3i64ARB },
@@ -26575,8 +26398,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glProgramUniform2ui64vARB", (void **) &glld_glProgramUniform2ui64vARB },
    { "glProgramUniform3ui64vARB", (void **) &glld_glProgramUniform3ui64vARB },
    { "glProgramUniform4ui64vARB", (void **) &glld_glProgramUniform4ui64vARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glColorTable", (void **) &glld_glColorTable },
    { "glColorTableParameterfv", (void **) &glld_glColorTableParameterfv },
    { "glColorTableParameteriv", (void **) &glld_glColorTableParameteriv },
@@ -26609,37 +26430,15 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glMinmax", (void **) &glld_glMinmax },
    { "glResetHistogram", (void **) &glld_glResetHistogram },
    { "glResetMinmax", (void **) &glld_glResetMinmax },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiDrawArraysIndirectCountARB", (void **) &glld_glMultiDrawArraysIndirectCountARB },
    { "glMultiDrawElementsIndirectCountARB", (void **) &glld_glMultiDrawElementsIndirectCountARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttribDivisorARB", (void **) &glld_glVertexAttribDivisorARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCurrentPaletteMatrixARB", (void **) &glld_glCurrentPaletteMatrixARB },
    { "glMatrixIndexubvARB", (void **) &glld_glMatrixIndexubvARB },
    { "glMatrixIndexusvARB", (void **) &glld_glMatrixIndexusvARB },
    { "glMatrixIndexuivARB", (void **) &glld_glMatrixIndexuivARB },
    { "glMatrixIndexPointerARB", (void **) &glld_glMatrixIndexPointerARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSampleCoverageARB", (void **) &glld_glSampleCoverageARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glActiveTextureARB", (void **) &glld_glActiveTextureARB },
    { "glClientActiveTextureARB", (void **) &glld_glClientActiveTextureARB },
    { "glMultiTexCoord1dARB", (void **) &glld_glMultiTexCoord1dARB },
@@ -26674,8 +26473,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glMultiTexCoord4ivARB", (void **) &glld_glMultiTexCoord4ivARB },
    { "glMultiTexCoord4sARB", (void **) &glld_glMultiTexCoord4sARB },
    { "glMultiTexCoord4svARB", (void **) &glld_glMultiTexCoord4svARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenQueriesARB", (void **) &glld_glGenQueriesARB },
    { "glDeleteQueriesARB", (void **) &glld_glDeleteQueriesARB },
    { "glIsQueryARB", (void **) &glld_glIsQueryARB },
@@ -26684,21 +26481,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetQueryivARB", (void **) &glld_glGetQueryivARB },
    { "glGetQueryObjectivARB", (void **) &glld_glGetQueryObjectivARB },
    { "glGetQueryObjectuivARB", (void **) &glld_glGetQueryObjectuivARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMaxShaderCompilerThreadsARB", (void **) &glld_glMaxShaderCompilerThreadsARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPointParameterfARB", (void **) &glld_glPointParameterfARB },
    { "glPointParameterfvARB", (void **) &glld_glPointParameterfvARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetGraphicsResetStatusARB", (void **) &glld_glGetGraphicsResetStatusARB },
    { "glGetnTexImageARB", (void **) &glld_glGetnTexImageARB },
    { "glReadnPixelsARB", (void **) &glld_glReadnPixelsARB },
@@ -26719,24 +26504,10 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetnSeparableFilterARB", (void **) &glld_glGetnSeparableFilterARB },
    { "glGetnHistogramARB", (void **) &glld_glGetnHistogramARB },
    { "glGetnMinmaxARB", (void **) &glld_glGetnMinmaxARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferSampleLocationsfvARB", (void **) &glld_glFramebufferSampleLocationsfvARB },
    { "glNamedFramebufferSampleLocationsfvARB", (void **) &glld_glNamedFramebufferSampleLocationsfvARB },
    { "glEvaluateDepthValuesARB", (void **) &glld_glEvaluateDepthValuesARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMinSampleShadingARB", (void **) &glld_glMinSampleShadingARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDeleteObjectARB", (void **) &glld_glDeleteObjectARB },
    { "glGetHandleARB", (void **) &glld_glGetHandleARB },
    { "glDetachObjectARB", (void **) &glld_glDetachObjectARB },
@@ -26776,39 +26547,17 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetUniformfvARB", (void **) &glld_glGetUniformfvARB },
    { "glGetUniformivARB", (void **) &glld_glGetUniformivARB },
    { "glGetShaderSourceARB", (void **) &glld_glGetShaderSourceARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glNamedStringARB", (void **) &glld_glNamedStringARB },
    { "glDeleteNamedStringARB", (void **) &glld_glDeleteNamedStringARB },
    { "glCompileShaderIncludeARB", (void **) &glld_glCompileShaderIncludeARB },
    { "glIsNamedStringARB", (void **) &glld_glIsNamedStringARB },
    { "glGetNamedStringARB", (void **) &glld_glGetNamedStringARB },
    { "glGetNamedStringivARB", (void **) &glld_glGetNamedStringivARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBufferPageCommitmentARB", (void **) &glld_glBufferPageCommitmentARB },
    { "glNamedBufferPageCommitmentEXT", (void **) &glld_glNamedBufferPageCommitmentEXT },
    { "glNamedBufferPageCommitmentARB", (void **) &glld_glNamedBufferPageCommitmentARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexPageCommitmentARB", (void **) &glld_glTexPageCommitmentARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexBufferARB", (void **) &glld_glTexBufferARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCompressedTexImage3DARB", (void **) &glld_glCompressedTexImage3DARB },
    { "glCompressedTexImage2DARB", (void **) &glld_glCompressedTexImage2DARB },
    { "glCompressedTexImage1DARB", (void **) &glld_glCompressedTexImage1DARB },
@@ -26816,38 +26565,10 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glCompressedTexSubImage2DARB", (void **) &glld_glCompressedTexSubImage2DARB },
    { "glCompressedTexSubImage1DARB", (void **) &glld_glCompressedTexSubImage1DARB },
    { "glGetCompressedTexImageARB", (void **) &glld_glGetCompressedTexImageARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glLoadTransposeMatrixfARB", (void **) &glld_glLoadTransposeMatrixfARB },
    { "glLoadTransposeMatrixdARB", (void **) &glld_glLoadTransposeMatrixdARB },
    { "glMultTransposeMatrixfARB", (void **) &glld_glMultTransposeMatrixfARB },
    { "glMultTransposeMatrixdARB", (void **) &glld_glMultTransposeMatrixdARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glWeightbvARB", (void **) &glld_glWeightbvARB },
    { "glWeightsvARB", (void **) &glld_glWeightsvARB },
    { "glWeightivARB", (void **) &glld_glWeightivARB },
@@ -26858,8 +26579,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glWeightuivARB", (void **) &glld_glWeightuivARB },
    { "glWeightPointerARB", (void **) &glld_glWeightPointerARB },
    { "glVertexBlendARB", (void **) &glld_glVertexBlendARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindBufferARB", (void **) &glld_glBindBufferARB },
    { "glDeleteBuffersARB", (void **) &glld_glDeleteBuffersARB },
    { "glGenBuffersARB", (void **) &glld_glGenBuffersARB },
@@ -26871,8 +26590,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glUnmapBufferARB", (void **) &glld_glUnmapBufferARB },
    { "glGetBufferParameterivARB", (void **) &glld_glGetBufferParameterivARB },
    { "glGetBufferPointervARB", (void **) &glld_glGetBufferPointervARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttrib1dARB", (void **) &glld_glVertexAttrib1dARB },
    { "glVertexAttrib1dvARB", (void **) &glld_glVertexAttrib1dvARB },
    { "glVertexAttrib1fARB", (void **) &glld_glVertexAttrib1fARB },
@@ -26916,19 +26633,11 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetVertexAttribfvARB", (void **) &glld_glGetVertexAttribfvARB },
    { "glGetVertexAttribivARB", (void **) &glld_glGetVertexAttribivARB },
    { "glGetVertexAttribPointervARB", (void **) &glld_glGetVertexAttribPointervARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindAttribLocationARB", (void **) &glld_glBindAttribLocationARB },
    { "glGetActiveAttribARB", (void **) &glld_glGetActiveAttribARB },
    { "glGetAttribLocationARB", (void **) &glld_glGetAttribLocationARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDepthRangeArraydvNV", (void **) &glld_glDepthRangeArraydvNV },
    { "glDepthRangeIndexeddNV", (void **) &glld_glDepthRangeIndexeddNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glWindowPos2dARB", (void **) &glld_glWindowPos2dARB },
    { "glWindowPos2dvARB", (void **) &glld_glWindowPos2dvARB },
    { "glWindowPos2fARB", (void **) &glld_glWindowPos2fARB },
@@ -26945,25 +26654,15 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glWindowPos3ivARB", (void **) &glld_glWindowPos3ivARB },
    { "glWindowPos3sARB", (void **) &glld_glWindowPos3sARB },
    { "glWindowPos3svARB", (void **) &glld_glWindowPos3svARB },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMaxActiveShaderCoresARM", (void **) &glld_glMaxActiveShaderCoresARM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawBuffersATI", (void **) &glld_glDrawBuffersATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glElementPointerATI", (void **) &glld_glElementPointerATI },
    { "glDrawElementArrayATI", (void **) &glld_glDrawElementArrayATI },
    { "glDrawRangeElementArrayATI", (void **) &glld_glDrawRangeElementArrayATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexBumpParameterivATI", (void **) &glld_glTexBumpParameterivATI },
    { "glTexBumpParameterfvATI", (void **) &glld_glTexBumpParameterfvATI },
    { "glGetTexBumpParameterivATI", (void **) &glld_glGetTexBumpParameterivATI },
    { "glGetTexBumpParameterfvATI", (void **) &glld_glGetTexBumpParameterfvATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenFragmentShadersATI", (void **) &glld_glGenFragmentShadersATI },
    { "glBindFragmentShaderATI", (void **) &glld_glBindFragmentShaderATI },
    { "glDeleteFragmentShaderATI", (void **) &glld_glDeleteFragmentShaderATI },
@@ -26978,20 +26677,12 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glAlphaFragmentOp2ATI", (void **) &glld_glAlphaFragmentOp2ATI },
    { "glAlphaFragmentOp3ATI", (void **) &glld_glAlphaFragmentOp3ATI },
    { "glSetFragmentShaderConstantATI", (void **) &glld_glSetFragmentShaderConstantATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMapObjectBufferATI", (void **) &glld_glMapObjectBufferATI },
    { "glUnmapObjectBufferATI", (void **) &glld_glUnmapObjectBufferATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPNTrianglesiATI", (void **) &glld_glPNTrianglesiATI },
    { "glPNTrianglesfATI", (void **) &glld_glPNTrianglesfATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glStencilOpSeparateATI", (void **) &glld_glStencilOpSeparateATI },
    { "glStencilFuncSeparateATI", (void **) &glld_glStencilFuncSeparateATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glNewObjectBufferATI", (void **) &glld_glNewObjectBufferATI },
    { "glIsObjectBufferATI", (void **) &glld_glIsObjectBufferATI },
    { "glUpdateObjectBufferATI", (void **) &glld_glUpdateObjectBufferATI },
@@ -27004,13 +26695,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVariantArrayObjectATI", (void **) &glld_glVariantArrayObjectATI },
    { "glGetVariantArrayObjectfvATI", (void **) &glld_glGetVariantArrayObjectfvATI },
    { "glGetVariantArrayObjectivATI", (void **) &glld_glGetVariantArrayObjectivATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttribArrayObjectATI", (void **) &glld_glVertexAttribArrayObjectATI },
    { "glGetVertexAttribArrayObjectfvATI", (void **) &glld_glGetVertexAttribArrayObjectfvATI },
    { "glGetVertexAttribArrayObjectivATI", (void **) &glld_glGetVertexAttribArrayObjectivATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexStream1sATI", (void **) &glld_glVertexStream1sATI },
    { "glVertexStream1svATI", (void **) &glld_glVertexStream1svATI },
    { "glVertexStream1iATI", (void **) &glld_glVertexStream1iATI },
@@ -27056,58 +26743,30 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glClientActiveVertexStreamATI", (void **) &glld_glClientActiveVertexStreamATI },
    { "glVertexBlendEnviATI", (void **) &glld_glVertexBlendEnviATI },
    { "glVertexBlendEnvfATI", (void **) &glld_glVertexBlendEnvfATI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glEGLImageTargetTexStorageEXT", (void **) &glld_glEGLImageTargetTexStorageEXT },
    { "glEGLImageTargetTextureStorageEXT", (void **) &glld_glEGLImageTargetTextureStorageEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawArraysInstancedBaseInstanceEXT", (void **) &glld_glDrawArraysInstancedBaseInstanceEXT },
    { "glDrawElementsInstancedBaseInstanceEXT", (void **) &glld_glDrawElementsInstancedBaseInstanceEXT },
    { "glDrawElementsInstancedBaseVertexBaseInstanceEXT", (void **) &glld_glDrawElementsInstancedBaseVertexBaseInstanceEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glUniformBufferEXT", (void **) &glld_glUniformBufferEXT },
    { "glGetUniformBufferSizeEXT", (void **) &glld_glGetUniformBufferSizeEXT },
    { "glGetUniformOffsetEXT", (void **) &glld_glGetUniformOffsetEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendColorEXT", (void **) &glld_glBlendColorEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendEquationSeparateEXT", (void **) &glld_glBlendEquationSeparateEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindFragDataLocationIndexedEXT", (void **) &glld_glBindFragDataLocationIndexedEXT },
    { "glBindFragDataLocationEXT", (void **) &glld_glBindFragDataLocationEXT },
    { "glGetProgramResourceLocationIndexEXT", (void **) &glld_glGetProgramResourceLocationIndexEXT },
    { "glGetFragDataIndexEXT", (void **) &glld_glGetFragDataIndexEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendFuncSeparateEXT", (void **) &glld_glBlendFuncSeparateEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendEquationEXT", (void **) &glld_glBlendEquationEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBufferStorageEXT", (void **) &glld_glBufferStorageEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glClearTexImageEXT", (void **) &glld_glClearTexImageEXT },
    { "glClearTexSubImageEXT", (void **) &glld_glClearTexSubImageEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glClipControlEXT", (void **) &glld_glClipControlEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glColorSubTableEXT", (void **) &glld_glColorSubTableEXT },
    { "glCopyColorSubTableEXT", (void **) &glld_glCopyColorSubTableEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glLockArraysEXT", (void **) &glld_glLockArraysEXT },
    { "glUnlockArraysEXT", (void **) &glld_glUnlockArraysEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glConvolutionFilter1DEXT", (void **) &glld_glConvolutionFilter1DEXT },
    { "glConvolutionFilter2DEXT", (void **) &glld_glConvolutionFilter2DEXT },
    { "glConvolutionParameterfEXT", (void **) &glld_glConvolutionParameterfEXT },
@@ -27121,8 +26780,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetConvolutionParameterivEXT", (void **) &glld_glGetConvolutionParameterivEXT },
    { "glGetSeparableFilterEXT", (void **) &glld_glGetSeparableFilterEXT },
    { "glSeparableFilter2DEXT", (void **) &glld_glSeparableFilter2DEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTangent3bEXT", (void **) &glld_glTangent3bEXT },
    { "glTangent3bvEXT", (void **) &glld_glTangent3bvEXT },
    { "glTangent3dEXT", (void **) &glld_glTangent3dEXT },
@@ -27145,34 +26802,20 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glBinormal3svEXT", (void **) &glld_glBinormal3svEXT },
    { "glTangentPointerEXT", (void **) &glld_glTangentPointerEXT },
    { "glBinormalPointerEXT", (void **) &glld_glBinormalPointerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCopyImageSubDataEXT", (void **) &glld_glCopyImageSubDataEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCopyTexImage1DEXT", (void **) &glld_glCopyTexImage1DEXT },
    { "glCopyTexImage2DEXT", (void **) &glld_glCopyTexImage2DEXT },
    { "glCopyTexSubImage1DEXT", (void **) &glld_glCopyTexSubImage1DEXT },
    { "glCopyTexSubImage2DEXT", (void **) &glld_glCopyTexSubImage2DEXT },
    { "glCopyTexSubImage3DEXT", (void **) &glld_glCopyTexSubImage3DEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCullParameterdvEXT", (void **) &glld_glCullParameterdvEXT },
    { "glCullParameterfvEXT", (void **) &glld_glCullParameterfvEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glLabelObjectEXT", (void **) &glld_glLabelObjectEXT },
    { "glGetObjectLabelEXT", (void **) &glld_glGetObjectLabelEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glInsertEventMarkerEXT", (void **) &glld_glInsertEventMarkerEXT },
    { "glPushGroupMarkerEXT", (void **) &glld_glPushGroupMarkerEXT },
    { "glPopGroupMarkerEXT", (void **) &glld_glPopGroupMarkerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDepthBoundsEXT", (void **) &glld_glDepthBoundsEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMatrixLoadfEXT", (void **) &glld_glMatrixLoadfEXT },
    { "glMatrixLoaddEXT", (void **) &glld_glMatrixLoaddEXT },
    { "glMatrixMultfEXT", (void **) &glld_glMatrixMultfEXT },
@@ -27428,11 +27071,7 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertexArrayVertexAttribLOffsetEXT", (void **) &glld_glVertexArrayVertexAttribLOffsetEXT },
    { "glTexturePageCommitmentEXT", (void **) &glld_glTexturePageCommitmentEXT },
    { "glVertexArrayVertexAttribDivisorEXT", (void **) &glld_glVertexArrayVertexAttribDivisorEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDiscardFramebufferEXT", (void **) &glld_glDiscardFramebufferEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenQueriesEXT", (void **) &glld_glGenQueriesEXT },
    { "glDeleteQueriesEXT", (void **) &glld_glDeleteQueriesEXT },
    { "glIsQueryEXT", (void **) &glld_glIsQueryEXT },
@@ -27445,14 +27084,8 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetQueryObjecti64vEXT", (void **) &glld_glGetQueryObjecti64vEXT },
    { "glGetQueryObjectui64vEXT", (void **) &glld_glGetQueryObjectui64vEXT },
    { "glGetInteger64vEXT", (void **) &glld_glGetInteger64vEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawBuffersEXT", (void **) &glld_glDrawBuffersEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glColorMaskIndexedEXT", (void **) &glld_glColorMaskIndexedEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glEnableiEXT", (void **) &glld_glEnableiEXT },
    { "glDisableiEXT", (void **) &glld_glDisableiEXT },
    { "glBlendEquationiEXT", (void **) &glld_glBlendEquationiEXT },
@@ -27461,52 +27094,30 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glBlendFuncSeparateiEXT", (void **) &glld_glBlendFuncSeparateiEXT },
    { "glColorMaskiEXT", (void **) &glld_glColorMaskiEXT },
    { "glIsEnablediEXT", (void **) &glld_glIsEnablediEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawElementsBaseVertexEXT", (void **) &glld_glDrawElementsBaseVertexEXT },
    { "glDrawRangeElementsBaseVertexEXT", (void **) &glld_glDrawRangeElementsBaseVertexEXT },
    { "glDrawElementsInstancedBaseVertexEXT", (void **) &glld_glDrawElementsInstancedBaseVertexEXT },
    { "glMultiDrawElementsBaseVertexEXT", (void **) &glld_glMultiDrawElementsBaseVertexEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawArraysInstancedEXT", (void **) &glld_glDrawArraysInstancedEXT },
    { "glDrawElementsInstancedEXT", (void **) &glld_glDrawElementsInstancedEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawRangeElementsEXT", (void **) &glld_glDrawRangeElementsEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawTransformFeedbackEXT", (void **) &glld_glDrawTransformFeedbackEXT },
    { "glDrawTransformFeedbackInstancedEXT", (void **) &glld_glDrawTransformFeedbackInstancedEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBufferStorageExternalEXT", (void **) &glld_glBufferStorageExternalEXT },
    { "glNamedBufferStorageExternalEXT", (void **) &glld_glNamedBufferStorageExternalEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFogCoordfEXT", (void **) &glld_glFogCoordfEXT },
    { "glFogCoordfvEXT", (void **) &glld_glFogCoordfvEXT },
    { "glFogCoorddEXT", (void **) &glld_glFogCoorddEXT },
    { "glFogCoorddvEXT", (void **) &glld_glFogCoorddvEXT },
    { "glFogCoordPointerEXT", (void **) &glld_glFogCoordPointerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetFragmentShadingRatesEXT", (void **) &glld_glGetFragmentShadingRatesEXT },
    { "glShadingRateEXT", (void **) &glld_glShadingRateEXT },
    { "glShadingRateCombinerOpsEXT", (void **) &glld_glShadingRateCombinerOpsEXT },
    { "glFramebufferShadingRateEXT", (void **) &glld_glFramebufferShadingRateEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlitFramebufferEXT", (void **) &glld_glBlitFramebufferEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlitFramebufferLayersEXT", (void **) &glld_glBlitFramebufferLayersEXT },
    { "glBlitFramebufferLayerEXT", (void **) &glld_glBlitFramebufferLayerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderbufferStorageMultisampleEXT", (void **) &glld_glRenderbufferStorageMultisampleEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glIsRenderbufferEXT", (void **) &glld_glIsRenderbufferEXT },
    { "glBindRenderbufferEXT", (void **) &glld_glBindRenderbufferEXT },
    { "glDeleteRenderbuffersEXT", (void **) &glld_glDeleteRenderbuffersEXT },
@@ -27524,18 +27135,10 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glFramebufferRenderbufferEXT", (void **) &glld_glFramebufferRenderbufferEXT },
    { "glGetFramebufferAttachmentParameterivEXT", (void **) &glld_glGetFramebufferAttachmentParameterivEXT },
    { "glGenerateMipmapEXT", (void **) &glld_glGenerateMipmapEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferTextureEXT", (void **) &glld_glFramebufferTextureEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramParameteriEXT", (void **) &glld_glProgramParameteriEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramEnvParameters4fvEXT", (void **) &glld_glProgramEnvParameters4fvEXT },
    { "glProgramLocalParameters4fvEXT", (void **) &glld_glProgramLocalParameters4fvEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetUniformuivEXT", (void **) &glld_glGetUniformuivEXT },
    { "glGetFragDataLocationEXT", (void **) &glld_glGetFragDataLocationEXT },
    { "glUniform1uiEXT", (void **) &glld_glUniform1uiEXT },
@@ -27569,8 +27172,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertexAttribIPointerEXT", (void **) &glld_glVertexAttribIPointerEXT },
    { "glGetVertexAttribIivEXT", (void **) &glld_glGetVertexAttribIivEXT },
    { "glGetVertexAttribIuivEXT", (void **) &glld_glGetVertexAttribIuivEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetHistogramEXT", (void **) &glld_glGetHistogramEXT },
    { "glGetHistogramParameterfvEXT", (void **) &glld_glGetHistogramParameterfvEXT },
    { "glGetHistogramParameterivEXT", (void **) &glld_glGetHistogramParameterivEXT },
@@ -27581,26 +27182,14 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glMinmaxEXT", (void **) &glld_glMinmaxEXT },
    { "glResetHistogramEXT", (void **) &glld_glResetHistogramEXT },
    { "glResetMinmaxEXT", (void **) &glld_glResetMinmaxEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glIndexFuncEXT", (void **) &glld_glIndexFuncEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glIndexMaterialEXT", (void **) &glld_glIndexMaterialEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttribDivisorEXT", (void **) &glld_glVertexAttribDivisorEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glApplyTextureEXT", (void **) &glld_glApplyTextureEXT },
    { "glTextureLightEXT", (void **) &glld_glTextureLightEXT },
    { "glTextureMaterialEXT", (void **) &glld_glTextureMaterialEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMapBufferRangeEXT", (void **) &glld_glMapBufferRangeEXT },
    { "glFlushMappedBufferRangeEXT", (void **) &glld_glFlushMappedBufferRangeEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetUnsignedBytevEXT", (void **) &glld_glGetUnsignedBytevEXT },
    { "glGetUnsignedBytei_vEXT", (void **) &glld_glGetUnsignedBytei_vEXT },
    { "glDeleteMemoryObjectsEXT", (void **) &glld_glDeleteMemoryObjectsEXT },
@@ -27620,82 +27209,44 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glNamedBufferStorageMemEXT", (void **) &glld_glNamedBufferStorageMemEXT },
    { "glTexStorageMem1DEXT", (void **) &glld_glTexStorageMem1DEXT },
    { "glTextureStorageMem1DEXT", (void **) &glld_glTextureStorageMem1DEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glImportMemoryFdEXT", (void **) &glld_glImportMemoryFdEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glImportMemoryWin32HandleEXT", (void **) &glld_glImportMemoryWin32HandleEXT },
    { "glImportMemoryWin32NameEXT", (void **) &glld_glImportMemoryWin32NameEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawMeshTasksEXT", (void **) &glld_glDrawMeshTasksEXT },
    { "glDrawMeshTasksIndirectEXT", (void **) &glld_glDrawMeshTasksIndirectEXT },
    { "glMultiDrawMeshTasksIndirectEXT", (void **) &glld_glMultiDrawMeshTasksIndirectEXT },
    { "glMultiDrawMeshTasksIndirectCountEXT", (void **) &glld_glMultiDrawMeshTasksIndirectCountEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiDrawArraysEXT", (void **) &glld_glMultiDrawArraysEXT },
    { "glMultiDrawElementsEXT", (void **) &glld_glMultiDrawElementsEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiDrawArraysIndirectEXT", (void **) &glld_glMultiDrawArraysIndirectEXT },
    { "glMultiDrawElementsIndirectEXT", (void **) &glld_glMultiDrawElementsIndirectEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSampleMaskEXT", (void **) &glld_glSampleMaskEXT },
    { "glSamplePatternEXT", (void **) &glld_glSamplePatternEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferTexture2DMultisampleEXT", (void **) &glld_glFramebufferTexture2DMultisampleEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glReadBufferIndexedEXT", (void **) &glld_glReadBufferIndexedEXT },
    { "glDrawBuffersIndexedEXT", (void **) &glld_glDrawBuffersIndexedEXT },
    { "glGetIntegeri_vEXT", (void **) &glld_glGetIntegeri_vEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glColorTableEXT", (void **) &glld_glColorTableEXT },
    { "glGetColorTableEXT", (void **) &glld_glGetColorTableEXT },
    { "glGetColorTableParameterivEXT", (void **) &glld_glGetColorTableParameterivEXT },
    { "glGetColorTableParameterfvEXT", (void **) &glld_glGetColorTableParameterfvEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPixelTransformParameteriEXT", (void **) &glld_glPixelTransformParameteriEXT },
    { "glPixelTransformParameterfEXT", (void **) &glld_glPixelTransformParameterfEXT },
    { "glPixelTransformParameterivEXT", (void **) &glld_glPixelTransformParameterivEXT },
    { "glPixelTransformParameterfvEXT", (void **) &glld_glPixelTransformParameterfvEXT },
    { "glGetPixelTransformParameterivEXT", (void **) &glld_glGetPixelTransformParameterivEXT },
    { "glGetPixelTransformParameterfvEXT", (void **) &glld_glGetPixelTransformParameterfvEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPointParameterfEXT", (void **) &glld_glPointParameterfEXT },
    { "glPointParameterfvEXT", (void **) &glld_glPointParameterfvEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPolygonOffsetEXT", (void **) &glld_glPolygonOffsetEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPolygonOffsetClampEXT", (void **) &glld_glPolygonOffsetClampEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPrimitiveBoundingBoxEXT", (void **) &glld_glPrimitiveBoundingBoxEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProvokingVertexEXT", (void **) &glld_glProvokingVertexEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRasterSamplesEXT", (void **) &glld_glRasterSamplesEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetGraphicsResetStatusEXT", (void **) &glld_glGetGraphicsResetStatusEXT },
    { "glReadnPixelsEXT", (void **) &glld_glReadnPixelsEXT },
    { "glGetnUniformfvEXT", (void **) &glld_glGetnUniformfvEXT },
    { "glGetnUniformivEXT", (void **) &glld_glGetnUniformivEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenSemaphoresEXT", (void **) &glld_glGenSemaphoresEXT },
    { "glDeleteSemaphoresEXT", (void **) &glld_glDeleteSemaphoresEXT },
    { "glIsSemaphoreEXT", (void **) &glld_glIsSemaphoreEXT },
@@ -27703,15 +27254,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetSemaphoreParameterui64vEXT", (void **) &glld_glGetSemaphoreParameterui64vEXT },
    { "glWaitSemaphoreEXT", (void **) &glld_glWaitSemaphoreEXT },
    { "glSignalSemaphoreEXT", (void **) &glld_glSignalSemaphoreEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glImportSemaphoreFdEXT", (void **) &glld_glImportSemaphoreFdEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glImportSemaphoreWin32HandleEXT", (void **) &glld_glImportSemaphoreWin32HandleEXT },
    { "glImportSemaphoreWin32NameEXT", (void **) &glld_glImportSemaphoreWin32NameEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSecondaryColor3bEXT", (void **) &glld_glSecondaryColor3bEXT },
    { "glSecondaryColor3bvEXT", (void **) &glld_glSecondaryColor3bvEXT },
    { "glSecondaryColor3dEXT", (void **) &glld_glSecondaryColor3dEXT },
@@ -27729,8 +27274,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glSecondaryColor3usEXT", (void **) &glld_glSecondaryColor3usEXT },
    { "glSecondaryColor3usvEXT", (void **) &glld_glSecondaryColor3usvEXT },
    { "glSecondaryColorPointerEXT", (void **) &glld_glSecondaryColorPointerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glUseShaderProgramEXT", (void **) &glld_glUseShaderProgramEXT },
    { "glActiveProgramEXT", (void **) &glld_glActiveProgramEXT },
    { "glCreateShaderProgramEXT", (void **) &glld_glCreateShaderProgramEXT },
@@ -27744,43 +27287,21 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glIsProgramPipelineEXT", (void **) &glld_glIsProgramPipelineEXT },
    { "glUseProgramStagesEXT", (void **) &glld_glUseProgramStagesEXT },
    { "glValidateProgramPipelineEXT", (void **) &glld_glValidateProgramPipelineEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferFetchBarrierEXT", (void **) &glld_glFramebufferFetchBarrierEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindImageTextureEXT", (void **) &glld_glBindImageTextureEXT },
    { "glMemoryBarrierEXT", (void **) &glld_glMemoryBarrierEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferPixelLocalStorageSizeEXT", (void **) &glld_glFramebufferPixelLocalStorageSizeEXT },
    { "glGetFramebufferPixelLocalStorageSizeEXT", (void **) &glld_glGetFramebufferPixelLocalStorageSizeEXT },
    { "glClearPixelLocalStorageuiEXT", (void **) &glld_glClearPixelLocalStorageuiEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexPageCommitmentEXT", (void **) &glld_glTexPageCommitmentEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glStencilClearTagEXT", (void **) &glld_glStencilClearTagEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glActiveStencilFaceEXT", (void **) &glld_glActiveStencilFaceEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexSubImage1DEXT", (void **) &glld_glTexSubImage1DEXT },
    { "glTexSubImage2DEXT", (void **) &glld_glTexSubImage2DEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPatchParameteriEXT", (void **) &glld_glPatchParameteriEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexImage3DEXT", (void **) &glld_glTexImage3DEXT },
    { "glTexSubImage3DEXT", (void **) &glld_glTexSubImage3DEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferTextureLayerEXT", (void **) &glld_glFramebufferTextureLayerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexParameterIivEXT", (void **) &glld_glTexParameterIivEXT },
    { "glTexParameterIuivEXT", (void **) &glld_glTexParameterIuivEXT },
    { "glGetTexParameterIivEXT", (void **) &glld_glGetTexParameterIivEXT },
@@ -27789,50 +27310,26 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glSamplerParameterIuivEXT", (void **) &glld_glSamplerParameterIuivEXT },
    { "glGetSamplerParameterIivEXT", (void **) &glld_glGetSamplerParameterIivEXT },
    { "glGetSamplerParameterIuivEXT", (void **) &glld_glGetSamplerParameterIuivEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexBufferEXT", (void **) &glld_glTexBufferEXT },
    { "glTexBufferRangeEXT", (void **) &glld_glTexBufferRangeEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glClearColorIiEXT", (void **) &glld_glClearColorIiEXT },
    { "glClearColorIuiEXT", (void **) &glld_glClearColorIuiEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glAreTexturesResidentEXT", (void **) &glld_glAreTexturesResidentEXT },
    { "glBindTextureEXT", (void **) &glld_glBindTextureEXT },
    { "glDeleteTexturesEXT", (void **) &glld_glDeleteTexturesEXT },
    { "glGenTexturesEXT", (void **) &glld_glGenTexturesEXT },
    { "glIsTextureEXT", (void **) &glld_glIsTextureEXT },
    { "glPrioritizeTexturesEXT", (void **) &glld_glPrioritizeTexturesEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTextureNormalEXT", (void **) &glld_glTextureNormalEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexStorage1DEXT", (void **) &glld_glTexStorage1DEXT },
    { "glTexStorage2DEXT", (void **) &glld_glTexStorage2DEXT },
    { "glTexStorage3DEXT", (void **) &glld_glTexStorage3DEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexStorageAttribs2DEXT", (void **) &glld_glTexStorageAttribs2DEXT },
    { "glTexStorageAttribs3DEXT", (void **) &glld_glTexStorageAttribs3DEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTextureViewEXT", (void **) &glld_glTextureViewEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCreateSemaphoresNV", (void **) &glld_glCreateSemaphoresNV },
    { "glSemaphoreParameterivNV", (void **) &glld_glSemaphoreParameterivNV },
    { "glGetSemaphoreParameterivNV", (void **) &glld_glGetSemaphoreParameterivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBeginTransformFeedbackEXT", (void **) &glld_glBeginTransformFeedbackEXT },
    { "glEndTransformFeedbackEXT", (void **) &glld_glEndTransformFeedbackEXT },
    { "glBindBufferRangeEXT", (void **) &glld_glBindBufferRangeEXT },
@@ -27840,8 +27337,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glBindBufferBaseEXT", (void **) &glld_glBindBufferBaseEXT },
    { "glTransformFeedbackVaryingsEXT", (void **) &glld_glTransformFeedbackVaryingsEXT },
    { "glGetTransformFeedbackVaryingEXT", (void **) &glld_glGetTransformFeedbackVaryingEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glArrayElementEXT", (void **) &glld_glArrayElementEXT },
    { "glColorPointerEXT", (void **) &glld_glColorPointerEXT },
    { "glDrawArraysEXT", (void **) &glld_glDrawArraysEXT },
@@ -27851,8 +27346,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glNormalPointerEXT", (void **) &glld_glNormalPointerEXT },
    { "glTexCoordPointerEXT", (void **) &glld_glTexCoordPointerEXT },
    { "glVertexPointerEXT", (void **) &glld_glVertexPointerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttribL1dEXT", (void **) &glld_glVertexAttribL1dEXT },
    { "glVertexAttribL2dEXT", (void **) &glld_glVertexAttribL2dEXT },
    { "glVertexAttribL3dEXT", (void **) &glld_glVertexAttribL3dEXT },
@@ -27863,8 +27356,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertexAttribL4dvEXT", (void **) &glld_glVertexAttribL4dvEXT },
    { "glVertexAttribLPointerEXT", (void **) &glld_glVertexAttribLPointerEXT },
    { "glGetVertexAttribLdvEXT", (void **) &glld_glGetVertexAttribLdvEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBeginVertexShaderEXT", (void **) &glld_glBeginVertexShaderEXT },
    { "glEndVertexShaderEXT", (void **) &glld_glEndVertexShaderEXT },
    { "glBindVertexShaderEXT", (void **) &glld_glBindVertexShaderEXT },
@@ -27907,44 +27398,24 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetLocalConstantBooleanvEXT", (void **) &glld_glGetLocalConstantBooleanvEXT },
    { "glGetLocalConstantIntegervEXT", (void **) &glld_glGetLocalConstantIntegervEXT },
    { "glGetLocalConstantFloatvEXT", (void **) &glld_glGetLocalConstantFloatvEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexWeightfEXT", (void **) &glld_glVertexWeightfEXT },
    { "glVertexWeightfvEXT", (void **) &glld_glVertexWeightfvEXT },
    { "glVertexWeightPointerEXT", (void **) &glld_glVertexWeightPointerEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glAcquireKeyedMutexWin32EXT", (void **) &glld_glAcquireKeyedMutexWin32EXT },
    { "glReleaseKeyedMutexWin32EXT", (void **) &glld_glReleaseKeyedMutexWin32EXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glWindowRectanglesEXT", (void **) &glld_glWindowRectanglesEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glImportSyncEXT", (void **) &glld_glImportSyncEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFrameTerminatorGREMEDY", (void **) &glld_glFrameTerminatorGREMEDY },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glStringMarkerGREMEDY", (void **) &glld_glStringMarkerGREMEDY },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glImageTransformParameteriHP", (void **) &glld_glImageTransformParameteriHP },
    { "glImageTransformParameterfHP", (void **) &glld_glImageTransformParameterfHP },
    { "glImageTransformParameterivHP", (void **) &glld_glImageTransformParameterivHP },
    { "glImageTransformParameterfvHP", (void **) &glld_glImageTransformParameterfvHP },
    { "glGetImageTransformParameterivHP", (void **) &glld_glGetImageTransformParameterivHP },
    { "glGetImageTransformParameterfvHP", (void **) &glld_glGetImageTransformParameterfvHP },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiModeDrawArraysIBM", (void **) &glld_glMultiModeDrawArraysIBM },
    { "glMultiModeDrawElementsIBM", (void **) &glld_glMultiModeDrawElementsIBM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFlushStaticDataIBM", (void **) &glld_glFlushStaticDataIBM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glColorPointerListIBM", (void **) &glld_glColorPointerListIBM },
    { "glSecondaryColorPointerListIBM", (void **) &glld_glSecondaryColorPointerListIBM },
    { "glEdgeFlagPointerListIBM", (void **) &glld_glEdgeFlagPointerListIBM },
@@ -27953,45 +27424,27 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glNormalPointerListIBM", (void **) &glld_glNormalPointerListIBM },
    { "glTexCoordPointerListIBM", (void **) &glld_glTexCoordPointerListIBM },
    { "glVertexPointerListIBM", (void **) &glld_glVertexPointerListIBM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetTextureHandleIMG", (void **) &glld_glGetTextureHandleIMG },
    { "glGetTextureSamplerHandleIMG", (void **) &glld_glGetTextureSamplerHandleIMG },
    { "glUniformHandleui64IMG", (void **) &glld_glUniformHandleui64IMG },
    { "glUniformHandleui64vIMG", (void **) &glld_glUniformHandleui64vIMG },
    { "glProgramUniformHandleui64IMG", (void **) &glld_glProgramUniformHandleui64IMG },
    { "glProgramUniformHandleui64vIMG", (void **) &glld_glProgramUniformHandleui64vIMG },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferTexture2DDownsampleIMG", (void **) &glld_glFramebufferTexture2DDownsampleIMG },
    { "glFramebufferTextureLayerDownsampleIMG", (void **) &glld_glFramebufferTextureLayerDownsampleIMG },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderbufferStorageMultisampleIMG", (void **) &glld_glRenderbufferStorageMultisampleIMG },
    { "glFramebufferTexture2DMultisampleIMG", (void **) &glld_glFramebufferTexture2DMultisampleIMG },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glClipPlanefIMG", (void **) &glld_glClipPlanefIMG },
    { "glClipPlanexIMG", (void **) &glld_glClipPlanexIMG },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendFuncSeparateINGR", (void **) &glld_glBlendFuncSeparateINGR },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glApplyFramebufferAttachmentCMAAINTEL", (void **) &glld_glApplyFramebufferAttachmentCMAAINTEL },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSyncTextureINTEL", (void **) &glld_glSyncTextureINTEL },
    { "glUnmapTexture2DINTEL", (void **) &glld_glUnmapTexture2DINTEL },
    { "glMapTexture2DINTEL", (void **) &glld_glMapTexture2DINTEL },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexPointervINTEL", (void **) &glld_glVertexPointervINTEL },
    { "glNormalPointervINTEL", (void **) &glld_glNormalPointervINTEL },
    { "glColorPointervINTEL", (void **) &glld_glColorPointervINTEL },
    { "glTexCoordPointervINTEL", (void **) &glld_glTexCoordPointervINTEL },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBeginPerfQueryINTEL", (void **) &glld_glBeginPerfQueryINTEL },
    { "glCreatePerfQueryINTEL", (void **) &glld_glCreatePerfQueryINTEL },
    { "glDeletePerfQueryINTEL", (void **) &glld_glDeletePerfQueryINTEL },
@@ -28002,13 +27455,7 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetPerfQueryDataINTEL", (void **) &glld_glGetPerfQueryDataINTEL },
    { "glGetPerfQueryIdByNameINTEL", (void **) &glld_glGetPerfQueryIdByNameINTEL },
    { "glGetPerfQueryInfoINTEL", (void **) &glld_glGetPerfQueryInfoINTEL },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendBarrierKHR", (void **) &glld_glBlendBarrierKHR },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDebugMessageControlKHR", (void **) &glld_glDebugMessageControlKHR },
    { "glDebugMessageInsertKHR", (void **) &glld_glDebugMessageInsertKHR },
    { "glDebugMessageCallbackKHR", (void **) &glld_glDebugMessageCallbackKHR },
@@ -28020,27 +27467,15 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glObjectPtrLabelKHR", (void **) &glld_glObjectPtrLabelKHR },
    { "glGetObjectPtrLabelKHR", (void **) &glld_glGetObjectPtrLabelKHR },
    { "glGetPointervKHR", (void **) &glld_glGetPointervKHR },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetGraphicsResetStatusKHR", (void **) &glld_glGetGraphicsResetStatusKHR },
    { "glReadnPixelsKHR", (void **) &glld_glReadnPixelsKHR },
    { "glGetnUniformfvKHR", (void **) &glld_glGetnUniformfvKHR },
    { "glGetnUniformivKHR", (void **) &glld_glGetnUniformivKHR },
    { "glGetnUniformuivKHR", (void **) &glld_glGetnUniformuivKHR },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMaxShaderCompilerThreadsKHR", (void **) &glld_glMaxShaderCompilerThreadsKHR },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferParameteriMESA", (void **) &glld_glFramebufferParameteriMESA },
    { "glGetFramebufferParameterivMESA", (void **) &glld_glGetFramebufferParameterivMESA },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glResizeBuffersMESA", (void **) &glld_glResizeBuffersMESA },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glWindowPos2dMESA", (void **) &glld_glWindowPos2dMESA },
    { "glWindowPos2dvMESA", (void **) &glld_glWindowPos2dvMESA },
    { "glWindowPos2fMESA", (void **) &glld_glWindowPos2fMESA },
@@ -28065,28 +27500,16 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glWindowPos4ivMESA", (void **) &glld_glWindowPos4ivMESA },
    { "glWindowPos4sMESA", (void **) &glld_glWindowPos4sMESA },
    { "glWindowPos4svMESA", (void **) &glld_glWindowPos4svMESA },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBeginConditionalRenderNVX", (void **) &glld_glBeginConditionalRenderNVX },
    { "glEndConditionalRenderNVX", (void **) &glld_glEndConditionalRenderNVX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glLGPUNamedBufferSubDataNVX", (void **) &glld_glLGPUNamedBufferSubDataNVX },
    { "glLGPUCopyImageSubDataNVX", (void **) &glld_glLGPUCopyImageSubDataNVX },
    { "glLGPUInterlockNVX", (void **) &glld_glLGPUInterlockNVX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glAlphaToCoverageDitherControlNV", (void **) &glld_glAlphaToCoverageDitherControlNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiDrawArraysIndirectBindlessNV", (void **) &glld_glMultiDrawArraysIndirectBindlessNV },
    { "glMultiDrawElementsIndirectBindlessNV", (void **) &glld_glMultiDrawElementsIndirectBindlessNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiDrawArraysIndirectBindlessCountNV", (void **) &glld_glMultiDrawArraysIndirectBindlessCountNV },
    { "glMultiDrawElementsIndirectBindlessCountNV", (void **) &glld_glMultiDrawElementsIndirectBindlessCountNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetTextureHandleNV", (void **) &glld_glGetTextureHandleNV },
    { "glGetTextureSamplerHandleNV", (void **) &glld_glGetTextureSamplerHandleNV },
    { "glMakeTextureHandleResidentNV", (void **) &glld_glMakeTextureHandleResidentNV },
@@ -28100,15 +27523,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glProgramUniformHandleui64vNV", (void **) &glld_glProgramUniformHandleui64vNV },
    { "glIsTextureHandleResidentNV", (void **) &glld_glIsTextureHandleResidentNV },
    { "glIsImageHandleResidentNV", (void **) &glld_glIsImageHandleResidentNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendParameteriNV", (void **) &glld_glBlendParameteriNV },
    { "glBlendBarrierNV", (void **) &glld_glBlendBarrierNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glViewportPositionWScaleNV", (void **) &glld_glViewportPositionWScaleNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCreateStatesNV", (void **) &glld_glCreateStatesNV },
    { "glDeleteStatesNV", (void **) &glld_glDeleteStatesNV },
    { "glIsStateNV", (void **) &glld_glIsStateNV },
@@ -28126,53 +27543,27 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glCommandListSegmentsNV", (void **) &glld_glCommandListSegmentsNV },
    { "glCompileCommandListNV", (void **) &glld_glCompileCommandListNV },
    { "glCallCommandListNV", (void **) &glld_glCallCommandListNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBeginConditionalRenderNV", (void **) &glld_glBeginConditionalRenderNV },
    { "glEndConditionalRenderNV", (void **) &glld_glEndConditionalRenderNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSubpixelPrecisionBiasNV", (void **) &glld_glSubpixelPrecisionBiasNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glConservativeRasterParameterfNV", (void **) &glld_glConservativeRasterParameterfNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glConservativeRasterParameteriNV", (void **) &glld_glConservativeRasterParameteriNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCopyBufferSubDataNV", (void **) &glld_glCopyBufferSubDataNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCopyImageSubDataNV", (void **) &glld_glCopyImageSubDataNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCoverageMaskNV", (void **) &glld_glCoverageMaskNV },
    { "glCoverageOperationNV", (void **) &glld_glCoverageOperationNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDepthRangedNV", (void **) &glld_glDepthRangedNV },
    { "glClearDepthdNV", (void **) &glld_glClearDepthdNV },
    { "glDepthBoundsdNV", (void **) &glld_glDepthBoundsdNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawBuffersNV", (void **) &glld_glDrawBuffersNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawArraysInstancedNV", (void **) &glld_glDrawArraysInstancedNV },
    { "glDrawElementsInstancedNV", (void **) &glld_glDrawElementsInstancedNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawTextureNV", (void **) &glld_glDrawTextureNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawVkImageNV", (void **) &glld_glDrawVkImageNV },
    { "glGetVkProcAddrNV", (void **) &glld_glGetVkProcAddrNV },
    { "glWaitVkSemaphoreNV", (void **) &glld_glWaitVkSemaphoreNV },
    { "glSignalVkSemaphoreNV", (void **) &glld_glSignalVkSemaphoreNV },
    { "glSignalVkFenceNV", (void **) &glld_glSignalVkFenceNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMapControlPointsNV", (void **) &glld_glMapControlPointsNV },
    { "glMapParameterivNV", (void **) &glld_glMapParameterivNV },
    { "glMapParameterfvNV", (void **) &glld_glMapParameterfvNV },
@@ -28182,13 +27573,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetMapAttribParameterivNV", (void **) &glld_glGetMapAttribParameterivNV },
    { "glGetMapAttribParameterfvNV", (void **) &glld_glGetMapAttribParameterfvNV },
    { "glEvalMapsNV", (void **) &glld_glEvalMapsNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetMultisamplefvNV", (void **) &glld_glGetMultisamplefvNV },
    { "glSampleMaskIndexedNV", (void **) &glld_glSampleMaskIndexedNV },
    { "glTexRenderbufferNV", (void **) &glld_glTexRenderbufferNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDeleteFencesNV", (void **) &glld_glDeleteFencesNV },
    { "glGenFencesNV", (void **) &glld_glGenFencesNV },
    { "glIsFenceNV", (void **) &glld_glIsFenceNV },
@@ -28196,37 +27583,21 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetFenceivNV", (void **) &glld_glGetFenceivNV },
    { "glFinishFenceNV", (void **) &glld_glFinishFenceNV },
    { "glSetFenceNV", (void **) &glld_glSetFenceNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFragmentCoverageColorNV", (void **) &glld_glFragmentCoverageColorNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramNamedParameter4fNV", (void **) &glld_glProgramNamedParameter4fNV },
    { "glProgramNamedParameter4fvNV", (void **) &glld_glProgramNamedParameter4fvNV },
    { "glProgramNamedParameter4dNV", (void **) &glld_glProgramNamedParameter4dNV },
    { "glProgramNamedParameter4dvNV", (void **) &glld_glProgramNamedParameter4dvNV },
    { "glGetProgramNamedParameterfvNV", (void **) &glld_glGetProgramNamedParameterfvNV },
    { "glGetProgramNamedParameterdvNV", (void **) &glld_glGetProgramNamedParameterdvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlitFramebufferNV", (void **) &glld_glBlitFramebufferNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCoverageModulationTableNV", (void **) &glld_glCoverageModulationTableNV },
    { "glGetCoverageModulationTableNV", (void **) &glld_glGetCoverageModulationTableNV },
    { "glCoverageModulationNV", (void **) &glld_glCoverageModulationNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderbufferStorageMultisampleNV", (void **) &glld_glRenderbufferStorageMultisampleNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderbufferStorageMultisampleCoverageNV", (void **) &glld_glRenderbufferStorageMultisampleCoverageNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramVertexLimitNV", (void **) &glld_glProgramVertexLimitNV },
    { "glFramebufferTextureFaceEXT", (void **) &glld_glFramebufferTextureFaceEXT },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramLocalParameterI4iNV", (void **) &glld_glProgramLocalParameterI4iNV },
    { "glProgramLocalParameterI4ivNV", (void **) &glld_glProgramLocalParameterI4ivNV },
    { "glProgramLocalParametersI4ivNV", (void **) &glld_glProgramLocalParametersI4ivNV },
@@ -28243,14 +27614,8 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetProgramLocalParameterIuivNV", (void **) &glld_glGetProgramLocalParameterIuivNV },
    { "glGetProgramEnvParameterIivNV", (void **) &glld_glGetProgramEnvParameterIivNV },
    { "glGetProgramEnvParameterIuivNV", (void **) &glld_glGetProgramEnvParameterIuivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramSubroutineParametersuivNV", (void **) &glld_glProgramSubroutineParametersuivNV },
    { "glGetProgramSubroutineParameteruivNV", (void **) &glld_glGetProgramSubroutineParameteruivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertex2hNV", (void **) &glld_glVertex2hNV },
    { "glVertex2hvNV", (void **) &glld_glVertex2hvNV },
    { "glVertex3hNV", (void **) &glld_glVertex3hNV },
@@ -28297,14 +27662,8 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glSecondaryColor3hvNV", (void **) &glld_glSecondaryColor3hvNV },
    { "glVertexWeighthNV", (void **) &glld_glVertexWeighthNV },
    { "glVertexWeighthvNV", (void **) &glld_glVertexWeighthvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttribDivisorNV", (void **) &glld_glVertexAttribDivisorNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetInternalformatSampleivNV", (void **) &glld_glGetInternalformatSampleivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glRenderGpuMaskNV", (void **) &glld_glRenderGpuMaskNV },
    { "glMulticastBufferSubDataNV", (void **) &glld_glMulticastBufferSubDataNV },
    { "glMulticastCopyBufferSubDataNV", (void **) &glld_glMulticastCopyBufferSubDataNV },
@@ -28317,50 +27676,36 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glMulticastGetQueryObjectuivNV", (void **) &glld_glMulticastGetQueryObjectuivNV },
    { "glMulticastGetQueryObjecti64vNV", (void **) &glld_glMulticastGetQueryObjecti64vNV },
    { "glMulticastGetQueryObjectui64vNV", (void **) &glld_glMulticastGetQueryObjectui64vNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glUploadGpuMaskNVX", (void **) &glld_glUploadGpuMaskNVX },
    { "glMulticastViewportArrayvNVX", (void **) &glld_glMulticastViewportArrayvNVX },
    { "glMulticastViewportPositionWScaleNVX", (void **) &glld_glMulticastViewportPositionWScaleNVX },
    { "glMulticastScissorArrayvNVX", (void **) &glld_glMulticastScissorArrayvNVX },
    { "glAsyncCopyBufferSubDataNVX", (void **) &glld_glAsyncCopyBufferSubDataNVX },
    { "glAsyncCopyImageSubDataNVX", (void **) &glld_glAsyncCopyImageSubDataNVX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCreateProgressFenceNVX", (void **) &glld_glCreateProgressFenceNVX },
    { "glSignalSemaphoreui64NVX", (void **) &glld_glSignalSemaphoreui64NVX },
    { "glWaitSemaphoreui64NVX", (void **) &glld_glWaitSemaphoreui64NVX },
    { "glClientWaitSemaphoreui64NVX", (void **) &glld_glClientWaitSemaphoreui64NVX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetMemoryObjectDetachedResourcesuivNV", (void **) &glld_glGetMemoryObjectDetachedResourcesuivNV },
    { "glResetMemoryObjectParameterNV", (void **) &glld_glResetMemoryObjectParameterNV },
    { "glTexAttachMemoryNV", (void **) &glld_glTexAttachMemoryNV },
    { "glBufferAttachMemoryNV", (void **) &glld_glBufferAttachMemoryNV },
    { "glTextureAttachMemoryNV", (void **) &glld_glTextureAttachMemoryNV },
    { "glNamedBufferAttachMemoryNV", (void **) &glld_glNamedBufferAttachMemoryNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBufferPageCommitmentMemNV", (void **) &glld_glBufferPageCommitmentMemNV },
    { "glTexPageCommitmentMemNV", (void **) &glld_glTexPageCommitmentMemNV },
    { "glNamedBufferPageCommitmentMemNV", (void **) &glld_glNamedBufferPageCommitmentMemNV },
    { "glTexturePageCommitmentMemNV", (void **) &glld_glTexturePageCommitmentMemNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawMeshTasksNV", (void **) &glld_glDrawMeshTasksNV },
    { "glDrawMeshTasksIndirectNV", (void **) &glld_glDrawMeshTasksIndirectNV },
    { "glMultiDrawMeshTasksIndirectNV", (void **) &glld_glMultiDrawMeshTasksIndirectNV },
    { "glMultiDrawMeshTasksIndirectCountNV", (void **) &glld_glMultiDrawMeshTasksIndirectCountNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glUniformMatrix2x3fvNV", (void **) &glld_glUniformMatrix2x3fvNV },
    { "glUniformMatrix3x2fvNV", (void **) &glld_glUniformMatrix3x2fvNV },
    { "glUniformMatrix2x4fvNV", (void **) &glld_glUniformMatrix2x4fvNV },
    { "glUniformMatrix4x2fvNV", (void **) &glld_glUniformMatrix4x2fvNV },
    { "glUniformMatrix3x4fvNV", (void **) &glld_glUniformMatrix3x4fvNV },
    { "glUniformMatrix4x3fvNV", (void **) &glld_glUniformMatrix4x3fvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenOcclusionQueriesNV", (void **) &glld_glGenOcclusionQueriesNV },
    { "glDeleteOcclusionQueriesNV", (void **) &glld_glDeleteOcclusionQueriesNV },
    { "glIsOcclusionQueryNV", (void **) &glld_glIsOcclusionQueryNV },
@@ -28368,13 +27713,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glEndOcclusionQueryNV", (void **) &glld_glEndOcclusionQueryNV },
    { "glGetOcclusionQueryivNV", (void **) &glld_glGetOcclusionQueryivNV },
    { "glGetOcclusionQueryuivNV", (void **) &glld_glGetOcclusionQueryuivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glProgramBufferParametersfvNV", (void **) &glld_glProgramBufferParametersfvNV },
    { "glProgramBufferParametersIivNV", (void **) &glld_glProgramBufferParametersIivNV },
    { "glProgramBufferParametersIuivNV", (void **) &glld_glProgramBufferParametersIuivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenPathsNV", (void **) &glld_glGenPathsNV },
    { "glDeletePathsNV", (void **) &glld_glDeletePathsNV },
    { "glIsPathNV", (void **) &glld_glIsPathNV },
@@ -28439,42 +27780,24 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetPathColorGenfvNV", (void **) &glld_glGetPathColorGenfvNV },
    { "glGetPathTexGenivNV", (void **) &glld_glGetPathTexGenivNV },
    { "glGetPathTexGenfvNV", (void **) &glld_glGetPathTexGenfvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPixelDataRangeNV", (void **) &glld_glPixelDataRangeNV },
    { "glFlushPixelDataRangeNV", (void **) &glld_glFlushPixelDataRangeNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPointParameteriNV", (void **) &glld_glPointParameteriNV },
    { "glPointParameterivNV", (void **) &glld_glPointParameterivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPolygonModeNV", (void **) &glld_glPolygonModeNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPresentFrameKeyedNV", (void **) &glld_glPresentFrameKeyedNV },
    { "glPresentFrameDualFillNV", (void **) &glld_glPresentFrameDualFillNV },
    { "glGetVideoivNV", (void **) &glld_glGetVideoivNV },
    { "glGetVideouivNV", (void **) &glld_glGetVideouivNV },
    { "glGetVideoi64vNV", (void **) &glld_glGetVideoi64vNV },
    { "glGetVideoui64vNV", (void **) &glld_glGetVideoui64vNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPrimitiveRestartNV", (void **) &glld_glPrimitiveRestartNV },
    { "glPrimitiveRestartIndexNV", (void **) &glld_glPrimitiveRestartIndexNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glQueryResourceNV", (void **) &glld_glQueryResourceNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGenQueryResourceTagNV", (void **) &glld_glGenQueryResourceTagNV },
    { "glDeleteQueryResourceTagNV", (void **) &glld_glDeleteQueryResourceTagNV },
    { "glQueryResourceTagNV", (void **) &glld_glQueryResourceTagNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glReadBufferNV", (void **) &glld_glReadBufferNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCombinerParameterfvNV", (void **) &glld_glCombinerParameterfvNV },
    { "glCombinerParameterfNV", (void **) &glld_glCombinerParameterfNV },
    { "glCombinerParameterivNV", (void **) &glld_glCombinerParameterivNV },
@@ -28488,21 +27811,13 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetCombinerOutputParameterivNV", (void **) &glld_glGetCombinerOutputParameterivNV },
    { "glGetFinalCombinerInputParameterfvNV", (void **) &glld_glGetFinalCombinerInputParameterfvNV },
    { "glGetFinalCombinerInputParameterivNV", (void **) &glld_glGetFinalCombinerInputParameterivNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCombinerStageParameterfvNV", (void **) &glld_glCombinerStageParameterfvNV },
    { "glGetCombinerStageParameterfvNV", (void **) &glld_glGetCombinerStageParameterfvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferSampleLocationsfvNV", (void **) &glld_glFramebufferSampleLocationsfvNV },
    { "glNamedFramebufferSampleLocationsfvNV", (void **) &glld_glNamedFramebufferSampleLocationsfvNV },
    { "glResolveDepthValuesNV", (void **) &glld_glResolveDepthValuesNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glScissorExclusiveNV", (void **) &glld_glScissorExclusiveNV },
    { "glScissorExclusiveArrayvNV", (void **) &glld_glScissorExclusiveArrayvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMakeBufferResidentNV", (void **) &glld_glMakeBufferResidentNV },
    { "glMakeBufferNonResidentNV", (void **) &glld_glMakeBufferNonResidentNV },
    { "glIsBufferResidentNV", (void **) &glld_glIsBufferResidentNV },
@@ -28516,8 +27831,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glUniformui64vNV", (void **) &glld_glUniformui64vNV },
    { "glProgramUniformui64NV", (void **) &glld_glProgramUniformui64NV },
    { "glProgramUniformui64vNV", (void **) &glld_glProgramUniformui64vNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindShadingRateImageNV", (void **) &glld_glBindShadingRateImageNV },
    { "glGetShadingRateImagePaletteNV", (void **) &glld_glGetShadingRateImagePaletteNV },
    { "glGetShadingRateSampleLocationivNV", (void **) &glld_glGetShadingRateSampleLocationivNV },
@@ -28525,19 +27838,13 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glShadingRateImagePaletteNV", (void **) &glld_glShadingRateImagePaletteNV },
    { "glShadingRateSampleOrderNV", (void **) &glld_glShadingRateSampleOrderNV },
    { "glShadingRateSampleOrderCustomNV", (void **) &glld_glShadingRateSampleOrderCustomNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTextureBarrierNV", (void **) &glld_glTextureBarrierNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexImage2DMultisampleCoverageNV", (void **) &glld_glTexImage2DMultisampleCoverageNV },
    { "glTexImage3DMultisampleCoverageNV", (void **) &glld_glTexImage3DMultisampleCoverageNV },
    { "glTextureImage2DMultisampleNV", (void **) &glld_glTextureImage2DMultisampleNV },
    { "glTextureImage3DMultisampleNV", (void **) &glld_glTextureImage3DMultisampleNV },
    { "glTextureImage2DMultisampleCoverageNV", (void **) &glld_glTextureImage2DMultisampleCoverageNV },
    { "glTextureImage3DMultisampleCoverageNV", (void **) &glld_glTextureImage3DMultisampleCoverageNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBeginTransformFeedbackNV", (void **) &glld_glBeginTransformFeedbackNV },
    { "glEndTransformFeedbackNV", (void **) &glld_glEndTransformFeedbackNV },
    { "glTransformFeedbackAttribsNV", (void **) &glld_glTransformFeedbackAttribsNV },
@@ -28550,8 +27857,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetActiveVaryingNV", (void **) &glld_glGetActiveVaryingNV },
    { "glGetTransformFeedbackVaryingNV", (void **) &glld_glGetTransformFeedbackVaryingNV },
    { "glTransformFeedbackStreamAttribsNV", (void **) &glld_glTransformFeedbackStreamAttribsNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindTransformFeedbackNV", (void **) &glld_glBindTransformFeedbackNV },
    { "glDeleteTransformFeedbacksNV", (void **) &glld_glDeleteTransformFeedbacksNV },
    { "glGenTransformFeedbacksNV", (void **) &glld_glGenTransformFeedbacksNV },
@@ -28559,8 +27864,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glPauseTransformFeedbackNV", (void **) &glld_glPauseTransformFeedbackNV },
    { "glResumeTransformFeedbackNV", (void **) &glld_glResumeTransformFeedbackNV },
    { "glDrawTransformFeedbackNV", (void **) &glld_glDrawTransformFeedbackNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVDPAUInitNV", (void **) &glld_glVDPAUInitNV },
    { "glVDPAUFiniNV", (void **) &glld_glVDPAUFiniNV },
    { "glVDPAURegisterVideoSurfaceNV", (void **) &glld_glVDPAURegisterVideoSurfaceNV },
@@ -28571,15 +27874,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVDPAUSurfaceAccessNV", (void **) &glld_glVDPAUSurfaceAccessNV },
    { "glVDPAUMapSurfacesNV", (void **) &glld_glVDPAUMapSurfacesNV },
    { "glVDPAUUnmapSurfacesNV", (void **) &glld_glVDPAUUnmapSurfacesNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVDPAURegisterVideoSurfaceWithPictureStructureNV", (void **) &glld_glVDPAURegisterVideoSurfaceWithPictureStructureNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFlushVertexArrayRangeNV", (void **) &glld_glFlushVertexArrayRangeNV },
    { "glVertexArrayRangeNV", (void **) &glld_glVertexArrayRangeNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glVertexAttribL1i64NV", (void **) &glld_glVertexAttribL1i64NV },
    { "glVertexAttribL2i64NV", (void **) &glld_glVertexAttribL2i64NV },
    { "glVertexAttribL3i64NV", (void **) &glld_glVertexAttribL3i64NV },
@@ -28599,8 +27896,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetVertexAttribLi64vNV", (void **) &glld_glGetVertexAttribLi64vNV },
    { "glGetVertexAttribLui64vNV", (void **) &glld_glGetVertexAttribLui64vNV },
    { "glVertexAttribLFormatNV", (void **) &glld_glVertexAttribLFormatNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBufferAddressRangeNV", (void **) &glld_glBufferAddressRangeNV },
    { "glVertexFormatNV", (void **) &glld_glVertexFormatNV },
    { "glNormalFormatNV", (void **) &glld_glNormalFormatNV },
@@ -28613,8 +27908,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertexAttribFormatNV", (void **) &glld_glVertexAttribFormatNV },
    { "glVertexAttribIFormatNV", (void **) &glld_glVertexAttribIFormatNV },
    { "glGetIntegerui64i_vNV", (void **) &glld_glGetIntegerui64i_vNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glAreProgramsResidentNV", (void **) &glld_glAreProgramsResidentNV },
    { "glBindProgramNV", (void **) &glld_glBindProgramNV },
    { "glDeleteProgramsNV", (void **) &glld_glDeleteProgramsNV },
@@ -28679,10 +27972,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertexAttribs4fvNV", (void **) &glld_glVertexAttribs4fvNV },
    { "glVertexAttribs4svNV", (void **) &glld_glVertexAttribs4svNV },
    { "glVertexAttribs4ubvNV", (void **) &glld_glVertexAttribs4ubvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBeginVideoCaptureNV", (void **) &glld_glBeginVideoCaptureNV },
    { "glBindVideoCaptureStreamBufferNV", (void **) &glld_glBindVideoCaptureStreamBufferNV },
    { "glBindVideoCaptureStreamTextureNV", (void **) &glld_glBindVideoCaptureStreamTextureNV },
@@ -28695,8 +27984,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVideoCaptureStreamParameterivNV", (void **) &glld_glVideoCaptureStreamParameterivNV },
    { "glVideoCaptureStreamParameterfvNV", (void **) &glld_glVideoCaptureStreamParameterfvNV },
    { "glVideoCaptureStreamParameterdvNV", (void **) &glld_glVideoCaptureStreamParameterdvNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glViewportArrayvNV", (void **) &glld_glViewportArrayvNV },
    { "glViewportIndexedfNV", (void **) &glld_glViewportIndexedfNV },
    { "glViewportIndexedfvNV", (void **) &glld_glViewportIndexedfvNV },
@@ -28709,26 +27996,12 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glEnableiNV", (void **) &glld_glEnableiNV },
    { "glDisableiNV", (void **) &glld_glDisableiNV },
    { "glIsEnablediNV", (void **) &glld_glIsEnablediNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glViewportSwizzleNV", (void **) &glld_glViewportSwizzleNV },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glEGLImageTargetTexture2DOES", (void **) &glld_glEGLImageTargetTexture2DOES },
    { "glEGLImageTargetRenderbufferStorageOES", (void **) &glld_glEGLImageTargetRenderbufferStorageOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendEquationSeparateOES", (void **) &glld_glBlendEquationSeparateOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendFuncSeparateOES", (void **) &glld_glBlendFuncSeparateOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBlendEquationOES", (void **) &glld_glBlendEquationOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMultiTexCoord1bOES", (void **) &glld_glMultiTexCoord1bOES },
    { "glMultiTexCoord1bvOES", (void **) &glld_glMultiTexCoord1bvOES },
    { "glMultiTexCoord2bOES", (void **) &glld_glMultiTexCoord2bOES },
@@ -28751,11 +28024,7 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertex3bvOES", (void **) &glld_glVertex3bvOES },
    { "glVertex4bOES", (void **) &glld_glVertex4bOES },
    { "glVertex4bvOES", (void **) &glld_glVertex4bvOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCopyImageSubDataOES", (void **) &glld_glCopyImageSubDataOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glEnableiOES", (void **) &glld_glEnableiOES },
    { "glDisableiOES", (void **) &glld_glDisableiOES },
    { "glBlendEquationiOES", (void **) &glld_glBlendEquationiOES },
@@ -28764,13 +28033,9 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glBlendFuncSeparateiOES", (void **) &glld_glBlendFuncSeparateiOES },
    { "glColorMaskiOES", (void **) &glld_glColorMaskiOES },
    { "glIsEnablediOES", (void **) &glld_glIsEnablediOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawElementsBaseVertexOES", (void **) &glld_glDrawElementsBaseVertexOES },
    { "glDrawRangeElementsBaseVertexOES", (void **) &glld_glDrawRangeElementsBaseVertexOES },
    { "glDrawElementsInstancedBaseVertexOES", (void **) &glld_glDrawElementsInstancedBaseVertexOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawTexsOES", (void **) &glld_glDrawTexsOES },
    { "glDrawTexiOES", (void **) &glld_glDrawTexiOES },
    { "glDrawTexxOES", (void **) &glld_glDrawTexxOES },
@@ -28779,8 +28044,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glDrawTexxvOES", (void **) &glld_glDrawTexxvOES },
    { "glDrawTexfOES", (void **) &glld_glDrawTexfOES },
    { "glDrawTexfvOES", (void **) &glld_glDrawTexfvOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glAlphaFuncxOES", (void **) &glld_glAlphaFuncxOES },
    { "glClearColorxOES", (void **) &glld_glClearColorxOES },
    { "glClearDepthxOES", (void **) &glld_glClearDepthxOES },
@@ -28888,8 +28151,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glVertex3xvOES", (void **) &glld_glVertex3xvOES },
    { "glVertex4xOES", (void **) &glld_glVertex4xOES },
    { "glVertex4xvOES", (void **) &glld_glVertex4xvOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glIsRenderbufferOES", (void **) &glld_glIsRenderbufferOES },
    { "glBindRenderbufferOES", (void **) &glld_glBindRenderbufferOES },
    { "glDeleteRenderbuffersOES", (void **) &glld_glDeleteRenderbuffersOES },
@@ -28905,57 +28166,33 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glFramebufferTexture2DOES", (void **) &glld_glFramebufferTexture2DOES },
    { "glGetFramebufferAttachmentParameterivOES", (void **) &glld_glGetFramebufferAttachmentParameterivOES },
    { "glGenerateMipmapOES", (void **) &glld_glGenerateMipmapOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferTextureOES", (void **) &glld_glFramebufferTextureOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetProgramBinaryOES", (void **) &glld_glGetProgramBinaryOES },
    { "glProgramBinaryOES", (void **) &glld_glProgramBinaryOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMapBufferOES", (void **) &glld_glMapBufferOES },
    { "glUnmapBufferOES", (void **) &glld_glUnmapBufferOES },
    { "glGetBufferPointervOES", (void **) &glld_glGetBufferPointervOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glCurrentPaletteMatrixOES", (void **) &glld_glCurrentPaletteMatrixOES },
    { "glLoadPaletteFromModelViewMatrixOES", (void **) &glld_glLoadPaletteFromModelViewMatrixOES },
    { "glMatrixIndexPointerOES", (void **) &glld_glMatrixIndexPointerOES },
    { "glWeightPointerOES", (void **) &glld_glWeightPointerOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPointSizePointerOES", (void **) &glld_glPointSizePointerOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPrimitiveBoundingBoxOES", (void **) &glld_glPrimitiveBoundingBoxOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glQueryMatrixxOES", (void **) &glld_glQueryMatrixxOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glMinSampleShadingOES", (void **) &glld_glMinSampleShadingOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glClearDepthfOES", (void **) &glld_glClearDepthfOES },
    { "glClipPlanefOES", (void **) &glld_glClipPlanefOES },
    { "glDepthRangefOES", (void **) &glld_glDepthRangefOES },
    { "glFrustumfOES", (void **) &glld_glFrustumfOES },
    { "glGetClipPlanefOES", (void **) &glld_glGetClipPlanefOES },
    { "glOrthofOES", (void **) &glld_glOrthofOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPatchParameteriOES", (void **) &glld_glPatchParameteriOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexImage3DOES", (void **) &glld_glTexImage3DOES },
    { "glTexSubImage3DOES", (void **) &glld_glTexSubImage3DOES },
    { "glCopyTexSubImage3DOES", (void **) &glld_glCopyTexSubImage3DOES },
    { "glCompressedTexImage3DOES", (void **) &glld_glCompressedTexImage3DOES },
    { "glCompressedTexSubImage3DOES", (void **) &glld_glCompressedTexSubImage3DOES },
    { "glFramebufferTexture3DOES", (void **) &glld_glFramebufferTexture3DOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexParameterIivOES", (void **) &glld_glTexParameterIivOES },
    { "glTexParameterIuivOES", (void **) &glld_glTexParameterIuivOES },
    { "glGetTexParameterIivOES", (void **) &glld_glGetTexParameterIivOES },
@@ -28964,32 +28201,20 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glSamplerParameterIuivOES", (void **) &glld_glSamplerParameterIuivOES },
    { "glGetSamplerParameterIivOES", (void **) &glld_glGetSamplerParameterIivOES },
    { "glGetSamplerParameterIuivOES", (void **) &glld_glGetSamplerParameterIuivOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexBufferOES", (void **) &glld_glTexBufferOES },
    { "glTexBufferRangeOES", (void **) &glld_glTexBufferRangeOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexGenfOES", (void **) &glld_glTexGenfOES },
    { "glTexGenfvOES", (void **) &glld_glTexGenfvOES },
    { "glTexGeniOES", (void **) &glld_glTexGeniOES },
    { "glTexGenivOES", (void **) &glld_glTexGenivOES },
    { "glGetTexGenfvOES", (void **) &glld_glGetTexGenfvOES },
    { "glGetTexGenivOES", (void **) &glld_glGetTexGenivOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexStorage3DMultisampleOES", (void **) &glld_glTexStorage3DMultisampleOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTextureViewOES", (void **) &glld_glTextureViewOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glBindVertexArrayOES", (void **) &glld_glBindVertexArrayOES },
    { "glDeleteVertexArraysOES", (void **) &glld_glDeleteVertexArraysOES },
    { "glGenVertexArraysOES", (void **) &glld_glGenVertexArraysOES },
    { "glIsVertexArrayOES", (void **) &glld_glIsVertexArrayOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glViewportArrayvOES", (void **) &glld_glViewportArrayvOES },
    { "glViewportIndexedfOES", (void **) &glld_glViewportIndexedfOES },
    { "glViewportIndexedfvOES", (void **) &glld_glViewportIndexedfvOES },
@@ -28999,27 +28224,15 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glDepthRangeArrayfvOES", (void **) &glld_glDepthRangeArrayfvOES },
    { "glDepthRangeIndexedfOES", (void **) &glld_glDepthRangeIndexedfOES },
    { "glGetFloati_vOES", (void **) &glld_glGetFloati_vOES },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferTextureMultiviewOVR", (void **) &glld_glFramebufferTextureMultiviewOVR },
    { "glNamedFramebufferTextureMultiviewOVR", (void **) &glld_glNamedFramebufferTextureMultiviewOVR },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferTextureMultisampleMultiviewOVR", (void **) &glld_glFramebufferTextureMultisampleMultiviewOVR },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glHintPGI", (void **) &glld_glHintPGI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glAlphaFuncQCOM", (void **) &glld_glAlphaFuncQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetDriverControlsQCOM", (void **) &glld_glGetDriverControlsQCOM },
    { "glGetDriverControlStringQCOM", (void **) &glld_glGetDriverControlStringQCOM },
    { "glEnableDriverControlQCOM", (void **) &glld_glEnableDriverControlQCOM },
    { "glDisableDriverControlQCOM", (void **) &glld_glDisableDriverControlQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glExtGetTexturesQCOM", (void **) &glld_glExtGetTexturesQCOM },
    { "glExtGetBuffersQCOM", (void **) &glld_glExtGetBuffersQCOM },
    { "glExtGetRenderbuffersQCOM", (void **) &glld_glExtGetRenderbuffersQCOM },
@@ -29028,88 +28241,48 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glExtTexObjectStateOverrideiQCOM", (void **) &glld_glExtTexObjectStateOverrideiQCOM },
    { "glExtGetTexSubImageQCOM", (void **) &glld_glExtGetTexSubImageQCOM },
    { "glExtGetBufferPointervQCOM", (void **) &glld_glExtGetBufferPointervQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glExtGetShadersQCOM", (void **) &glld_glExtGetShadersQCOM },
    { "glExtGetProgramsQCOM", (void **) &glld_glExtGetProgramsQCOM },
    { "glExtIsProgramBinaryQCOM", (void **) &glld_glExtIsProgramBinaryQCOM },
    { "glExtGetProgramBinarySourceQCOM", (void **) &glld_glExtGetProgramBinarySourceQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferFoveationConfigQCOM", (void **) &glld_glFramebufferFoveationConfigQCOM },
    { "glFramebufferFoveationParametersQCOM", (void **) &glld_glFramebufferFoveationParametersQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexEstimateMotionQCOM", (void **) &glld_glTexEstimateMotionQCOM },
    { "glTexEstimateMotionRegionsQCOM", (void **) &glld_glTexEstimateMotionRegionsQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glExtrapolateTex2DQCOM", (void **) &glld_glExtrapolateTex2DQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTextureFoveationParametersQCOM", (void **) &glld_glTextureFoveationParametersQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFramebufferFetchBarrierQCOM", (void **) &glld_glFramebufferFetchBarrierQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glShadingRateQCOM", (void **) &glld_glShadingRateQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glStartTilingQCOM", (void **) &glld_glStartTilingQCOM },
    { "glEndTilingQCOM", (void **) &glld_glEndTilingQCOM },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDetailTexFuncSGIS", (void **) &glld_glDetailTexFuncSGIS },
    { "glGetDetailTexFuncSGIS", (void **) &glld_glGetDetailTexFuncSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFogFuncSGIS", (void **) &glld_glFogFuncSGIS },
    { "glGetFogFuncSGIS", (void **) &glld_glGetFogFuncSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSampleMaskSGIS", (void **) &glld_glSampleMaskSGIS },
    { "glSamplePatternSGIS", (void **) &glld_glSamplePatternSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPixelTexGenParameteriSGIS", (void **) &glld_glPixelTexGenParameteriSGIS },
    { "glPixelTexGenParameterivSGIS", (void **) &glld_glPixelTexGenParameterivSGIS },
    { "glPixelTexGenParameterfSGIS", (void **) &glld_glPixelTexGenParameterfSGIS },
    { "glPixelTexGenParameterfvSGIS", (void **) &glld_glPixelTexGenParameterfvSGIS },
    { "glGetPixelTexGenParameterivSGIS", (void **) &glld_glGetPixelTexGenParameterivSGIS },
    { "glGetPixelTexGenParameterfvSGIS", (void **) &glld_glGetPixelTexGenParameterfvSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPointParameterfSGIS", (void **) &glld_glPointParameterfSGIS },
    { "glPointParameterfvSGIS", (void **) &glld_glPointParameterfvSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSharpenTexFuncSGIS", (void **) &glld_glSharpenTexFuncSGIS },
    { "glGetSharpenTexFuncSGIS", (void **) &glld_glGetSharpenTexFuncSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTexImage4DSGIS", (void **) &glld_glTexImage4DSGIS },
    { "glTexSubImage4DSGIS", (void **) &glld_glTexSubImage4DSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTextureColorMaskSGIS", (void **) &glld_glTextureColorMaskSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetTexFilterFuncSGIS", (void **) &glld_glGetTexFilterFuncSGIS },
    { "glTexFilterFuncSGIS", (void **) &glld_glTexFilterFuncSGIS },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glAsyncMarkerSGIX", (void **) &glld_glAsyncMarkerSGIX },
    { "glFinishAsyncSGIX", (void **) &glld_glFinishAsyncSGIX },
    { "glPollAsyncSGIX", (void **) &glld_glPollAsyncSGIX },
    { "glGenAsyncMarkersSGIX", (void **) &glld_glGenAsyncMarkersSGIX },
    { "glDeleteAsyncMarkersSGIX", (void **) &glld_glDeleteAsyncMarkersSGIX },
    { "glIsAsyncMarkerSGIX", (void **) &glld_glIsAsyncMarkerSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFlushRasterSGIX", (void **) &glld_glFlushRasterSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFragmentColorMaterialSGIX", (void **) &glld_glFragmentColorMaterialSGIX },
    { "glFragmentLightfSGIX", (void **) &glld_glFragmentLightfSGIX },
    { "glFragmentLightfvSGIX", (void **) &glld_glFragmentLightfvSGIX },
@@ -29128,51 +28301,31 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetFragmentMaterialfvSGIX", (void **) &glld_glGetFragmentMaterialfvSGIX },
    { "glGetFragmentMaterialivSGIX", (void **) &glld_glGetFragmentMaterialivSGIX },
    { "glLightEnviSGIX", (void **) &glld_glLightEnviSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFrameZoomSGIX", (void **) &glld_glFrameZoomSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glIglooInterfaceSGIX", (void **) &glld_glIglooInterfaceSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetInstrumentsSGIX", (void **) &glld_glGetInstrumentsSGIX },
    { "glInstrumentsBufferSGIX", (void **) &glld_glInstrumentsBufferSGIX },
    { "glPollInstrumentsSGIX", (void **) &glld_glPollInstrumentsSGIX },
    { "glReadInstrumentsSGIX", (void **) &glld_glReadInstrumentsSGIX },
    { "glStartInstrumentsSGIX", (void **) &glld_glStartInstrumentsSGIX },
    { "glStopInstrumentsSGIX", (void **) &glld_glStopInstrumentsSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGetListParameterfvSGIX", (void **) &glld_glGetListParameterfvSGIX },
    { "glGetListParameterivSGIX", (void **) &glld_glGetListParameterivSGIX },
    { "glListParameterfSGIX", (void **) &glld_glListParameterfSGIX },
    { "glListParameterfvSGIX", (void **) &glld_glListParameterfvSGIX },
    { "glListParameteriSGIX", (void **) &glld_glListParameteriSGIX },
    { "glListParameterivSGIX", (void **) &glld_glListParameterivSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glPixelTexGenSGIX", (void **) &glld_glPixelTexGenSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDeformationMap3dSGIX", (void **) &glld_glDeformationMap3dSGIX },
    { "glDeformationMap3fSGIX", (void **) &glld_glDeformationMap3fSGIX },
    { "glDeformSGIX", (void **) &glld_glDeformSGIX },
    { "glLoadIdentityDeformationMapSGIX", (void **) &glld_glLoadIdentityDeformationMapSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glReferencePlaneSGIX", (void **) &glld_glReferencePlaneSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glSpriteParameterfSGIX", (void **) &glld_glSpriteParameterfSGIX },
    { "glSpriteParameterfvSGIX", (void **) &glld_glSpriteParameterfvSGIX },
    { "glSpriteParameteriSGIX", (void **) &glld_glSpriteParameteriSGIX },
    { "glSpriteParameterivSGIX", (void **) &glld_glSpriteParameterivSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glTagSampleBufferSGIX", (void **) &glld_glTagSampleBufferSGIX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glColorTableSGI", (void **) &glld_glColorTableSGI },
    { "glColorTableParameterfvSGI", (void **) &glld_glColorTableParameterfvSGI },
    { "glColorTableParameterivSGI", (void **) &glld_glColorTableParameterivSGI },
@@ -29180,11 +28333,7 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGetColorTableSGI", (void **) &glld_glGetColorTableSGI },
    { "glGetColorTableParameterfvSGI", (void **) &glld_glGetColorTableParameterfvSGI },
    { "glGetColorTableParameterivSGI", (void **) &glld_glGetColorTableParameterivSGI },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glFinishTextureSUNX", (void **) &glld_glFinishTextureSUNX },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glGlobalAlphaFactorbSUN", (void **) &glld_glGlobalAlphaFactorbSUN },
    { "glGlobalAlphaFactorsSUN", (void **) &glld_glGlobalAlphaFactorsSUN },
    { "glGlobalAlphaFactoriSUN", (void **) &glld_glGlobalAlphaFactoriSUN },
@@ -29193,11 +28342,7 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glGlobalAlphaFactorubSUN", (void **) &glld_glGlobalAlphaFactorubSUN },
    { "glGlobalAlphaFactorusSUN", (void **) &glld_glGlobalAlphaFactorusSUN },
    { "glGlobalAlphaFactoruiSUN", (void **) &glld_glGlobalAlphaFactoruiSUN },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glDrawMeshArraysSUN", (void **) &glld_glDrawMeshArraysSUN },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glReplacementCodeuiSUN", (void **) &glld_glReplacementCodeuiSUN },
    { "glReplacementCodeusSUN", (void **) &glld_glReplacementCodeusSUN },
    { "glReplacementCodeubSUN", (void **) &glld_glReplacementCodeubSUN },
@@ -29205,8 +28350,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glReplacementCodeusvSUN", (void **) &glld_glReplacementCodeusvSUN },
    { "glReplacementCodeubvSUN", (void **) &glld_glReplacementCodeubvSUN },
    { "glReplacementCodePointerSUN", (void **) &glld_glReplacementCodePointerSUN },
-# endif
-# if defined (GL_SC_VERSION_2_0)
    { "glColor4ubVertex2fSUN", (void **) &glld_glColor4ubVertex2fSUN },
    { "glColor4ubVertex2fvSUN", (void **) &glld_glColor4ubVertex2fvSUN },
    { "glColor4ubVertex3fSUN", (void **) &glld_glColor4ubVertex3fSUN },
@@ -29247,7 +28390,6 @@ static struct s_nameaddr g_nameaddr[] = {
    { "glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN", (void **) &glld_glReplacementCodeuiTexCoord2fNormal3fVertex3fvSUN },
    { "glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN", (void **) &glld_glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fSUN },
    { "glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN", (void **) &glld_glReplacementCodeuiTexCoord2fColor4fNormal3fVertex3fvSUN },
-# endif
 
     /* ... */
 

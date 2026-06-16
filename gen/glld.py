@@ -728,7 +728,6 @@ def glld_gl_func_nameaddr(parse: glParse):
             if len(reqs[0].cmds) == 0:
                 continue
 
-        result += f'# if defined ({feat.name})\n'
         for req in reqs:
             for c_str in req.cmds:
                 cmd = next(cmd for cmd in cmds if cmd.name == c_str)
@@ -740,7 +739,6 @@ def glld_gl_func_nameaddr(parse: glParse):
 
                 # append 'name' to 'result'
                 result += name
-        result += '# endif\n'
 
     for ext in exts:
         reqs = ext.reqs
@@ -749,7 +747,6 @@ def glld_gl_func_nameaddr(parse: glParse):
             if len(reqs[0].cmds) == 0:
                 continue
 
-        result += f'# if defined ({feat.name})\n'
         for req in reqs:
             for c_str in req.cmds:
                 cmd = next(cmd for cmd in cmds if cmd.name == c_str)
@@ -761,7 +758,6 @@ def glld_gl_func_nameaddr(parse: glParse):
 
                 # append 'name' to 'result'
                 result += name
-        result += '# endif\n'
 
     return (result.rstrip())
 
