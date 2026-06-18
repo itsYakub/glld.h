@@ -301,7 +301,8 @@ static struct s_nameaddr g_nameaddr[] = {
 typedef void *(*PFNGLXGETPROCADDRESSPROC) (const char *);
 PFNGLXGETPROCADDRESSPROC glXGetProcAddress = 0;
 
-typedef void *(*PFNEGLGETPROCADDRESSPROC) (const char *);
+typedef void (*__eglMustCastToProperFunctionPointerType)(void);
+typedef __eglMustCastToProperFunctionPointerType (*PFNEGLGETPROCADDRESSPROC) (const char *);
 PFNEGLGETPROCADDRESSPROC eglGetProcAddress = 0;
 
 typedef void *(*PFNWGLGETPROCADDRESSPROC) (const char *);
