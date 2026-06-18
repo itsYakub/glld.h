@@ -11,7 +11,7 @@ int main(void) {
     if (!winInit()) { return (1); }
     if (!winGLSetAttribute(WINDOW_GL_CONTEXT_MAJOR_VERSION, 1)) { return (1); }
     if (!winGLSetAttribute(WINDOW_GL_CONTEXT_MINOR_VERSION, 0)) { return (1); }
-    if (!winGLSetAttribute(WINDOW_GL_CONTEXT_PROFILE, 02)) { return (1); }
+    if (!winGLSetAttribute(WINDOW_GL_CONTEXT_PROFILE_MASK, 2)) { return (1); }
 
 
     t_window window = 0;
