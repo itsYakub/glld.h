@@ -9,7 +9,7 @@
 int main(void) {
     sf::Window  window(sf::VideoMode( { 800, 600 } ), "glld.h - SFML sample", sf::Style::Titlebar | sf::Style::Close);
     if (!window.setActive()) { return (1); }
-    if (!glldLoadGL()) { return (1); }
+    if (!glld_load()) { return (1); }
 
     while (window.isOpen()) {
         window.display();

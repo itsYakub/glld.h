@@ -1,7 +1,6 @@
 #define GLLD_IMPLEMENTATION
 #include "./../../glld.h"
 #
-#define WINDOW_API_OPENGL
 #define WINDOW_IMPLEMENTATION
 #include <window/window.h>
 
@@ -44,25 +43,25 @@ GLuint  g_indices[] = {
 
 
 int main(void) {
-    if (!winInit()) { return (1); }
-    if (!winGLSetAttribute(WINDOW_GL_CONTEXT_MAJOR_VERSION, 1)) { return (1); }
-    if (!winGLSetAttribute(WINDOW_GL_CONTEXT_MINOR_VERSION, 0)) { return (1); }
-    if (!winGLSetAttribute(WINDOW_GL_CONTEXT_PROFILE_MASK, 2)) { return (1); }
+    /* initialize window.h */
+    library_t library = 0;
+    win_init(&library);
 
+    /* set API to 'WINDOW_API_OPENGL' */
+    win_set_hints(library, WINDOW_CLIENT_API, WINDOW_API_OPENGL);
 
-    t_window window = 0;
-    if (!winCreateWindow(&window, 800, 600, "glld.h - window.h sample", 0)) { return (1); }
-    if (!window) { return (1); }
+    /* create window */
+    window_t window = 0;
+    win_window_create(library, &window, 800, 600, "glld.h - window.h sample");
+    win_window_map(library, window);
 
+    /* create context */
+    context_t context = 0;
+    win_context_create(library, &context, window);
+    win_gl_make_current(library, context);
 
-    t_glcontext context = 0;
-    if (!winGLCreateContext(&context, window)) { return (1); }
-    if (!context) { return (1); }
-
-
-    if (!winGLMakeCurrent(context, window)) { return (1); }
-    if (!winMapWindow(window)) { return (1); }
-    if (!glldLoadGLLoader((t_glldLoader) winGLGetProcAddress)) { return (1); }
+    /* load OpenGL */
+    if (!glld_loader((glld_loader_t) win_gl_get_proc_address)) { return (1); }
 
 
     GLuint sh_v = glCreateShader(GL_VERTEX_SHADER);
@@ -106,6 +105,7 @@ int main(void) {
 
 
     for (int exit = 0; !exit; ) {
+        /* render */
         glClearColor(0.1, 0.1, 0.1, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -115,12 +115,18 @@ int main(void) {
         glBindVertexArray(0);
         glUseProgram(0);
 
-        winGLSwapBuffers(context, window);
-
-        t_event event = { 0 };
-        while (winPollEvents(&event)) {
+        /* poll events */
+        win_gl_swap_buffers(library, context);
+        event_t event = { 0 };
+        while (win_event_poll(library, &event)) {
             switch (event.type) {
-                case (WINDOW_EVENT_QUIT): { exit = 1; } break;
+                case (WINDOW_EVENT_QUIT): {
+                    exit = 1;
+                } break;
+
+                case (WINDOW_EVENT_WINDOW_RESIZE): {
+                    glViewport(0, 0, event.window.data1, event.window.data2);
+                } break;
             }
         }
     }
@@ -131,8 +137,7 @@ int main(void) {
     glDeleteVertexArrays(1, &vao), vao = 0;
     glDeleteProgram(shader), shader = 0;
 
-    winGLDestroyContext(context, window);
-    winDestroyWindow(window);
-    winQuit();
+    /* quit */
+    win_quit(library);
     return (0);
 }

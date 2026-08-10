@@ -56,7 +56,7 @@ int main(void) {
     if (!context) { return (1); }
 
     if (!SDL_GL_MakeCurrent(window, context)) { return (1); }
-    if (!glldLoadGLLoader((t_glldLoader) SDL_GL_GetProcAddress)) { return (1); }
+    if (!glld_loader((glld_loader_t) SDL_GL_GetProcAddress)) { return (1); }
 
 
     GLuint sh_v = glCreateShader(GL_VERTEX_SHADER);

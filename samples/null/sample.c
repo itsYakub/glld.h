@@ -5,7 +5,7 @@
 
 
 int main(void) {
-    if (!glldLoadGL()) { return (1); }
+    if (!glld_load()) { return (1); }
 
     /* ... */
 
