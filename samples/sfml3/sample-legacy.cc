@@ -34,7 +34,7 @@ int main(void) {
         }
     }
     
-    if (!glldUnloadGL()) { return (1); }
+    if (!glld_unload()) { return (1); }
     
     return (0);
 }
