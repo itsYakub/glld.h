@@ -39,40 +39,6 @@ g_gl_sc_version_list: list = [
 ]
 
 # ==========================
-# SECTION: xml parser - type
-# ==========================
-
-class glType:
-    name: str
-    value: str
-    requires: str
-
-    def __eq__(self, o):
-        return (self.name == o.name)
-
-
-def gl_parsexml_t(element: ET.Element) -> glType:
-    type: glType
-
-    type = glType()
-    type.name = element.get('name')
-    type.requires = element.get('requires')
-    if element.text:
-        type.value = element.text
-    else:
-        type.value = str()
-    for child in element:
-        if child.tag == 'name':
-            type.name = child.text
-            type.value += type.name
-            type.value += child.tail
-        if child.tag == 'apientry':
-            type.value += 'APIENTRY'
-            type.value += child.tail
-    return (type)
-
-
-# ==========================
 # SECTION: xml parser - enum
 # ==========================
 
@@ -275,7 +241,6 @@ def gl_parsexml_ex(element: ET.Element) -> glExt:
 # ===================
 
 class glParse:
-    types: list[glType]
     enums: list[glEnum]
     cmds: list[glCmd]
     feats: list[glFeat]
@@ -298,7 +263,6 @@ def gl_parsexml(tree: ET.ElementTree) -> glParse:
         sys.exit(1)
     
     parse = glParse()
-    parse.types = list()
     parse.enums = list()
     parse.cmds  = list()
     parse.feats = list()
@@ -306,13 +270,7 @@ def gl_parsexml(tree: ET.ElementTree) -> glParse:
 
     for child in root:
 
-        if child.tag == 'types':
-            for types in child.findall('type'):
-                type = gl_parsexml_t(types)
-                if type not in parse.types:
-                    parse.types.append(type)
-
-        elif child.tag == 'enums':
+        if child.tag == 'enums':
             for enums in child.findall('enum'):
                 enum = gl_parsexml_e(enums)
                 if enum not in parse.enums:
@@ -343,8 +301,9 @@ def gl_parsexml(tree: ET.ElementTree) -> glParse:
 # ===============
 
 def opengl_loader(parse: glParse):
+    # open and read 'template.h'
     fstr = ''
-    with open(f'{g_path}/glld-template.h') as f:
+    with open(f'{g_path}/template.h') as f:
         fstr = f.read()
 
     # Simple templates...
@@ -378,9 +337,6 @@ def opengl_loader(parse: glParse):
     # <<glld-gl-extension-macros>>
     fstr = fstr.replace('<<glld-gl-extension-macros>>', glld_gl_extension_macros(parse))
     
-    # <<glld-gl-types>>
-    fstr = fstr.replace('<<glld-gl-types>>', glld_gl_types(parse))
-    
     # <<glld-gl-enums>>
     fstr = fstr.replace('<<glld-gl-enums>>', glld_gl_enums(parse))
     
@@ -399,6 +355,7 @@ def opengl_loader(parse: glParse):
     # <<glld-gl-func-nameaddr>>
     fstr = fstr.replace('<<glld-gl-func-nameaddr>>', glld_gl_func_nameaddr(parse))
 
+    # open and write 'glld.h'
     with open('glld.h', 'w') as f:
         f.write(fstr)
 
@@ -424,32 +381,12 @@ def glld_gl_extension_macros(parse: glParse):
     if exts is None:
         return (None)
 
-    result  = ''
-    result += '# if defined (GLLD_LOAD_EXTENSIONS)\n'
+    result = '# if defined (GLLD_EXTENSIONS)\n'
     for ext in exts:
         result += f'#  define {ext.name}\n'
     result += '# endif\n'
 
     return (result.rstrip())
-
-
-def glld_gl_types(parse: glParse):
-    types = parse.types
-    if types is None:
-        return (None)
-
-    result = ''
-    for type in types:
-        result += f'{type.value}\n'
-
-        # case: #ifdef __APPLE__ ... #endif
-        if '__APPLE__' in type.value:
-            result = result \
-                .replace('#ifdef __APPLE__', '\n#if defined (__APPLE__)') \
-                .replace('#else', '#else') \
-                .replace('#endif', '#endif /* __APPLE__ */\n')
-
-    return (result.replace('#', '# ').rstrip())
 
 
 def glld_gl_enums(parse: glParse):
@@ -480,6 +417,7 @@ def glld_gl_enums(parse: glParse):
                 result += f'#  define {enum.name} {enum.value}\n'
         result += '# endif\n'
 
+    result += '#\n# if defined (GLLD_EXTENSIONS)\n'
     for ext in exts:
         reqs = ext.reqs
         # skip if this extension doesn't have any enums
@@ -487,12 +425,13 @@ def glld_gl_enums(parse: glParse):
             if len(reqs[0].enums) == 0:
                 continue
 
-        result += f'# if defined ({ext.name})\n'
+        result += f'#  if defined ({ext.name})\n'
         for req in reqs:
             for e_str in req.enums:
                 enum = next(enum for enum in enums if enum.name == e_str)
-                result += f'#  define {enum.name} {enum.value}\n'
-        result += '# endif\n'
+                result += f'#   define {enum.name} {enum.value}\n'
+        result += '#  endif\n'
+    result += '# endif\n'
 
     return (result.rstrip())
 
@@ -678,12 +617,13 @@ def glld_gl_func_macros(parse: glParse):
 
                 func  =  '#  define '
                 func += f'{cmd.name} '
-                func += f'(assert(glld_{cmd.name} != 0), glld_{cmd.name})\n'
+                func += f'glld_{cmd.name}\n'
 
                 # append 'func' to 'result'
                 result += func
         result += '# endif\n'
 
+    result += '#\n# if defined (GLLD_EXTENSIONS)\n'
     for ext in exts:
         reqs = ext.reqs
         # skip if this extension doesn't have any enums
@@ -691,18 +631,19 @@ def glld_gl_func_macros(parse: glParse):
             if len(reqs[0].cmds) == 0:
                 continue
 
-        result += f'# if defined ({feat.name})\n'
+        result += f'#  if defined ({feat.name})\n'
         for req in reqs:
             for c_str in req.cmds:
                 cmd = next(cmd for cmd in cmds if cmd.name == c_str)
 
-                func  =  '#  define '
+                func  =  '#   define '
                 func += f'{cmd.name} '
-                func += f'(assert(glld_{cmd.name} != 0), glld_{cmd.name})\n'
+                func += f'glld_{cmd.name}\n'
 
                 # append 'func' to 'result'
                 result += func
-        result += '# endif\n'
+        result += '#  endif\n'
+    result += '# endif\n'
 
     return (result.rstrip())
 

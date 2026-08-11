@@ -201,16 +201,18 @@
 # endif
 #
 #  if !defined (__cplusplus)
+#   include <assert.h>
 #   include <stdio.h>
 #   include <stdint.h>
 #   include <stddef.h>
-#   include <assert.h>
+#   include <sys/types.h>
 #  else
+#   include <cassert>
+#   include <string>
 #   include <cstdio>
 #   include <cstdint>
 #   include <cstddef>
-#   include <cassert>
-#   include <string>
+#   include <sys/types.h>
 #  endif
 #
 # if defined (__cplusplus)
@@ -233,10 +235,7 @@ GLAPI void *glld_get_proc_address(const char *);
 
 /* SECTION: OpenGL */
 
-<<glld-gl-version-macros>>
-#
-<<glld-gl-extension-macros>>
-
+/* OpenGL standard types */
 typedef unsigned int GLenum;
 typedef unsigned char GLboolean;
 typedef unsigned int GLbitfield;
@@ -247,7 +246,7 @@ typedef int16_t GLshort;
 typedef uint16_t GLushort;
 typedef int GLint;
 typedef unsigned int GLuint;
-typedef khronos_int32_t GLclampx;
+typedef int32_t GLclampx;
 typedef int GLsizei;
 typedef float GLfloat;
 typedef float GLclampf;
@@ -280,14 +279,23 @@ typedef void (APIENTRY *GLDEBUGPROCKHR)(GLenum source,GLenum type,GLuint id,GLen
 typedef void (APIENTRY *GLDEBUGPROCAMD)(GLuint id,GLenum category,GLenum severity,GLsizei length,const GLchar *message,void *userParam);
 typedef void (APIENTRY *GLVULKANPROCNV)(void);
 
-<<glld-gl-enums>>
-
+/* OpenGL function declarations */
 <<glld-gl-func-ptr>>
+
+# /* OpenGL version macros */
+<<glld-gl-version-macros>>
+#
+# /* OpenGL extension macros */
+<<glld-gl-extension-macros>>
+#
+# /* OpenGL enums */
+<<glld-gl-enums>>
+#
+# /* OpenGL functions */
+<<glld-gl-func-macros>>
 
 <<glld-gl-func-declr-1>>
 
-<<glld-gl-func-macros>>
-#
 # if defined (__cplusplus)
 
 }
