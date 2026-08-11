@@ -28406,14 +28406,14 @@ static struct s_nameaddr _nameaddr[] = {
 /* SECTION: glld */
 
 typedef void *(*PFNGLXGETPROCADDRESSPROC) (const char *);
-PFNGLXGETPROCADDRESSPROC __glld_glXGetProcAddress = 0;
+PFNGLXGETPROCADDRESSPROC _glld_glXGetProcAddress = 0;
 
 typedef void (*__glld_eglMustCastToProperFunctionPointerType)(void);
 typedef __glld_eglMustCastToProperFunctionPointerType (*PFNEGLGETPROCADDRESSPROC) (const char *);
-PFNEGLGETPROCADDRESSPROC __glld_eglGetProcAddress = 0;
+PFNEGLGETPROCADDRESSPROC _glld_eglGetProcAddress = 0;
 
 typedef void *(*PFNWGLGETPROCADDRESSPROC) (const char *);
-PFNWGLGETPROCADDRESSPROC __glld_wglGetProcAddress = 0;
+PFNWGLGETPROCADDRESSPROC _glld_wglGetProcAddress = 0;
 
 
 GLINT void *__glld_dlopen(const char *);
@@ -28439,9 +28439,9 @@ GLAPI int glld_load(void) {
 
     /* if libGLX.so loaded */
     if (handle) {
-        __glld_glXGetProcAddress = (PFNGLXGETPROCADDRESSPROC) __glld_dlsym(handle, "glXGetProcAddress");
-        if (__glld_glXGetProcAddress) {
-            int status = glld_loader((glld_loader_t) __glld_glXGetProcAddress);
+        _glld_glXGetProcAddress = (PFNGLXGETPROCADDRESSPROC) __glld_dlsym(handle, "glXGetProcAddress");
+        if (_glld_glXGetProcAddress) {
+            int status = glld_loader((glld_loader_t) _glld_glXGetProcAddress);
             if (status) {
                 return (status);
             }
@@ -28466,9 +28466,9 @@ GLAPI int glld_load(void) {
 
     /* if libEGL.so loaded */
     if (handle) {
-        __glld_eglGetProcAddress = (PFNEGLGETPROCADDRESSPROC) __glld_dlsym(handle, "eglGetProcAddress");
-        if (__glld_eglGetProcAddress) {
-            int status = glld_loader((glld_loader_t) __glld_eglGetProcAddress);
+        _glld_eglGetProcAddress = (PFNEGLGETPROCADDRESSPROC) __glld_dlsym(handle, "eglGetProcAddress");
+        if (_glld_eglGetProcAddress) {
+            int status = glld_loader((glld_loader_t) _glld_eglGetProcAddress);
             if (status) {
                 return (status);
             }
@@ -28493,9 +28493,9 @@ GLAPI int glld_load(void) {
 
     /* if opengl32.dll loaded */
     if (handle) {
-        __glld_wglGetProcAddress = (PFNWGLGETPROCADDRESSPROC) __glld_dlsym(handle, "wglGetProcAddress");
-        if (__glld_wglGetProcAddress) {
-            int status = glld_loader((glld_loader_t) __glld_wglGetProcAddress);
+        _glld_wglGetProcAddress = (PFNWGLGETPROCADDRESSPROC) __glld_dlsym(handle, "wglGetProcAddress");
+        if (_glld_wglGetProcAddress) {
+            int status = glld_loader((glld_loader_t) _glld_wglGetProcAddress);
             if (status) {
                 return (status);
             }
@@ -28562,6 +28562,17 @@ GLINT int __glld_dlclose(void *handle) {
     FreeLibrary(handle);
 #  endif
 
+    return (1);
+}
+
+
+GLAPI int glld_unload(void) {
+    /* unload all the handles that could've been loaded for this library */
+    __glld_dlclose(_glld_glXGetProcAddress), _glld_glXGetProcAddress = 0;
+    __glld_dlclose(_glld_eglGetProcAddress), _glld_eglGetProcAddress = 0;
+    __glld_dlclose(_glld_wglGetProcAddress), _glld_wglGetProcAddress = 0;
+
+    /* success */
     return (1);
 }
 

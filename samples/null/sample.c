@@ -1,5 +1,3 @@
-#define GLLD_VERBOSE
-#define GLLD_NO_EXTENSIONS
 #define GLLD_IMPLEMENTATION
 #include "./../../glld.h"
 
@@ -13,6 +11,8 @@ int main(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     
     /* ... */
+    
+    if (!glld_unload()) { return (1); }
 
     return (0);
 }
