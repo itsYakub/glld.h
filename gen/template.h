@@ -237,7 +237,48 @@ GLAPI void *glld_get_proc_address(const char *);
 #
 <<glld-gl-extension-macros>>
 
-<<glld-gl-types>>
+typedef unsigned int GLenum;
+typedef unsigned char GLboolean;
+typedef unsigned int GLbitfield;
+typedef void GLvoid;
+typedef int8_t GLbyte;
+typedef uint8_t GLubyte;
+typedef int16_t GLshort;
+typedef uint16_t GLushort;
+typedef int GLint;
+typedef unsigned int GLuint;
+typedef khronos_int32_t GLclampx;
+typedef int GLsizei;
+typedef float GLfloat;
+typedef float GLclampf;
+typedef double GLdouble;
+typedef double GLclampd;
+typedef void *GLeglClientBufferEXT;
+typedef void *GLeglImageOES;
+typedef char GLchar;
+typedef char GLcharARB;
+typedef void *GLhandleARB;
+typedef uint16_t GLhalf;
+typedef uint16_t GLhalfARB;
+typedef int32_t GLfixed;
+typedef intptr_t GLintptr;
+typedef intptr_t GLintptrARB;
+typedef ssize_t GLsizeiptr;
+typedef ssize_t GLsizeiptrARB;
+typedef int64_t GLint64;
+typedef int64_t GLint64EXT;
+typedef uint64_t GLuint64;
+typedef uint64_t GLuint64EXT;
+typedef struct __GLsync *GLsync;
+typedef unsigned short GLhalfNV;
+typedef GLintptr GLvdpauSurfaceNV;
+struct _cl_context;
+struct _cl_event;
+typedef void (APIENTRY *GLDEBUGPROC)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void (APIENTRY *GLDEBUGPROCARB)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void (APIENTRY *GLDEBUGPROCKHR)(GLenum source,GLenum type,GLuint id,GLenum severity,GLsizei length,const GLchar *message,const void *userParam);
+typedef void (APIENTRY *GLDEBUGPROCAMD)(GLuint id,GLenum category,GLenum severity,GLsizei length,const GLchar *message,void *userParam);
+typedef void (APIENTRY *GLVULKANPROCNV)(void);
 
 <<glld-gl-enums>>
 
