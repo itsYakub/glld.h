@@ -302,36 +302,38 @@ typedef void (APIENTRY *GLVULKANPROCNV)(void);
 
 # endif /* __cplusplus */
 #
-# if defined (GLLD_IMPLEMENTATION)
+#endif /* _glld_h_ */
 #
-#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE) || defined (GLLD_PLATFORM_BSD)
-#   include <dlfcn.h>
-#  endif
+#if defined (GLLD_IMPLEMENTATION)
 #
-#  if defined (GLLD_PLATFORM_WIN32)
-#   include <libloaderapi.h>
-#  endif
+# if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_APPLE) || defined (GLLD_PLATFORM_BSD)
+#  include <dlfcn.h>
+# endif
 #
-#  if defined (GLLD_VERBOSE)
-#   define GLLD_VERBOSE_INFO 1
-#   define GLLD_VERBOSE_WARN 1
-#   define GLLD_VERBOSE_ERROR 1
-#  endif
+# if defined (GLLD_PLATFORM_WIN32)
+#  include <libloaderapi.h>
+# endif
 #
-#  if defined (__cplusplus)
+# if defined (GLLD_VERBOSE)
+#  define GLLD_VERBOSE_INFO 1
+#  define GLLD_VERBOSE_WARN 1
+#  define GLLD_VERBOSE_ERROR 1
+# endif
+#
+# if defined (__cplusplus)
 
 extern "C" {
 
-#  endif /* __cplusplus */
+# endif /* __cplusplus */
     
 /* key-value pair array of OpenGL functions */
 struct s_nameaddr {
 
-#  if !defined (__cplusplus)
+# if !defined (__cplusplus)
     const char *name;
-#  else
+# else
     const std::string &name;
-#  endif /* __cplusplus */
+# endif /* __cplusplus */
 
     void **addr;
 };
@@ -347,15 +349,15 @@ static struct s_nameaddr _nameaddr[] = {
 
 /* SECTION: glld */
 
-typedef void *(*PFNGLXGETPROCADDRESSPROC) (const char *);
-PFNGLXGETPROCADDRESSPROC _glld_glXGetProcAddress = 0;
+typedef void *(*GLLDPFNGLXGETPROCADDRESSPROC) (const char *);
+GLLDPFNGLXGETPROCADDRESSPROC _glld_glXGetProcAddress = 0;
 
 typedef void (*__glld_eglMustCastToProperFunctionPointerType)(void);
-typedef __glld_eglMustCastToProperFunctionPointerType (*PFNEGLGETPROCADDRESSPROC) (const char *);
-PFNEGLGETPROCADDRESSPROC _glld_eglGetProcAddress = 0;
+typedef __glld_eglMustCastToProperFunctionPointerType (*GLLDPFNEGLGETPROCADDRESSPROC) (const char *);
+GLLDPFNEGLGETPROCADDRESSPROC _glld_eglGetProcAddress = 0;
 
-typedef void *(*PFNWGLGETPROCADDRESSPROC) (const char *);
-PFNWGLGETPROCADDRESSPROC _glld_wglGetProcAddress = 0;
+typedef void *(*GLLDPFNWGLGETPROCADDRESSPROC) (const char *);
+GLLDPFNWGLGETPROCADDRESSPROC _glld_wglGetProcAddress = 0;
 
 
 GLINT void *__glld_dlopen(const char *);
@@ -381,7 +383,7 @@ GLAPI int glld_load(void) {
 
     /* if libGLX.so loaded */
     if (handle) {
-        _glld_glXGetProcAddress = (PFNGLXGETPROCADDRESSPROC) __glld_dlsym(handle, "glXGetProcAddress");
+        _glld_glXGetProcAddress = (GLLDPFNGLXGETPROCADDRESSPROC) __glld_dlsym(handle, "glXGetProcAddress");
         if (_glld_glXGetProcAddress) {
             int status = glld_loader((glld_loader_t) _glld_glXGetProcAddress);
             if (status) {
@@ -408,7 +410,7 @@ GLAPI int glld_load(void) {
 
     /* if libEGL.so loaded */
     if (handle) {
-        _glld_eglGetProcAddress = (PFNEGLGETPROCADDRESSPROC) __glld_dlsym(handle, "eglGetProcAddress");
+        _glld_eglGetProcAddress = (GLLDPFNEGLGETPROCADDRESSPROC) __glld_dlsym(handle, "eglGetProcAddress");
         if (_glld_eglGetProcAddress) {
             int status = glld_loader((glld_loader_t) _glld_eglGetProcAddress);
             if (status) {
@@ -435,7 +437,7 @@ GLAPI int glld_load(void) {
 
     /* if opengl32.dll loaded */
     if (handle) {
-        _glld_wglGetProcAddress = (PFNWGLGETPROCADDRESSPROC) __glld_dlsym(handle, "wglGetProcAddress");
+        _glld_wglGetProcAddress = (GLLDPFNWGLGETPROCADDRESSPROC) __glld_dlsym(handle, "wglGetProcAddress");
         if (_glld_wglGetProcAddress) {
             int status = glld_loader((glld_loader_t) _glld_wglGetProcAddress);
             if (status) {
@@ -457,11 +459,11 @@ GLINT void *__glld_dlopen(const char *name) {
     if (!name) { return (0); }
 
     /* platform-dependant dynamic object loading */
-#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
+# if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
     void *handle = dlopen(name, RTLD_NOW | RTLD_GLOBAL);
-#  elif defined (GLLD_PLATFORM_WIN32)
+# elif defined (GLLD_PLATFORM_WIN32)
     HMODULE handle = LoadLibraryA(handle);
-#  endif
+# endif
 
     /* check if 'handle' is loaded */
     if (!handle) {
@@ -478,11 +480,11 @@ GLINT void *__glld_dlsym(void *handle, const char *symbol) {
     if (!symbol) { return (0); }
 
     /* platform-dependant dynamic symbol loading */
-#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
+# if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
     void *proc = dlsym(handle, symbol);
-#  elif defined (GLLD_PLATFORM_WIN32)
+# elif defined (GLLD_PLATFORM_WIN32)
     HMODULE proc = GetProcAddress(handle, symbol);
-#  endif
+# endif
 
     /* check if 'proc' was found */
     if (!proc) {
@@ -498,11 +500,11 @@ GLINT int __glld_dlclose(void *handle) {
     if (!handle) { return (0); }
 
     /* platform-dependant dynamic object unloading */
-#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
+# if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD) || defined (GLLD_PLATFORM_APPLE)
     dlclose(handle);
-#  elif defined (GLLD_PLATFORM_WIN32)
+# elif defined (GLLD_PLATFORM_WIN32)
     FreeLibrary(handle);
-#  endif
+# endif
 
     return (1);
 }
@@ -510,9 +512,9 @@ GLINT int __glld_dlclose(void *handle) {
 
 GLAPI int glld_unload(void) {
     /* unload all the handles that could've been loaded for this library */
-    __glld_dlclose(_glld_glXGetProcAddress), _glld_glXGetProcAddress = 0;
-    __glld_dlclose(_glld_eglGetProcAddress), _glld_eglGetProcAddress = 0;
-    __glld_dlclose(_glld_wglGetProcAddress), _glld_wglGetProcAddress = 0;
+    __glld_dlclose((void *) _glld_glXGetProcAddress), _glld_glXGetProcAddress = 0;
+    __glld_dlclose((void *) _glld_eglGetProcAddress), _glld_eglGetProcAddress = 0;
+    __glld_dlclose((void *) _glld_wglGetProcAddress), _glld_wglGetProcAddress = 0;
 
     /* success */
     return (1);
@@ -525,11 +527,11 @@ GLAPI int glld_loader(glld_loader_t load) {
         /* If the function is already loaded, skip it... */
         if (*_nameaddr[i].addr) { continue; }
 
-#  if !defined (__cplusplus)
+# if !defined (__cplusplus)
         *_nameaddr[i].addr = load(_nameaddr[i].name);
-#  else
+# else
         *_nameaddr[i].addr = load(_nameaddr[i].name.c_str());
-#  endif /* __cplusplus */
+# endif /* __cplusplus */
 
         if (!*_nameaddr[i].addr) { return (0); }
     }
@@ -541,21 +543,21 @@ GLAPI int glld_loader(glld_loader_t load) {
 GLAPI void *glld_get_proc_address(const char *name) {
     const char *libgl[] = {
 
-#  if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD)
+# if defined (GLLD_PLATFORM_LINUX) || defined (GLLD_PLATFORM_BSD)
         "libGL.so",
         "libGL.so.1",
         "libGL.so.1.7.0",
         0
-#  elif defined (GLLD_PLATFORM_APPLE)
+# elif defined (GLLD_PLATFORM_APPLE)
         "../Frameworks/OpenGL.framework/OpenGL",
         "/Library/Frameworks/OpenGL.framework/OpenGL",
         "/System/Library/Frameworks/OpenGL.framework/OpenGL",
         "/System/Library/Frameworks/OpenGL.framework/Versions/Current/OpenGL"
         0
-#  elif defined (GLLD_PLATFORM_WIN32)
+# elif defined (GLLD_PLATFORM_WIN32)
         "opengl32.dll",
         0
-#  endif
+# endif
 
     };
    
@@ -571,9 +573,9 @@ GLAPI void *glld_get_proc_address(const char *name) {
     /* check if libGL.so / opengl32.dll */
     if (!handle) {
 
-#  if defined (GLLD_VERBOSE_ERROR)
+# if defined (GLLD_VERBOSE_ERROR)
         fprintf(stderr, "glld.h: could not load an OpenGL handle.\n");
-#  endif
+# endif
 
         return (0);
     }
@@ -582,9 +584,9 @@ GLAPI void *glld_get_proc_address(const char *name) {
     void *proc = __glld_dlsym(handle, name);
     if (!proc) {
 
-#  if defined (GLLD_VERBOSE_ERROR)
+# if defined (GLLD_VERBOSE_ERROR)
         fprintf(stderr, "glld.h: could not load a procedure: %s\n", name);
-#  endif
+# endif
     
         return (0);
     }
@@ -597,11 +599,10 @@ GLAPI void *glld_get_proc_address(const char *name) {
 
 <<glld-gl-func-declr-0>>
 
-#  if defined (__cplusplus)
+# if defined (__cplusplus)
 
 }
 
-#  endif /* __cplusplus */
+# endif /* __cplusplus */
 #
-# endif /* GLLD_IMPLEMENTATION */
-#endif /* _glld_h_ */
+#endif /* GLLD_IMPLEMENTATION */
